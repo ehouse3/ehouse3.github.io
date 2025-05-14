@@ -1,3 +1,35 @@
-button {
-    width: 100px;
+
+body {
+    background-color: #dac4d0;
+    color: #241f33;
 }
+
+#header {
+    text-align: center;
+}
+#header-text {
+    font-size: 200px;
+    
+}
+
+#projects-container, #skills-container, #about-container, #header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* border: 1px, blue, solid; */
+}
+
+#item-1 {
+    margin: 5px;
+    /* border: 1px, red, solid; */
+
+}
+#item-2 {
+    margin: 5px;
+    /* border: 1px, red, solid; */
+}
+
