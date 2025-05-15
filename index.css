@@ -1,7 +1,12 @@
-
 body {
-    background-color: #dac4d0;
+    background-color: #e7cfdc;
     color: #241f33;
+}
+
+#navbar-container {
+    right: 0px;
+    position: fixed;
+    font-size: 30px;
 }
 
 #header {
@@ -20,16 +25,23 @@ body {
     
     margin-top: 10px;
     margin-bottom: 10px;
-    /* border: 1px, blue, solid; */
+    height: 1000px;
 }
 
 #item-1 {
     margin: 5px;
-    /* border: 1px, red, solid; */
 
 }
 #item-2 {
     margin: 5px;
-    /* border: 1px, red, solid; */
+}  
+
+
+
+
+.scrollspy-example {
+    position: relative;
+    height: 400px;
+    overflow: auto;
 }
 
