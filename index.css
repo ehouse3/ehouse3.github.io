@@ -4,20 +4,33 @@ body {
 }
 
 #navbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-right: 25px;
     right: 0px;
     position: fixed;
     font-size: 30px;
 }
 
-#header {
+#navbar-subcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15px;
+}
+
+#header-container {
     text-align: center;
+    border: red, 1px, solid;
 }
 #header-text {
     font-size: 200px;
     
 }
 
-#projects-container, #skills-container, #about-container, #header {
+#projects-container, #skills-container, #about-container, #header-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -25,23 +38,24 @@ body {
     
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 1000px;
+    margin-left: 75px;
+    height: 750px;
 }
 
-#item-1 {
+#header-container {
+    margin-left: 0px;
+    margin-right: 100px;
+}
+
+#project-1, #project2 {
     margin: 5px;
+    height: 500px;
 
 }
-#item-2 {
-    margin: 5px;
-}  
 
 
 
 
-.scrollspy-example {
-    position: relative;
-    height: 400px;
-    overflow: auto;
-}
+
+
 
