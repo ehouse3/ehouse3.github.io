@@ -1,4 +1,3 @@
-
 /* Color themes
 HEX CODES:
 #11302a
@@ -14,6 +13,11 @@ HEX CODES:
 #ccb0be
 */
 
+// flowing background //possibly use for astronmy sim background? 
+//https://www.braedin.com/Thpace/
+
+// website directory designs
+//https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 console.log("home.ts loaded")
 
 let loaded = 0;
