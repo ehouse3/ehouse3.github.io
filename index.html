@@ -21,7 +21,7 @@
         </nav>
     </nav>
 
-    <canvas id="background" width="0" height="0"></canvas>
+    <canvas id="background" width="1920" height="1080"></canvas>
 
     <div data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
 
@@ -68,13 +68,15 @@
     <script>
         const canvas = document.getElementById('background');
         const settings = {
-            colors: ['#4CB1EF', '#424959', '#FF4B44'],
-            triangleSize: 100,
+            colors: ['#b26684', '#474259','#424959', '#37a372'],
+            triangleSize: 200,
+            maxFPS: 24,
+            noise: 90,
+            automaticResize: true,
             particleSettings: {
                 count: [0,0]
             }
         };
-
         ThpaceGL.create(canvas, settings);
         
     </script>

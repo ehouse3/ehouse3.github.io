@@ -12,6 +12,17 @@ HEX CODES:
 #707978
 #ccb0be
 */
+/*
+#b26684
+#fc9dc3
+#ea85ae
+#474259
+#424959 
+#4CB1EF
+#0dc070
+#6eefcf
+#0dc070
+*/
 
 // flowing background //possibly use for astronmy sim background? 
 //https://www.braedin.com/Thpace/
