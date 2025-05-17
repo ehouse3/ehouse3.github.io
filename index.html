@@ -19,10 +19,9 @@
             <a class="nav-link" href="#project-1">Project 1</a>
             <a class="nav-link" href="#project-2">Project 2</a>
         </nav>
-        
     </nav>
 
-    <!-- <canvas id="make-me-cool" width="400" height="400" style="border:1px solid red;"></canvas> -->
+    <canvas id="background" width="0" height="0"></canvas>
 
     <div data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
 
@@ -67,13 +66,17 @@
     <script type="text/javascript" src="home.js"></script>
     <script src="./thpace.min.js"></script>
     <script>
-        const canvas = document.getElementById('make-me-cool');
+        const canvas = document.getElementById('background');
         const settings = {
             colors: ['#4CB1EF', '#424959', '#FF4B44'],
             triangleSize: 100,
+            particleSettings: {
+                count: [0,0]
+            }
         };
 
         ThpaceGL.create(canvas, settings);
+        
     </script>
     </body>
 </html>
