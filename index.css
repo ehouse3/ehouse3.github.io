@@ -1,8 +1,11 @@
 
 
 body {
-    /* color: #222029; */
+    /* color: rgb(24, 23, 30); */
     color: rgb(24, 23, 30);
+    /* font-family: Tahoma;  */
+    /* font-family: verdana; */
+    font-family: Helvetica;
 }
 
 #background {
@@ -32,7 +35,7 @@ body {
 
     /* background-color: #e0829d; */
     /* background: linear-gradient(90deg,#dd9bae 0%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%); */
-    background: linear-gradient(90deg,#9a56d9 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(90deg,#9e56d9 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
 
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px; 
@@ -55,7 +58,7 @@ body {
 
 
 a.active {
-    background-color: #643491 !important;
+    background-color: #632d8f !important;
 }
 
 

@@ -12,6 +12,21 @@ HEX CODES:
 #707978
 #ccb0be
 */
+/*
+#b26684
+#fc9dc3
+#ea85ae
+#474259
+#424959
+#4CB1EF
+#0dc070
+#6eefcf
+#37a372
+*/
+// flowing background //possibly use for astronmy sim background? 
+//https://www.braedin.com/Thpace/
+// website directory designs
+//https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 console.log("home.ts loaded");
 var loaded = 0;
 function loadScript() {

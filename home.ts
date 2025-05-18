@@ -21,7 +21,15 @@ HEX CODES:
 #4CB1EF
 #0dc070
 #6eefcf
-#0dc070
+#37a372
+
+#ce5db6
+#51516b
+#56516b
+#37a372
+
+#9a62c7 this one is the same hue as the side bar
+#ce5db6
 */
 
 // flowing background //possibly use for astronmy sim background? 
