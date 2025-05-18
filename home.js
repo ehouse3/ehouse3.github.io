@@ -22,12 +22,21 @@ HEX CODES:
 #0dc070
 #6eefcf
 #37a372
+
+#ce5db6
+#51516b
+#56516b
+#37a372
+
+#9a62c7 this one is the same hue as the side bar
+#ce5db6
 */
 // flowing background //possibly use for astronmy sim background? 
 //https://www.braedin.com/Thpace/
 // website directory designs
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
-console.log("home.ts loaded");
+//http-server https://www.npmjs.com/package/http-server 
+console.log("home.ts script loaded");
 var loaded = 0;
 function loadScript() {
     console.log("loaded = ", loaded);

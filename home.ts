@@ -37,8 +37,8 @@ HEX CODES:
 
 // website directory designs
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
-console.log("home.ts loaded")
-
+//http-server https://www.npmjs.com/package/http-server 
+console.log("home.ts script loaded");
 let loaded = 0;
 
 function loadScript(){ //load script function for loading each project when they are accessed
