@@ -49,8 +49,11 @@
 
             <div id="project-1">
                 <h2>projects item 1</h2>
-                <svg id="game-board-svg" width="90%" height="1000"> <!--viewbox="0 0 1000 1000"-->
+                <div id="zoom-slider-container">
+                  <input type="range" min="70" max="500" value="100" step="10" id="zoom-slider">
+                </div>
 
+                <svg id="game-board-svg" width="90%" height="1000"> <!--viewbox="0 0 1000 1000"-->
                     <defs>
                         <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
                             <line y2="12" fill="#000000" stroke="#000000" stroke-width="1"></line>

@@ -41,6 +41,7 @@ HEX CODES:
 console.log("home.ts script loaded");
 let loaded = 0;
 
+/*
 function loadScript(){ //load script function for loading each project when they are accessed
     console.log("loaded = " ,loaded);
     if (loaded == 0) {
@@ -50,5 +51,5 @@ function loadScript(){ //load script function for loading each project when they
         document.getElementsByTagName("head")[0].appendChild(file);
     }
 
-}
+}*/
 

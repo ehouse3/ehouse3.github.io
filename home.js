@@ -37,6 +37,8 @@ HEX CODES:
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 //http-server https://www.npmjs.com/package/http-server 
 console.log("home.ts script loaded");
+
+/*
 var loaded = 0;
 function loadScript() {
     console.log("loaded = ", loaded);
@@ -47,3 +49,4 @@ function loadScript() {
         document.getElementsByTagName("head")[0].appendChild(file);
     }
 }
+*/
