@@ -6,12 +6,14 @@ var board = document.getElementById('game-board-svg');
 var board_container = document.getElementById('game-board-container');
 //zoom functions
 var cur_zoom_value = 100;
-var cur_board_width = (board_container.clientWidth / cur_zoom_value) * 100;
-var cur_board_height = (board_container.clientHeight / cur_zoom_value) * 100;
+// var cur_board_width:number = (board_container.clientWidth/cur_zoom_value)*100;
+// var cur_board_height:number = (board_container.clientHeight/cur_zoom_value)*100;
+var cur_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
+var cur_board_height = ((board_container.getBoundingClientRect().height) / cur_zoom_value) * 100;
 function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     board.style.zoom = new_zoom_value + "%"; //update zoom
-    var new_board_width = (board_container.clientWidth / new_zoom_value) * 100;
-    var new_board_height = (board_container.clientHeight / new_zoom_value) * 100;
+    var new_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
+    var new_board_height = ((board_container.getBoundingClientRect().height) / cur_zoom_value) * 100;
     //board movement for zoom (scroll wheel and zoom slider)
     if (cursor_x == null && cursor_y == null) { //zoom slider
         board_container.scrollBy((cur_board_width - new_board_width) / 2, (cur_board_height - new_board_height) / 2); //centers screen
@@ -19,11 +21,11 @@ function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     else if (cursor_x && cursor_y) { //scroll wheel & mouse
         //translates screen by cursor amount proportional to zoom (the more zoomed in, the less it translates)
         board_container.scrollBy((cur_board_width - new_board_width) / 2, (cur_board_height - new_board_height) / 2); //centers screen
-        var cur_centered_cursor_x = ((cursor_x - (board.clientWidth / 2)) / (cur_zoom_value / 100));
-        var cur_centered_cursor_y = ((cursor_y - (board.clientWidth / 2)) / (cur_zoom_value / 100));
-        var new_centered_cursor_x = ((cursor_x - (board.clientWidth / 2)) / (new_zoom_value / 100));
-        var new_centered_cursor_y = ((cursor_y - (board.clientWidth / 2)) / (new_zoom_value / 100));
-        board_container.scrollBy(cur_centered_cursor_x - new_centered_cursor_x, cur_centered_cursor_y - new_centered_cursor_y);
+        // var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
+        // var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
+        // var new_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (new_zoom_value/100));
+        // var new_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (new_zoom_value/100));
+        // board_container.scrollBy(cur_centered_cursor_x - new_centered_cursor_x, cur_centered_cursor_y - new_centered_cursor_y); 
     }
     cur_board_width = new_board_width;
     cur_board_height = new_board_height;
@@ -36,15 +38,14 @@ zoom_slider.oninput = function () {
 //sets zoom_slider value to +1/-1 step then calls set_zoom() to match the new value
 //might want to rework later to not be dependant on zoom slider
 function mouse_zoom(event) {
-    console.log(event);
-    var step = zoom_slider.getAttribute("step");
+    var step = Number(zoom_slider.getAttribute("step"));
     event.preventDefault();
     if (event.deltaY < 0) {
-        zoom_slider.value = String(Number(zoom_slider.value) + Number(step)); //manually increases zoom by 1 step
+        zoom_slider.value = String(Number(zoom_slider.value) + step); //manually increases zoom by 1 step
         set_zoom(Number(zoom_slider.value), event.clientX, event.clientY);
     }
     else {
-        zoom_slider.value = String(Number(zoom_slider.value) - Number(step)); //manually decreases zoom by 1 step
+        zoom_slider.value = String(Number(zoom_slider.value) - step); //manually decreases zoom by 1 step
         set_zoom(Number(zoom_slider.value), event.clientX, event.clientY);
     }
 }
