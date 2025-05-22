@@ -4,12 +4,11 @@ var newToken = new Token("john doe");
 var zoom_slider = document.getElementById('zoom-slider');
 var board = document.getElementById('game-board-svg');
 var board_container = document.getElementById('game-board-container');
-//zoom functions
+//ZOOMING
 var cur_zoom_value = 100;
-// var cur_board_width:number = (board_container.clientWidth/cur_zoom_value)*100;
-// var cur_board_height:number = (board_container.clientHeight/cur_zoom_value)*100;
 var cur_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
 var cur_board_height = ((board_container.getBoundingClientRect().height) / cur_zoom_value) * 100;
+//sets zoom of board, then scrolls to center screen on cursor if able
 function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     board.style.zoom = new_zoom_value + "%"; //update zoom
     var new_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
@@ -20,6 +19,12 @@ function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     }
     else if (cursor_x && cursor_y) { //scroll wheel & mouse
         //translates screen by cursor amount proportional to zoom (the more zoomed in, the less it translates)
+        // console.log("cont offset", board_container.offsetWidth);
+        // console.log("cont client", board_container.clientWidth);
+        // console.log("cont bound", board_container.getBoundingClientRect().width);
+        // console.log("board client", board.clientWidth);
+        // console.log("board bound", board.getBoundingClientRect().width);
+        // console.log("\n");
         board_container.scrollBy((cur_board_width - new_board_width) / 2, (cur_board_height - new_board_height) / 2); //centers screen
         // var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
         // var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
@@ -36,7 +41,6 @@ zoom_slider.oninput = function () {
     set_zoom(Number(zoom_slider.value), null, null); //calls zoom slider
 };
 //sets zoom_slider value to +1/-1 step then calls set_zoom() to match the new value
-//might want to rework later to not be dependant on zoom slider
 function mouse_zoom(event) {
     var step = Number(zoom_slider.getAttribute("step"));
     event.preventDefault();
