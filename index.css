@@ -1,11 +1,13 @@
 
 
-body {
+body, html {
     /* color: rgb(24, 23, 30); */
     color: rgb(24, 23, 30);
     /* font-family: Tahoma;  */
     /* font-family: verdana; */
     font-family: Helvetica;
+    width: 100%;
+    height: 100%;
 }
 
 #background {
@@ -55,8 +57,6 @@ body {
     align-items: flex-start;
     margin-left: 15px;
 }
-
-
 a.active {
     background-color: #632d8f !important;
 }
@@ -81,7 +81,7 @@ a.active {
     
     margin-top: 10px;
     margin-bottom: 10px;
-    /* margin-left: 75px; */
+    margin-left: 75px;
     min-height: 750px;
     border: 1px solid red;
 }

@@ -61,3 +61,27 @@ function mouse_zoom(event:WheelEvent) {
     }
 }
 board_container.addEventListener("wheel", mouse_zoom);
+
+//PANNING
+var panning:boolean = false;    
+function start_pan(event:PointerEvent) { //starting pan event handler
+    if(event.button == 2){
+        panning = true;   
+        event.preventDefault();
+    }
+}
+function end_pan(event:PointerEvent) { //ending pan event handler
+    if(panning){
+        panning = false;
+    }   
+}
+function move_pan(event:PointerEvent) { //panning on mouse movement event handler
+    if(panning) {  
+        board_container.scrollBy(Number(event.movementX) * -1, Number(event.movementY) * -1)
+    }
+}
+board_container.addEventListener('pointerdown', start_pan);
+board_container.addEventListener('pointerup', end_pan);
+board_container.addEventListener('pointercancel', end_pan);
+board_container.addEventListener('pointermove', move_pan);
+board_container.addEventListener("contextmenu", (event) => event.preventDefault()); //prevent the right click contextmenu from opening on the gameboard
