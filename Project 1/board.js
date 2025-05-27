@@ -8,6 +8,9 @@ var board_container = document.getElementById('game-board-container');
 var cur_zoom_value = 100;
 var cur_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
 var cur_board_height = ((board_container.getBoundingClientRect().height) / cur_zoom_value) * 100;
+board_container.scrollBy(6000, 0);
+console.log(board_container.scrollLeft);
+console.log("board.boundingclient ", board.getBoundingClientRect().width);
 //sets zoom of board, then scrolls to center screen on cursor if able
 function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     board.style.zoom = new_zoom_value + "%"; //update zoom
@@ -19,18 +22,25 @@ function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     }
     else if (cursor_x && cursor_y) { //scroll wheel & mouse
         //translates screen by cursor amount proportional to zoom (the more zoomed in, the less it translates)
-        // console.log("cont offset", board_container.offsetWidth);
-        // console.log("cont client", board_container.clientWidth);
-        // console.log("cont bound", board_container.getBoundingClientRect().width);
-        // console.log("board client", board.clientWidth);
-        // console.log("board bound", board.getBoundingClientRect().width);
-        // console.log("\n");
+        //         console.log("container.offsetwidth ", board_container.offsetWidth);
+        //         console.log("container.clientwidth ", board_container.clientWidth); //the star
+        //         console.log("container.boundingclient ", board_container.getBoundingClientRect().width);
+        //         console.log("\n");
+        //         console.log("board.client ", board.clientWidth);
+        //         console.log("board.boundingclient ", board.getBoundingClientRect().width);
+        //         console.log("\n");
+        //         console.log("zooming to ", new_zoom_value);
+        //         console.log("container client width / new zoom",board_container.clientWidth/new_zoom_value);
+        //         console.log("container client width / (new zoom/100)",board_container.clientWidth/(new_zoom_value/100));
+        // 
+        //         console.log("\n---------------\n\n");
         board_container.scrollBy((cur_board_width - new_board_width) / 2, (cur_board_height - new_board_height) / 2); //centers screen
-        // var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
-        // var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
-        // var new_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (new_zoom_value/100));
-        // var new_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (new_zoom_value/100));
-        // board_container.scrollBy(cur_centered_cursor_x - new_centered_cursor_x, cur_centered_cursor_y - new_centered_cursor_y); 
+        //         var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
+        //         var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
+        //         var new_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (new_zoom_value/100));
+        //         var new_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (new_zoom_value/100));
+        // 
+        //         board_container.scrollBy(cur_centered_cursor_x - new_centered_cursor_x, cur_centered_cursor_y - new_centered_cursor_y); 
     }
     cur_board_width = new_board_width;
     cur_board_height = new_board_height;
