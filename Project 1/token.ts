@@ -1,10 +1,5 @@
 console.log("token.ts class loaded");
-// export class Token {
-//     private _name:string;
-//     constructor(name:string) {
-//         this._name = name;
-//     }
-// }
+
 export class Token {
     /*
     class to create a movable and storable token objects:
@@ -17,9 +12,9 @@ export class Token {
     */
 
     private _name:string;
-    private _element_parent:HTMLElement;
-    private _element_circle_0:Element;
-    private _element_circle_1:Element;
+    private _element_parent:SVGGraphicsElement;
+    private _element_circle_0:SVGCircleElement;
+    private _element_circle_1:SVGCircleElement;
 
     private _cur_x:number;
     private _cur_y:number;
@@ -27,7 +22,7 @@ export class Token {
     private _width:number;
     private _unique_id:string;
 
-    private dragging:boolean | null; //adjust later
+    private dragging:{dx:number, dy:number} | null; //adjust later
     private _selected:boolean;
     private _movement_allowed:boolean;
 
@@ -37,13 +32,13 @@ export class Token {
     private _health:number; private _mana:number; private _armor:number; private _speed:number;
 
 
-    constructor(name = '(no name given)', element_parent:HTMLElement, cur_x=0, cur_y=0, width:number, unique_id:number) {
+    constructor(name = '(no name given)', element_parent:SVGGraphicsElement, cur_x=0, cur_y=0, width:number, unique_id:string) {
         //uses _var naming scheme to prevent idefinite recursive calls
         this._name = name;
 
-        this._element_parent = element_parent;
-        this._element_circle_0 = element_parent.children[0]; //first circle
-        this._element_circle_1 = element_parent.children[1]; //second circle
+        this._element_parent = element_parent as SVGGraphicsElement;
+        this._element_circle_0 = element_parent.children[0] as SVGCircleElement; //first circle
+        this._element_circle_1 = element_parent.children[1] as SVGCircleElement; //second circle
 
         this._cur_x = cur_x;
         this._cur_y = cur_y;
@@ -86,4 +81,137 @@ export class Token {
     get name() { return this._name; }
     get health() { return this._health; }
     get mana() { return this._mana; }
+
+    //setter functions
+    set cur_x(new_x) { this._cur_x = new_x; }
+    set cur_y(new_y) { this._cur_y = new_y; }
+    set name(new_name) { this._name = new_name; }
+    set health(new_health) { this._health = new_health; }
+    set mana(new_mana) { this._mana = new_mana; }
+    set selected(new_selected) { //replace all with filter w/ hue rotate and a sepperate css class
+        if(new_selected == true && this.selected == false) {
+            this._previous_border_0 = this.element_circle_0.style.getPropertyValue("stroke");
+            this._previous_border_1 = this.element_circle_1.style.getPropertyValue("stroke");
+            
+            this.element_circle_0.style.setProperty("stroke", "rgb(50, 50, 177)");
+            this.element_circle_1.style.setProperty("stroke", "rgb(35, 35, 150)");
+        } else {
+            this.element_circle_0.style.setProperty("stroke", this._previous_border_0);
+            this.element_circle_1.style.setProperty("stroke", this._previous_border_1);
+            this._previous_border_0 = '';
+            this._previous_border_1 = '';
+        }
+        this._selected = new_selected;
+    }
+    prevent_movement() { this._movement_allowed = false; }
+    allow_movement() { this._movement_allowed = true; }
+    set_position(new_x:number, new_y:number) {
+        let grid_width = 2000;
+        let grid_height = 1000;
+
+        //fix grid length and height for this
+        this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 12, (this.width / 2));
+        this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 12, (this.width / 2));
+
+        //console.log("cur x : " + this.cur_x + " cur y : " + this.cur_y);
+
+        this.element_parent.setAttribute("transform", "translate(" + this.cur_x + "," + this.cur_y + ")");
+        
+        //the following functions are used for adjusting coordinates in grad:
+        //clamps value, returns x value clamped between the lo and hi
+        function clamp(x:number, lo:number, hi:number) { 
+            return x < lo ? lo : x > hi ? hi : x 
+        }
+        //snaps value, snaps value to closest factor of unit_length if it's lower or higher (closest square)
+        function snap_to_grid(x:number, unit_length:number, width:number) {
+            var remainder = x % unit_length;
+            if(width % 12 == 0) { //token is even width
+                if(remainder < unit_length/2) {
+                    return x - remainder;
+                }else {
+                    return x - remainder + unit_length;
+                }
+            }else { //token is odd width
+                if(remainder + unit_length/2 < unit_length/2) { //unit_length/2 accounts for odd width
+                    return x - remainder - unit_length/2;
+                }else {
+                    return x - remainder + unit_length - unit_length/2;
+                } 
+            }
+        }
+    }
+
+    //draggability handler
+    event_to_svg_coordinates = (event:PointerEvent, el=event.currentTarget) => {//converts event's argument coordinates to svg coordinates
+        const svg = this.element_parent.parentNode! as SVGGraphicsElement;
+        // let p = svg.createSVGPoint(); //deprecated
+        let p = new DOMPoint();
+        p.x = event.clientX;
+        p.y = event.clientY;
+        p = p.matrixTransform(svg.getScreenCTM()!.inverse()); 
+        return p;
+    }
+
+    start_drag = (event:PointerEvent) => { //starting dragging event handler
+        if (event.button !== 0) return; //on left click
+        //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
+        // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch
+        if (!this.movement_allowed) return;
+        let {x, y} = this.event_to_svg_coordinates(event);
+        this.dragging = {dx: this.cur_x - x, dy: this.cur_y - y};
+        this.element_parent.classList.add('dragging');
+        this.element_parent.setPointerCapture(event.pointerId);
+    }
+
+    move_drag = (event:PointerEvent) => { //dragging on mouse move event handler
+        if (!this.dragging) return;
+        if (!this.movement_allowed) return;
+        let {x, y} = this.event_to_svg_coordinates(event);
+        this.set_position(x + this.dragging.dx, y + this.dragging.dy);
+    }
+
+    end_drag = (_event:PointerEvent) => { //ending drag event handler
+        this.dragging = null;
+        this.element_parent.classList.remove('dragging');
+    }
+
+    make_draggable() {
+        console.log("adding dragability to " + this.name);
+
+        //binding handlers
+        //should these listeners be bound to board?
+        this.element_parent.parentElement!.addEventListener('pointerdown', this.start_drag);
+        this.element_parent.parentElement!.addEventListener('pointerup', this.end_drag);
+        this.element_parent.parentElement!.addEventListener('pointercancel', this.end_drag);
+        this.element_parent.parentElement!.addEventListener('pointermove', this.move_drag);
+        this.element_parent.parentElement!.addEventListener('touchstart', (event) => event.preventDefault());
+    }
+
+    remove_draggable() { 
+        //not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
+        console.log("removing draggability from " + this.name);
+        this.element_parent.parentElement!.removeEventListener('pointerdown', this.start_drag);
+        this.element_parent.parentElement!.removeEventListener('pointerup', this.end_drag);
+        this.element_parent.parentElement!.removeEventListener('pointercancel', this.end_drag);
+        this.element_parent.parentElement!.removeEventListener('pointermove', this.move_drag);
+        this.element_parent.parentElement!.removeEventListener('touchstart', (event) => event.preventDefault());
+        
+    }
+
+    //setting border colors
+    set_border(inner_color:number[], outer_color:number[]) {
+        console.log("setting border");
+        //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
+        //setting width
+        var stroke_width = 3;
+        this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
+        this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
+        //setting color
+        this.element_circle_0.style.setProperty("stroke", "rgb(" + outer_color[0] + "," + outer_color[1] + "," + outer_color[2] + ")");
+        this.element_circle_1.style.setProperty("stroke", "rgb(" + inner_color[0] + "," + inner_color[1] + "," + inner_color[2] + ")");
+
+    }
+
+
+
 }

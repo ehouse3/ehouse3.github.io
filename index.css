@@ -111,11 +111,11 @@ a.active {
     overflow: scroll;
     zoom: 100%;
     margin-left: 5%;
-    border: 1px solid green;
+    
 }
 #game-board-svg {
     background-color: rgba(0, 0, 0, 0);
-    zoom: 300%;
+    zoom: 100%;
     /* width: 3000px;
     height: 3000px; */
     /* width: 1490px; */
