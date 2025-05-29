@@ -8,12 +8,11 @@ var Token = /** @class */ (function () {
         //draggability handler
         this.event_to_svg_coordinates = function (event, el) {
             if (el === void 0) { el = event.currentTarget; }
-            var svg = _this.element_parent.parentNode;
             // let p = svg.createSVGPoint(); //deprecated
             var p = new DOMPoint();
             p.x = event.clientX;
             p.y = event.clientY;
-            p = p.matrixTransform(svg.getScreenCTM().inverse());
+            p = p.matrixTransform(_this.svg.getScreenCTM().inverse());
             return p;
         };
         this.start_drag = function (event) {
@@ -24,20 +23,25 @@ var Token = /** @class */ (function () {
             if (!_this.movement_allowed)
                 return;
             var _a = _this.event_to_svg_coordinates(event), x = _a.x, y = _a.y;
-            _this.dragging = { dx: _this.cur_x - x, dy: _this.cur_y - y };
+            _this.dragging_d = { dx: _this.cur_x - x, dy: _this.cur_y - y };
+            _this.dragging_s = { sx: x, sy: y };
             _this.element_parent.classList.add('dragging');
             _this.element_parent.setPointerCapture(event.pointerId);
         };
         this.move_drag = function (event) {
-            if (!_this.dragging)
+            if (!_this.dragging_d || !_this.dragging_s)
                 return;
             if (!_this.movement_allowed)
                 return;
             var _a = _this.event_to_svg_coordinates(event), x = _a.x, y = _a.y;
-            _this.set_position(x + _this.dragging.dx, y + _this.dragging.dy);
+            var zoom = _this.svg.style.zoom != "" ? Number(_this.svg.style.zoom.slice(0, -1)) / 100 : 1; //catches empty zoom
+            var zoom_adjustment_x = (x - _this.dragging_s.sx) - (x - _this.dragging_s.sx) / zoom;
+            var zoom_adjustment_y = (y - _this.dragging_s.sy) - (y - _this.dragging_s.sy) / zoom;
+            _this.set_position(x + _this.dragging_d.dx - zoom_adjustment_x, y + _this.dragging_d.dy - zoom_adjustment_y);
         };
         this.end_drag = function (_event) {
-            _this.dragging = null;
+            _this.dragging_d = null;
+            _this.dragging_s = null;
             _this.element_parent.classList.remove('dragging');
         };
         //uses _var naming scheme to prevent idefinite recursive calls
@@ -45,6 +49,7 @@ var Token = /** @class */ (function () {
         this._element_parent = element_parent;
         this._element_circle_0 = element_parent.children[0]; //first circle
         this._element_circle_1 = element_parent.children[1]; //second circle
+        this._svg = element_parent.parentNode;
         this._cur_x = cur_x;
         this._cur_y = cur_y;
         if (width) {
@@ -58,8 +63,9 @@ var Token = /** @class */ (function () {
         }
         this._unique_id = unique_id;
         this.element_parent.id = String(this.unique_id);
-        //this.set_position(cur_x, cur_y); //called in constructor to update the start position
-        this.dragging = null; //currently dragging
+        this.set_position(cur_x, cur_y); //called in constructor to update the start position
+        this.dragging_d = null;
+        this.dragging_s = null;
         this._selected = false;
         this._previous_border_0 = '';
         this._previous_border_1 = '';
@@ -70,8 +76,13 @@ var Token = /** @class */ (function () {
         this._armor = 0;
         this._speed = 0;
     }
-    Object.defineProperty(Token.prototype, "element_parent", {
+    Object.defineProperty(Token.prototype, "svg", {
         //getter functions
+        get: function () { return this._svg; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Token.prototype, "element_parent", {
         get: function () { return this._element_parent; },
         enumerable: false,
         configurable: true
@@ -158,8 +169,8 @@ var Token = /** @class */ (function () {
         var grid_width = 2000;
         var grid_height = 1000;
         //fix grid length and height for this
-        this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 12, (this.width / 2));
-        this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 12, (this.width / 2));
+        this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 20, (this.width / 2));
+        this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 20, (this.width / 2));
         //console.log("cur x : " + this.cur_x + " cur y : " + this.cur_y);
         this.element_parent.setAttribute("transform", "translate(" + this.cur_x + "," + this.cur_y + ")");
         //the following functions are used for adjusting coordinates in grad:

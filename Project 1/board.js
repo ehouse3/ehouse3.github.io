@@ -28,18 +28,18 @@ function set_zoom(new_zoom_value, cursor_x, cursor_y) {
     }
     else if (cursor_x && cursor_y) { //scroll wheel & mouse
         //translates screen by cursor amount proportional to zoom (the more zoomed in, the less it translates)
-        console.log("container.offsetwidth ", board_container.offsetWidth);
-        console.log("container.clientwidth ", board_container.clientWidth); //the star
-        console.log("container.boundingclient ", board_container.getBoundingClientRect().width);
-        console.log("\n");
-        console.log("board.client ", board.clientWidth);
-        console.log("board.boundingclient ", board.getBoundingClientRect().width);
-        console.log("\n");
-        console.log("zooming to ", new_zoom_value);
+        // console.log("container.offsetwidth ", board_container.offsetWidth);
+        // console.log("container.clientwidth ", board_container.clientWidth); //the star
+        // console.log("container.boundingclient ", board_container.getBoundingClientRect().width);
+        // console.log("\n");
+        // console.log("board.client ", board.clientWidth);
+        // console.log("board.boundingclient ", board.getBoundingClientRect().width);
+        // console.log("\n");
+        // console.log("zooming to ", new_zoom_value);
         // console.log("container client width / new zoom",board_container.clientWidth/new_zoom_value);
         // console.log("container client width / (new zoom/100)",board_container.clientWidth/(new_zoom_value/100));
-        console.log("final movement", (cur_board_width - new_board_width) / -2);
-        console.log("\n---------------\n\n");
+        // console.log("final movement",(cur_board_width - new_board_width)/-2)
+        // console.log("\n---------------\n\n");
         board_container.scrollBy((cur_board_width - new_board_width) / 2, (cur_board_height - new_board_height) / 2); //centers screen
         // var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
         // var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
@@ -94,7 +94,7 @@ board_container.addEventListener('pointermove', move_pan);
 board_container.addEventListener("contextmenu", function (event) { return event.preventDefault(); }); //prevent the right click contextmenu from opening on the gameboard
 //creating starting tokens
 var new_element = document.getElementsByClassName("token")[0];
-var new_token = new Token("starting token S", new_element, 125, 100, 12, "a");
+var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
 new_token.health = 25;
 new_token.make_draggable();
 new_token.set_border([160, 60, 60], [178, 78, 78]);

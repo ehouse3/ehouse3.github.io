@@ -124,6 +124,19 @@ a.active {
     height: 1000px;
 }
 
+/* token/draggable attributes */
+.draggable { 
+    cursor: grab; 
+    fill: rgb(180, 180, 180);
+    stroke-width: 4px;
+}
+.dragging { 
+    cursor: grabbing; 
+    /*fill: hsl(200 50% 50%); */
+    opacity: 80%;
+    
+}
+
 #selector {
     opacity: 50%;
     fill: lightblue;

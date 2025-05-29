@@ -12,6 +12,7 @@ export class Token {
     */
 
     private _name:string;
+    private _svg:SVGGraphicsElement;
     private _element_parent:SVGGraphicsElement;
     private _element_circle_0:SVGCircleElement;
     private _element_circle_1:SVGCircleElement;
@@ -22,11 +23,12 @@ export class Token {
     private _width:number;
     private _unique_id:string;
 
-    private dragging:{dx:number, dy:number} | null; //adjust later
+    private dragging_d:{dx:number, dy:number} | null; // difference between center of token and grabbed coordinates
+    private dragging_s:{sx:number, sy:number} | null; // start drag's coordinates
     private _selected:boolean;
     private _movement_allowed:boolean;
 
-    private _previous_border_0:string; //adjust later
+    private _previous_border_0:string; 
     private _previous_border_1:string;
 
     private _health:number; private _mana:number; private _armor:number; private _speed:number;
@@ -39,6 +41,7 @@ export class Token {
         this._element_parent = element_parent as SVGGraphicsElement;
         this._element_circle_0 = element_parent.children[0] as SVGCircleElement; //first circle
         this._element_circle_1 = element_parent.children[1] as SVGCircleElement; //second circle
+        this._svg = element_parent.parentNode as SVGGraphicsElement;
 
         this._cur_x = cur_x;
         this._cur_y = cur_y;
@@ -54,8 +57,9 @@ export class Token {
         this._unique_id = unique_id;
         this.element_parent.id = String(this.unique_id);
         
-        //this.set_position(cur_x, cur_y); //called in constructor to update the start position
-        this.dragging = null; //currently dragging
+        this.set_position(cur_x, cur_y); //called in constructor to update the start position
+        this.dragging_d = null; 
+        this.dragging_s = null;
         this._selected = false;
         this._previous_border_0 = '';
         this._previous_border_1 = '';
@@ -68,6 +72,7 @@ export class Token {
         this._speed = 0;
     }
     //getter functions
+    get svg() { return this._svg;}
     get element_parent() { return this._element_parent; }
     get element_circle_0() { return this._element_circle_0; }
     get element_circle_1() { return this._element_circle_1; }
@@ -110,8 +115,8 @@ export class Token {
         let grid_height = 1000;
 
         //fix grid length and height for this
-        this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 12, (this.width / 2));
-        this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 12, (this.width / 2));
+        this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 20, (this.width / 2));
+        this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 20, (this.width / 2));
 
         //console.log("cur x : " + this.cur_x + " cur y : " + this.cur_y);
 
@@ -143,12 +148,11 @@ export class Token {
 
     //draggability handler
     event_to_svg_coordinates = (event:PointerEvent, el=event.currentTarget) => {//converts event's argument coordinates to svg coordinates
-        const svg = this.element_parent.parentNode! as SVGGraphicsElement;
         // let p = svg.createSVGPoint(); //deprecated
         let p = new DOMPoint();
         p.x = event.clientX;
         p.y = event.clientY;
-        p = p.matrixTransform(svg.getScreenCTM()!.inverse()); 
+        p = p.matrixTransform(this.svg.getScreenCTM()!.inverse()); 
         return p;
     }
 
@@ -157,21 +161,31 @@ export class Token {
         //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
         // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch
         if (!this.movement_allowed) return;
+
         let {x, y} = this.event_to_svg_coordinates(event);
-        this.dragging = {dx: this.cur_x - x, dy: this.cur_y - y};
+        this.dragging_d = {dx: this.cur_x - x, dy: this.cur_y - y}; 
+        this.dragging_s = {sx: x, sy: y};
+        
         this.element_parent.classList.add('dragging');
         this.element_parent.setPointerCapture(event.pointerId);
+
     }
 
     move_drag = (event:PointerEvent) => { //dragging on mouse move event handler
-        if (!this.dragging) return;
+        if (!this.dragging_d || !this.dragging_s) return;
         if (!this.movement_allowed) return;
+
         let {x, y} = this.event_to_svg_coordinates(event);
-        this.set_position(x + this.dragging.dx, y + this.dragging.dy);
+        let zoom:number = this.svg.style.zoom != "" ? Number(this.svg.style.zoom.slice(0, -1))/100 : 1; //catches empty zoom
+        let zoom_adjustment_x:number = (x - this.dragging_s.sx) - (x - this.dragging_s.sx)/zoom; //calculate difference between non-zoomed starting pos and zoomed starting pos.
+        let zoom_adjustment_y:number = (y - this.dragging_s.sy) - (y - this.dragging_s.sy)/zoom;
+
+        this.set_position(x + this.dragging_d.dx - zoom_adjustment_x, y + this.dragging_d.dy - zoom_adjustment_y);
     }
 
     end_drag = (_event:PointerEvent) => { //ending drag event handler
-        this.dragging = null;
+        this.dragging_d = null;
+        this.dragging_s = null;
         this.element_parent.classList.remove('dragging');
     }
 
