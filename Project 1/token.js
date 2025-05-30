@@ -27,8 +27,12 @@ var Token = /** @class */ (function () {
                 return; //on left click
             if (!_this.movement_allowed)
                 return;
-            //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
-            // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch        
+            var target = event.target;
+            if (target == null) {
+                return;
+            }
+            if (target.parentElement.id != _this.unique_id && _this.selected == false)
+                return; //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
             var _a = _this.event_to_svg_coordinates(event), x = _a.x, y = _a.y;
             _this.dragging_d = { dx: _this.cur_x - x, dy: _this.cur_y - y };
             _this.dragging_s = { sx: x, sy: y };

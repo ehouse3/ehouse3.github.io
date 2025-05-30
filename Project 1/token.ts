@@ -166,8 +166,9 @@ export class Token {
     start_drag = (event:PointerEvent) => { //starting dragging event handler
         if (event.button !== 0) return; //on left click
         if (!this.movement_allowed) return;
-        //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
-        // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch        
+        const target:HTMLElement = event.target as HTMLElement;
+        if (target == null) { return; }
+        if (target.parentElement!.id != this.unique_id && this.selected == false) return; //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
 
         let {x, y} = this.event_to_svg_coordinates(event);
         this.dragging_d = {dx: this.cur_x - x, dy: this.cur_y - y}; 
