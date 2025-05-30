@@ -6,7 +6,7 @@ var selected_tokens_list = []; //list of currently selected tokens
 var zoom_slider = document.getElementById('zoom-slider');
 var board = document.getElementById('game-board-svg');
 var board_container = document.getElementById('game-board-container');
-//ZOOMING
+// #region zoom
 var cur_zoom_value = 100;
 var cur_board_width = ((board_container.getBoundingClientRect().width) / cur_zoom_value) * 100;
 var cur_board_height = ((board_container.getBoundingClientRect().height) / cur_zoom_value) * 100;
@@ -69,7 +69,7 @@ function mouse_zoom(event) {
     }
 }
 board_container.addEventListener("wheel", mouse_zoom);
-//PANNING
+// #region pan
 var panning = false;
 function start_pan(event) {
     if (event.button == 2) {
@@ -92,7 +92,10 @@ board_container.addEventListener('pointerup', end_pan);
 board_container.addEventListener('pointercancel', end_pan);
 board_container.addEventListener('pointermove', move_pan);
 board_container.addEventListener("contextmenu", function (event) { return event.preventDefault(); }); //prevent the right click contextmenu from opening on the gameboard
-//creating starting tokens
+// #endregion
+// #region select
+// #endregion
+// #region create token
 var new_element = document.getElementsByClassName("token")[0];
 var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
 new_token.health = 25;

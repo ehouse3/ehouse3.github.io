@@ -10,7 +10,7 @@ const zoom_slider:HTMLInputElement = document.getElementById('zoom-slider') as H
 const board:HTMLElement = document.getElementById('game-board-svg')!;
 const board_container:HTMLElement = document.getElementById('game-board-container')!;
 
-//ZOOMING
+// #region zoom
 var cur_zoom_value:number = 100;
 var cur_board_width:number = ((board_container.getBoundingClientRect().width)/cur_zoom_value)*100;
 var cur_board_height:number = ((board_container.getBoundingClientRect().height)/cur_zoom_value)*100;
@@ -83,7 +83,7 @@ function mouse_zoom(event:WheelEvent) {
 }
 board_container.addEventListener("wheel", mouse_zoom);
 
-//PANNING
+// #region pan
 var panning:boolean = false;    
 function start_pan(event:PointerEvent) { //starting pan event handler
     if(event.button == 2){
@@ -106,9 +106,15 @@ board_container.addEventListener('pointerup', end_pan);
 board_container.addEventListener('pointercancel', end_pan);
 board_container.addEventListener('pointermove', move_pan);
 board_container.addEventListener("contextmenu", (event) => event.preventDefault()); //prevent the right click contextmenu from opening on the gameboard
+// #endregion
+
+// #region select
 
 
-//creating starting tokens
+// #endregion
+
+
+// #region create token
 const new_element = document.getElementsByClassName("token")[0] as SVGGraphicsElement;
 let new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
 new_token.health = 25;
