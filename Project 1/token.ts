@@ -1,5 +1,6 @@
 console.log("token.ts class loaded");
-
+// #region TOKEN CLASS
+// #endregion 
 export class Token {
     /*
     class to create a movable and storable token objects:
@@ -10,7 +11,7 @@ export class Token {
     width: width of token (multiple of 12)
     unique_id: id assigned to distinguish tokens (element attribute)
     */
-
+    // #region variables
     private _name:string;
     private _svg:SVGGraphicsElement;
     private _element_parent:SVGGraphicsElement;
@@ -32,8 +33,9 @@ export class Token {
     private _previous_border_1:string;
 
     private _health:number; private _mana:number; private _armor:number; private _speed:number;
+    // #end region
 
-
+    //#region constructor
     constructor(name = '(no name given)', element_parent:SVGGraphicsElement, cur_x=0, cur_y=0, width:number, unique_id:string) {
         //uses _var naming scheme to prevent idefinite recursive calls
         this._name = name;
@@ -71,7 +73,8 @@ export class Token {
         this._armor = 0;
         this._speed = 0;
     }
-    //getter functions
+    // #endregion
+    // #region getters
     get svg() { return this._svg;}
     get element_parent() { return this._element_parent; }
     get element_circle_0() { return this._element_circle_0; }
@@ -86,8 +89,9 @@ export class Token {
     get name() { return this._name; }
     get health() { return this._health; }
     get mana() { return this._mana; }
+    // #endregion
 
-    //setter functions
+    // #region setters
     set cur_x(new_x) { this._cur_x = new_x; }
     set cur_y(new_y) { this._cur_y = new_y; }
     set name(new_name) { this._name = new_name; }
@@ -110,6 +114,9 @@ export class Token {
     }
     prevent_movement() { this._movement_allowed = false; }
     allow_movement() { this._movement_allowed = true; }
+    // #endregion
+
+    // #region set position
     set_position(new_x:number, new_y:number) {
         let grid_width = 2000;
         let grid_height = 1000;
@@ -118,19 +125,16 @@ export class Token {
         this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 20, (this.width / 2));
         this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 20, (this.width / 2));
 
-        //console.log("cur x : " + this.cur_x + " cur y : " + this.cur_y);
-
         this.element_parent.setAttribute("transform", "translate(" + this.cur_x + "," + this.cur_y + ")");
         
-        //the following functions are used for adjusting coordinates in grad:
-        //clamps value, returns x value clamped between the lo and hi
+        // clamps value, returns x value clamped between the lo and hi
         function clamp(x:number, lo:number, hi:number) { 
             return x < lo ? lo : x > hi ? hi : x 
         }
-        //snaps value, snaps value to closest factor of unit_length if it's lower or higher (closest square)
+        // snaps value to closest factor of unit_length if it's lower or higher (closest square)
         function snap_to_grid(x:number, unit_length:number, width:number) {
             var remainder = x % unit_length;
-            if(width % 12 == 0) { //token is even width
+            if(width % 20 == 0) { //token is even width
                 if(remainder < unit_length/2) {
                     return x - remainder;
                 }else {
@@ -145,6 +149,7 @@ export class Token {
             }
         }
     }
+    // #endregion
 
     //draggability handler
     event_to_svg_coordinates = (event:PointerEvent, el=event.currentTarget) => {//converts event's argument coordinates to svg coordinates
@@ -155,12 +160,14 @@ export class Token {
         p = p.matrixTransform(this.svg.getScreenCTM()!.inverse()); 
         return p;
     }
+    // #endregion
 
+    // #region drag handlers
     start_drag = (event:PointerEvent) => { //starting dragging event handler
         if (event.button !== 0) return; //on left click
-        //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
-        // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch
         if (!this.movement_allowed) return;
+        //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
+        // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch        
 
         let {x, y} = this.event_to_svg_coordinates(event);
         this.dragging_d = {dx: this.cur_x - x, dy: this.cur_y - y}; 
@@ -188,39 +195,41 @@ export class Token {
         this.dragging_s = null;
         this.element_parent.classList.remove('dragging');
     }
+    // #endregion
 
+    // #region set draggable
     make_draggable() {
         console.log("adding dragability to " + this.name);
-
-        //binding handlers
-        //should these listeners be bound to board?
-        this.element_parent.parentElement!.addEventListener('pointerdown', this.start_drag);
-        this.element_parent.parentElement!.addEventListener('pointerup', this.end_drag);
-        this.element_parent.parentElement!.addEventListener('pointercancel', this.end_drag);
-        this.element_parent.parentElement!.addEventListener('pointermove', this.move_drag);
-        this.element_parent.parentElement!.addEventListener('touchstart', (event) => event.preventDefault());
+        
+        // binding handlers to board so multi-select can have control
+        this.svg.addEventListener('pointerdown', this.start_drag);
+        this.svg.addEventListener('pointerup', this.end_drag);
+        this.svg.addEventListener('pointercancel', this.end_drag);
+        this.svg.addEventListener('pointermove', this.move_drag);
+        this.svg.addEventListener('touchstart', (event) => event.preventDefault());
     }
 
     remove_draggable() { 
-        //not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
+        // not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
         console.log("removing draggability from " + this.name);
-        this.element_parent.parentElement!.removeEventListener('pointerdown', this.start_drag);
-        this.element_parent.parentElement!.removeEventListener('pointerup', this.end_drag);
-        this.element_parent.parentElement!.removeEventListener('pointercancel', this.end_drag);
-        this.element_parent.parentElement!.removeEventListener('pointermove', this.move_drag);
-        this.element_parent.parentElement!.removeEventListener('touchstart', (event) => event.preventDefault());
+        this.svg.removeEventListener('pointerdown', this.start_drag);
+        this.svg.removeEventListener('pointerup', this.end_drag);
+        this.svg.removeEventListener('pointercancel', this.end_drag);
+        this.svg.removeEventListener('pointermove', this.move_drag);
+        this.svg.removeEventListener('touchstart', (event) => event.preventDefault());
         
     }
+    // #endregion
 
-    //setting border colors
+    // #region style
     set_border(inner_color:number[], outer_color:number[]) {
         console.log("setting border");
         //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
-        //setting width
+        // setting width
         var stroke_width = 3;
         this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
         this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
-        //setting color
+        // setting color
         this.element_circle_0.style.setProperty("stroke", "rgb(" + outer_color[0] + "," + outer_color[1] + "," + outer_color[2] + ")");
         this.element_circle_1.style.setProperty("stroke", "rgb(" + inner_color[0] + "," + inner_color[1] + "," + inner_color[2] + ")");
 

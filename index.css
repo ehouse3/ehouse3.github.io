@@ -116,10 +116,7 @@ a.active {
 #game-board-svg {
     background-color: rgba(0, 0, 0, 0);
     zoom: 100%;
-    /* width: 3000px;
-    height: 3000px; */
-    /* width: 1490px; */
-    /* height: 880px; */
+
     width: 2000px;
     height: 1000px;
 }
@@ -132,7 +129,6 @@ a.active {
 }
 .dragging { 
     cursor: grabbing; 
-    /*fill: hsl(200 50% 50%); */
     opacity: 80%;
     
 }

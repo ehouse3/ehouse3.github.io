@@ -1,10 +1,15 @@
 console.log("token.ts class loaded");
+// #region TOKEN CLASS
+// #endregion 
 var Token = /** @class */ (function () {
+    // #end region
+    //#region constructor
     function Token(name, element_parent, cur_x, cur_y, width, unique_id) {
         if (name === void 0) { name = '(no name given)'; }
         if (cur_x === void 0) { cur_x = 0; }
         if (cur_y === void 0) { cur_y = 0; }
         var _this = this;
+        // #endregion
         //draggability handler
         this.event_to_svg_coordinates = function (event, el) {
             if (el === void 0) { el = event.currentTarget; }
@@ -15,13 +20,15 @@ var Token = /** @class */ (function () {
             p = p.matrixTransform(_this.svg.getScreenCTM().inverse());
             return p;
         };
+        // #endregion
+        // #region drag handlers
         this.start_drag = function (event) {
             if (event.button !== 0)
                 return; //on left click
-            //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
-            // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch
             if (!_this.movement_allowed)
                 return;
+            //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
+            // if (event.target?.parentElement.id != this.unique_id && this.selected == false) return; // might need null catch        
             var _a = _this.event_to_svg_coordinates(event), x = _a.x, y = _a.y;
             _this.dragging_d = { dx: _this.cur_x - x, dy: _this.cur_y - y };
             _this.dragging_s = { sx: x, sy: y };
@@ -35,7 +42,7 @@ var Token = /** @class */ (function () {
                 return;
             var _a = _this.event_to_svg_coordinates(event), x = _a.x, y = _a.y;
             var zoom = _this.svg.style.zoom != "" ? Number(_this.svg.style.zoom.slice(0, -1)) / 100 : 1; //catches empty zoom
-            var zoom_adjustment_x = (x - _this.dragging_s.sx) - (x - _this.dragging_s.sx) / zoom;
+            var zoom_adjustment_x = (x - _this.dragging_s.sx) - (x - _this.dragging_s.sx) / zoom; //calculate difference between non-zoomed starting pos and zoomed starting pos.
             var zoom_adjustment_y = (y - _this.dragging_s.sy) - (y - _this.dragging_s.sy) / zoom;
             _this.set_position(x + _this.dragging_d.dx - zoom_adjustment_x, y + _this.dragging_d.dy - zoom_adjustment_y);
         };
@@ -77,7 +84,8 @@ var Token = /** @class */ (function () {
         this._speed = 0;
     }
     Object.defineProperty(Token.prototype, "svg", {
-        //getter functions
+        // #endregion
+        // #region getters
         get: function () { return this._svg; },
         enumerable: false,
         configurable: true
@@ -104,7 +112,8 @@ var Token = /** @class */ (function () {
     });
     Object.defineProperty(Token.prototype, "cur_x", {
         get: function () { return this._cur_x; },
-        //setter functions
+        // #endregion
+        // #region setters
         set: function (new_x) { this._cur_x = new_x; },
         enumerable: false,
         configurable: true
@@ -165,23 +174,23 @@ var Token = /** @class */ (function () {
     });
     Token.prototype.prevent_movement = function () { this._movement_allowed = false; };
     Token.prototype.allow_movement = function () { this._movement_allowed = true; };
+    // #endregion
+    // #region set position
     Token.prototype.set_position = function (new_x, new_y) {
         var grid_width = 2000;
         var grid_height = 1000;
         //fix grid length and height for this
         this.cur_x = snap_to_grid(clamp(new_x, (this.width / 2), grid_width - (this.width / 2)), 20, (this.width / 2));
         this.cur_y = snap_to_grid(clamp(new_y, (this.width / 2), grid_height - (this.width / 2)), 20, (this.width / 2));
-        //console.log("cur x : " + this.cur_x + " cur y : " + this.cur_y);
         this.element_parent.setAttribute("transform", "translate(" + this.cur_x + "," + this.cur_y + ")");
-        //the following functions are used for adjusting coordinates in grad:
-        //clamps value, returns x value clamped between the lo and hi
+        // clamps value, returns x value clamped between the lo and hi
         function clamp(x, lo, hi) {
             return x < lo ? lo : x > hi ? hi : x;
         }
-        //snaps value, snaps value to closest factor of unit_length if it's lower or higher (closest square)
+        // snaps value to closest factor of unit_length if it's lower or higher (closest square)
         function snap_to_grid(x, unit_length, width) {
             var remainder = x % unit_length;
-            if (width % 12 == 0) { //token is even width
+            if (width % 20 == 0) { //token is even width
                 if (remainder < unit_length / 2) {
                     return x - remainder;
                 }
@@ -199,34 +208,36 @@ var Token = /** @class */ (function () {
             }
         }
     };
+    // #endregion
+    // #region set draggable
     Token.prototype.make_draggable = function () {
         console.log("adding dragability to " + this.name);
-        //binding handlers
-        //should these listeners be bound to board?
-        this.element_parent.parentElement.addEventListener('pointerdown', this.start_drag);
-        this.element_parent.parentElement.addEventListener('pointerup', this.end_drag);
-        this.element_parent.parentElement.addEventListener('pointercancel', this.end_drag);
-        this.element_parent.parentElement.addEventListener('pointermove', this.move_drag);
-        this.element_parent.parentElement.addEventListener('touchstart', function (event) { return event.preventDefault(); });
+        // binding handlers to board so multi-select can have control
+        this.svg.addEventListener('pointerdown', this.start_drag);
+        this.svg.addEventListener('pointerup', this.end_drag);
+        this.svg.addEventListener('pointercancel', this.end_drag);
+        this.svg.addEventListener('pointermove', this.move_drag);
+        this.svg.addEventListener('touchstart', function (event) { return event.preventDefault(); });
     };
     Token.prototype.remove_draggable = function () {
-        //not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
+        // not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
         console.log("removing draggability from " + this.name);
-        this.element_parent.parentElement.removeEventListener('pointerdown', this.start_drag);
-        this.element_parent.parentElement.removeEventListener('pointerup', this.end_drag);
-        this.element_parent.parentElement.removeEventListener('pointercancel', this.end_drag);
-        this.element_parent.parentElement.removeEventListener('pointermove', this.move_drag);
-        this.element_parent.parentElement.removeEventListener('touchstart', function (event) { return event.preventDefault(); });
+        this.svg.removeEventListener('pointerdown', this.start_drag);
+        this.svg.removeEventListener('pointerup', this.end_drag);
+        this.svg.removeEventListener('pointercancel', this.end_drag);
+        this.svg.removeEventListener('pointermove', this.move_drag);
+        this.svg.removeEventListener('touchstart', function (event) { return event.preventDefault(); });
     };
-    //setting border colors
+    // #endregion
+    // #region style
     Token.prototype.set_border = function (inner_color, outer_color) {
         console.log("setting border");
         //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
-        //setting width
+        // setting width
         var stroke_width = 3;
         this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
         this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
-        //setting color
+        // setting color
         this.element_circle_0.style.setProperty("stroke", "rgb(" + outer_color[0] + "," + outer_color[1] + "," + outer_color[2] + ")");
         this.element_circle_1.style.setProperty("stroke", "rgb(" + inner_color[0] + "," + inner_color[1] + "," + inner_color[2] + ")");
     };
