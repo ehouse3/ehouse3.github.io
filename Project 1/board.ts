@@ -7,7 +7,7 @@ var tokens_list:Token[] = []; //list of moveable/selectable tokens
 var selected_tokens_list:Token[] = []; //list of currently selected tokens
 
 const zoom_slider:HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
-const board:HTMLElement = document.getElementById('game-board-svg')!;
+const board:SVGGraphicsElement = document.getElementById('game-board-svg')! as unknown as SVGGraphicsElement;
 const board_container:HTMLElement = document.getElementById('game-board-container')!;
 
 // #region zoom
@@ -109,7 +109,142 @@ board_container.addEventListener("contextmenu", (event) => event.preventDefault(
 // #endregion
 
 // #region select
+var box_selecting:boolean = false;
+var start_x:number = 0;
+var start_y:number = 0;
+var x:number = 0;
+var y:number = 0;
+var selector_element:HTMLElement = document.getElementById("selector")!;
+var cur_displayed_token:Token | null = null;
 
+function event_to_svg_coordinates(event:PointerEvent, ) {//converts event's argument coordinates to svg coordinates
+    // let p = board.createSVGPoint(); //deprecated
+    let p = new DOMPoint();
+    p.x = event.clientX;
+    p.y = event.clientY;
+    p = p.matrixTransform(board.getScreenCTM()!.inverse()); 
+    return p;
+}
+
+
+function start_select(event:PointerEvent) { //selection start handler
+    if(event.button !== 0) return; //mouse 0 only
+    let target:HTMLElement = event.target as HTMLElement;
+    if (target == null) { return; }
+    if(target.parentElement!.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
+        let target_id:string = target.parentElement!.id;
+        let i:number = 0;
+        while(i < tokens_list.length) { //itterates through tokens until it finds the one that the cursor is over
+            if(target_id == tokens_list[i].unique_id && tokens_list[i].selected == false) {
+                tokens_list[i].selected = true;
+                selected_tokens_list.push(tokens_list[i]);
+                cur_displayed_token = tokens_list[i];
+
+                i = tokens_list.length; //exit loop
+            }
+            i++;
+        }
+        
+        // update_token_information();
+        return; 
+    }
+
+    //unselects previous tokens & clears selected list
+    for(let selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) { //remove all selected
+        selected_tokens_list[selected_tokens_list_i].selected = false;
+    }
+    selected_tokens_list = [];
+    
+    //prevent and remove dragging for all tokens
+    for(let token_i = 0; token_i < tokens_list.length; token_i++) { 
+        tokens_list[token_i].prevent_movement();
+        tokens_list[token_i].element_parent.classList.remove('dragging'); //forcefully remove dragging because handler still fires...
+    }
+
+    box_selecting = true;
+    //sets immediate cursor position, adding current screen board location, then adjusting for zoom. (800 is for margin)
+    let c = event_to_svg_coordinates(event);
+    start_x = c.x / (cur_zoom_value/100); 
+    start_y = c.y / (cur_zoom_value/100);
+    selector_element.setAttribute("x", String(start_x)); 
+    selector_element.setAttribute("y", String(start_y));
+
+}
+function move_select(event:PointerEvent) { //selection move handler
+    if(!box_selecting) return;
+
+    //selection-box movement starts at cursor
+    let c = event_to_svg_coordinates(event);
+    x = c.x / (cur_zoom_value/100); 
+    y = c.y / (cur_zoom_value/100);
+    
+    //setting front end element size
+    //box element's width created towards the right. If cursor moves left, adjusts the selection box's starting position (x), rather than width
+    if(x > start_x) { 
+        selector_element.setAttribute("width", x - start_x + "px");
+        selector_element.setAttribute("x", start_x + "px");
+    } else {
+        selector_element.setAttribute("width", start_x - x + "px");  
+        selector_element.setAttribute("x", x + "px");
+    }
+    //box element's height created towards the top. If cursor moves down, adjusts the selection box's starting position (y), rather than height
+    if(y > start_y) {
+        selector_element.setAttribute("height", y - start_y + "px");
+        selector_element.setAttribute("y", start_y + "px");
+    } else {
+        selector_element.setAttribute("height", start_y - y + "px");  
+        selector_element.setAttribute("y", y + "px");
+    }
+}
+function end_select(event:PointerEvent) { //selection end handler
+    //create function to find all elements in selector_element, and set 'selected' instance var for each token to true.
+    if(!box_selecting) {
+        //unselects previous tokens & clears selected list
+        for(let selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) { //remove all selected
+            selected_tokens_list[selected_tokens_list_i].selected = false;
+        }
+        selected_tokens_list = [];
+        return;
+    }
+    
+    //itterates through all tokens, and if their position is inside the selection_box, add Token to selected_tokens_list
+    for(let token_i = 0; token_i < tokens_list.length; token_i++) {
+        if(x != 0 && y != 0){ //cursor moved at least once
+            //each statement corresponds to the selection-box mouse moving towards a quadrant.
+            //fix to include if selected on not center of token
+            if((tokens_list[token_i].cur_x < x && tokens_list[token_i].cur_x > start_x) && (tokens_list[token_i].cur_y < y && tokens_list[token_i].cur_y > start_y)) { //bottom-right
+                selected_tokens_list.push(tokens_list[token_i]);
+            } else if((tokens_list[token_i].cur_x > x && tokens_list[token_i].cur_x < start_x) && (tokens_list[token_i].cur_y < y && tokens_list[token_i].cur_y > start_y)) { //bottom-left
+                selected_tokens_list.push(tokens_list[token_i]);
+            } else if((tokens_list[token_i].cur_x < x && tokens_list[token_i].cur_x > start_x) && (tokens_list[token_i].cur_y > y && tokens_list[token_i].cur_y < start_y)) { //top-right
+                selected_tokens_list.push(tokens_list[token_i]);
+            } else if((tokens_list[token_i].cur_x > x && tokens_list[token_i].cur_x < start_x) && (tokens_list[token_i].cur_y > y && tokens_list[token_i].cur_y < start_y)) { //top-left
+                selected_tokens_list.push(tokens_list[token_i]);
+            }
+        }
+        tokens_list[token_i].allow_movement();
+    }
+    
+    //itterates through selected tokens list and sets all selected to true
+    for(let selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) {
+        selected_tokens_list[selected_tokens_list_i].selected = true;
+    }
+
+    //reseting all variables for next box-selection
+    box_selecting = false;
+    x = 0;
+    y = 0;
+    selector_element.setAttribute("width", "0");
+    selector_element.setAttribute("height", "0");
+    selector_element.setAttribute("x", "0");
+    selector_element.setAttribute("y", "0");
+}
+
+//binding handlers
+board_container.addEventListener('pointerdown', start_select);
+board_container.addEventListener('pointerup', end_select);
+board_container.addEventListener('pointercancel', end_select);
+board_container.addEventListener('pointermove', move_select);
 
 // #endregion
 

@@ -10,7 +10,7 @@ var Token = /** @class */ (function () {
         if (cur_y === void 0) { cur_y = 0; }
         var _this = this;
         // #endregion
-        //draggability handler
+        // #region drag handlers
         this.event_to_svg_coordinates = function (event, el) {
             if (el === void 0) { el = event.currentTarget; }
             // let p = svg.createSVGPoint(); //deprecated
@@ -20,8 +20,6 @@ var Token = /** @class */ (function () {
             p = p.matrixTransform(_this.svg.getScreenCTM().inverse());
             return p;
         };
-        // #endregion
-        // #region drag handlers
         this.start_drag = function (event) {
             if (event.button !== 0)
                 return; //on left click

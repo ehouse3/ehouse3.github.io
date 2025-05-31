@@ -151,7 +151,7 @@ export class Token {
     }
     // #endregion
 
-    //draggability handler
+    // #region drag handlers
     event_to_svg_coordinates = (event:PointerEvent, el=event.currentTarget) => {//converts event's argument coordinates to svg coordinates
         // let p = svg.createSVGPoint(); //deprecated
         let p = new DOMPoint();
@@ -160,13 +160,11 @@ export class Token {
         p = p.matrixTransform(this.svg.getScreenCTM()!.inverse()); 
         return p;
     }
-    // #endregion
-
-    // #region drag handlers
+    
     start_drag = (event:PointerEvent) => { //starting dragging event handler
         if (event.button !== 0) return; //on left click
         if (!this.movement_allowed) return;
-        const target:HTMLElement = event.target as HTMLElement;
+        let target:HTMLElement = event.target as HTMLElement;
         if (target == null) { return; }
         if (target.parentElement!.id != this.unique_id && this.selected == false) return; //check unique id matches that of element on cursor (needed because handler bound to gameboard), and will drag anyway if its selected
 
