@@ -88,12 +88,14 @@ var panning:boolean = false;
 function start_pan(event:PointerEvent) { //starting pan event handler
     if(event.button == 2){
         panning = true;   
+        board_container.style.cursor = "move";
         event.preventDefault();
     }
 }
 function end_pan(event:PointerEvent) { //ending pan event handler
     if(panning){
         panning = false;
+        board_container.style.cursor = "default";
     }   
 }
 function move_pan(event:PointerEvent) { //panning on mouse movement event handler
@@ -252,7 +254,18 @@ board_container.addEventListener('pointermove', move_select);
 // #region create token
 const new_element = document.getElementsByClassName("token")[0] as SVGGraphicsElement;
 let new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
-new_token.health = 25;
 new_token.make_draggable();
 new_token.set_border([160, 60, 60],[178, 78, 78]);
 tokens_list.push(new_token);
+
+const new_element2 = document.getElementsByClassName("token")[1] as SVGGraphicsElement;
+let new_token2 = new Token("starting token M", new_element2, 140, 100, 40, "b");
+new_token2.make_draggable();
+new_token2.set_border([160, 60, 60],[178, 78, 78]);
+tokens_list.push(new_token2);   
+
+const new_element3 = document.getElementsByClassName("token")[2] as SVGGraphicsElement;
+let new_token3 = new Token("starting token L", new_element3, 180, 80, 60, "c");
+new_token3.make_draggable();
+new_token3.set_border([160, 60, 60],[178, 78, 78]);
+tokens_list.push(new_token3);   

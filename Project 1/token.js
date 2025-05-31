@@ -236,7 +236,7 @@ var Token = /** @class */ (function () {
         console.log("setting border");
         //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
         // setting width
-        var stroke_width = 3;
+        var stroke_width = this.width / 7;
         this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
         this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
         // setting color
