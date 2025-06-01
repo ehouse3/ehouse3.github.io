@@ -32,14 +32,14 @@ HEX CODES:
 #ce5db6
 */
 
-// flowing background //possibly use for astronmy sim background? 
-//https://www.braedin.com/Thpace/
+
 
 // website directory designs
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 //http-server https://www.npmjs.com/package/http-server 
 console.log("home.ts script loaded");
 let loaded = 0;
+
 
 /*
 function loadScript(){ //load script function for loading each project when they are accessed

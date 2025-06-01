@@ -21,34 +21,36 @@
         </nav>
     </nav>
 
-    <canvas id="background" width="1920" height="1080"></canvas>
+    <canvas id="background"></canvas>
 
-    <div data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
-
-
+    <div id="content-container" data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
         <div id="header-container">
             <div id="header-text">Euan House</div>
         </div>
 
     
         <div id="about-container">
-            <h1>About Section</h1>
-            <h2>about item</h2>
+            <h1>About Me</h1>
+
+            <h2 id="about-1">In 2025, I graduated from Penn State! 🎓</h2>
+            <h2 id="about-2">I Consider myself a Coffee Connoisseur</h2>
+            <h3 id="about-2a">Cappuccino's are my favorite</h3>
+            <h2 id="about-3">I lead an AI club at PSU</h2>
         </div>
         
 
 
         <div id="skills-container">
-            <h1>Skills Section</h1>
+            <h1>Skills</h1>
             <h2>skills item</h2>
         </div>
 
 
         <div id="projects-container">
-            <h1>Projects Section</h1>
+            <h1>Projects</h1>
 
             <div id="project-1">
-                <h2>projects item 1</h2>
+                <h2>Table Top Simulator Webapp</h2>
                 <div id="zoom-slider-container">
                   <input type="range" min="100" max="400" value="100" step="10" id="zoom-slider">
                 </div>
@@ -97,6 +99,7 @@
     <script type="text/javascript" src="home.js"></script>
     <script src="./thpace.min.js"></script>
     <script> //Animated BG Canvas
+        //https://www.braedin.com/Thpace/
         const canvas = document.getElementById('background');
         const settings = {
             // colors: ['#b26684', '#645c71', '#5c5c71', '#37a372'],
@@ -112,7 +115,6 @@
         ThpaceGL.create(canvas, settings);
         
     </script>
-    <script>var exports = {};</script> 
     <script type="module" src="Project 1/token.js"></script>
     <script type="module" src="Project 1/board.js"></script>
     </body>
