@@ -21,6 +21,7 @@ body, html {
     position: fixed;
 }
 
+/* navbar */
 #navbar-container {
     display: flex;
     flex-direction: column;
@@ -43,14 +44,12 @@ body, html {
     border-bottom-left-radius: 5px; 
 
 }
-
 #navbar-container > a, #navbar-container > nav {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 100px;
     padding-right: 15px;
 }
-
 #navbar-subcontainer {
     display: flex;
     flex-direction: column;
@@ -63,28 +62,29 @@ a.active {
 .nav-link:hover {
     color: #4a465c;
 }
-
-#content-container {
-    scroll-snap-type: y proximity;
-}
+/* end navbar */
 
 
+
+/* header */
 #header-container {
     text-align: center;
     justify-content: center;
     margin-left: 0px;
     margin-right: 5%;
 }
-
 #header-text {
     font-size: 200px;
     font-weight: 600;
 
     
 }
+/* end header */
 
 
-
+#content-container {
+    scroll-snap-type: y proximity;
+}
 #projects-container, #skills-container, #about-container, #header-container {
     display: flex;
     flex-direction: column;
@@ -98,8 +98,7 @@ a.active {
 }
 
 
-
-
+/* about */
 #about-container {
     display: flex;
     flex-direction: row;
@@ -113,8 +112,10 @@ a.active {
     margin-left: 2%;
     margin-right: 13%;
 }
+/* row 1 */
 #about-container > div { /* container for h1 and #about-0a, keeps them on thier own row */
     width: 100%;
+    border: 1px solid red;
 }
 #about-container > div > h1 {
     width: fit-content;
@@ -133,22 +134,29 @@ a.active {
     background-color: rgba(82, 77, 101, 60%);
     border-radius: 20px;
 }
+/* row 2 */
 #about-0a {
     border: 1px solid green;
     width: fit-content;
     
     margin-bottom: 0px;
-    margin-left: 20%;
+    margin-left: 10%;
 
     padding-left: 0.5%;
     padding-right: 0.5%;
+
+    font-size: 28px;
 
     background-color: rgba(82, 77, 101, 60%);
     border-radius: 10px;
 
 }
+#about-0a-link {
+    padding-left: 5px;
+    padding-right: 5px;
 
-
+}
+/* row 3 */
 #about-container > h2 {
     border: 1px solid green;
     flex-basis: 33%;
@@ -168,8 +176,6 @@ a.active {
 
     background-color: rgba(82, 77, 101, 60%);
     border-radius: 15px;
-
-    
 }
 #about-1 {
     margin-left: 0px;
@@ -180,6 +186,7 @@ a.active {
 #about-3 {
     margin-left: 0px;
 }
+/* row 4 */
 #about-1a, #about-2a, #about-3a {
     border: 1px solid green;
     flex-basis: 33%;
@@ -197,13 +204,19 @@ a.active {
 
     background-color: rgba(82, 77, 101, 60%);
     border-radius: 10px;
-
-
 }
+/* row 5 */
+#about-container > img {
+    width: 30%;
+
+    margin-top: 2%;
+    box-shadow: 5px 5px 5px black;
+}
+/* end about */
 
 
 
-
+/* skills */
 #skills-container {
     margin-left: 2%;
     margin-right: 2%;
@@ -214,21 +227,15 @@ a.active {
 
     padding-left: 5%;
 }
+/* end skills */
 
 
 
-
-
-
-
-
+/* projects */
 #projects-container > h1 {
     margin-left: 100px;
     font-size: 75px;
 }
-
-
-
 #project-1, #project-2 {
     display: flex;
     flex-direction: column;
@@ -237,10 +244,10 @@ a.active {
     margin: 5px;
 }
 
+/* project 1 */
 #project-1 > h2 {
     margin-left: 7%;
 }
-
 #game-board-container {
     width: 80%;
     height: 800px;
@@ -249,8 +256,6 @@ a.active {
     margin-left: 100px;
     
     background-color: rgba(82, 77, 101, 55%);
-    
-    
 }
 #game-board-svg {
     background-color: rgba(0, 0, 0, 0);
@@ -259,7 +264,6 @@ a.active {
     width: 2000px;
     height: 1000px;
 }
-
 /* token/draggable attributes */
 .draggable { 
     cursor: grab; 
@@ -271,14 +275,13 @@ a.active {
     opacity: 80%;
     
 }
-
 #selector {
     fill: rgba(61, 152, 255, 0.20);
     stroke: rgba(0, 153, 255, 0.45);
     stroke-width: 2px;
     
 }
-
+/* zoom slider */
 #zoom-slider-container {
     position: absolute;
     margin-left: 7%;
@@ -292,4 +295,9 @@ a.active {
 #zoom-slider:hover {
     opacity: 0.9;
 }
+/* end project 1 */
 
+/* project 2 */
+/* end project 2 */
+
+/* end projects */
