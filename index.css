@@ -95,11 +95,11 @@ a.active {
     border: 1px solid red;
 }
 h1 {
-    font-size: 85px;
+    font-size: 92px;
     font-weight: 600;
 }
 h2 {
-    font-size: 50px;
+    font-size: 48px;
     font-weight: 600;
 }
 h3 {
@@ -131,7 +131,6 @@ h3 {
     width: fit-content;
     height: fit-content;
 
-    border: 1px solid green;
 
     margin-bottom: 0px;
     margin-left: 4%;
@@ -139,7 +138,7 @@ h3 {
     padding-left: 1%;
     padding-right: 1%;
 
-    background-color: rgba(82, 77, 101, 50%);
+    /* background-color: rgba(82, 77, 101, 50%); */
     border-radius: 20px;
 }
 /* row 2 */
@@ -222,7 +221,7 @@ h3 {
 /* skills */
 #skills-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: stretch;
     align-content: flex-start;
@@ -240,7 +239,6 @@ h3 {
     width: fit-content;
     height: fit-content;
 
-    border: 1px solid green;
 
     margin-bottom: 0px;
     margin-left: 4%;
@@ -248,22 +246,31 @@ h3 {
     padding-left: 1%;
     padding-right: 1%;
 
-    background-color: rgba(82, 77, 101, 60%);
+    /* background-color: rgba(82, 77, 101, 0%); */
     border-radius: 20px;
 }
 
-#skills-column {
+#skills-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 
     border: 1px solid red;
-    width: 25%;
-}
-#skills-column > h2 {
-    /* border: 1px solid green; */
     width: 100%;
+    margin-top: 2%;
+}
+
+#skills-items-header {
+    border: 1px solid orange;
+    width: 40%; 
+
+    padding-left: 4%;
+    padding-right: 4%;
+}
+#skills-items-header > h2 {
+    border: 1px solid green;
     height: fit-content;
+    width: fit-content;
     
     margin-bottom: 0px;
 
@@ -272,24 +279,39 @@ h3 {
     background-color: rgba(82, 77, 101, 60%);
     border-radius: 10px;
 }
-#skills-column > h3 {
+
+#skills-items-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    width: 60%;
+
+    padding-left: 5%;
+    padding-right: 5%;
+
+    border: 1px solid red;
+}
+#skills-items-container > h3 {
     /* border: 2px solid green; */
     border: 3px solid rgba(79, 74, 97, 0.6);
 
-    margin: 5px;
+    margin: 10px;
 
     padding-left: 5px;
     padding-right: 5px;
 
     width: fit-content;
+    height: fit-content;
 
     transition: all 0.4s ease-out;
 
-    background-color: rgba(82, 77, 101, 60%);
+    background-color: rgba(101, 97, 117, 0.6);
     border-radius: 10px;
 }
-#skills-column > h3:hover{
-    margin: 0px;
+#skills-items-container > h3:hover{
+    margin: 5px;
 
     padding-left: 10px;
     padding-right: 10px;
