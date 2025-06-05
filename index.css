@@ -150,7 +150,6 @@ h3 {
     margin-left: 10%;
 
     padding-left: 0.5%;
-    padding-right: 0.5%;
 
     font-size: 28px;
 
@@ -159,20 +158,35 @@ h3 {
 
 }
 #about-0a-link {
-    padding-left: 5px;
-    padding-right: 5px;
+    background-color: rgba(101, 97, 117, 0.6);
+    border: 2px solid rgba(79, 74, 97, 0.6);
 
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 10px;
+
+    transition: all 0.4s ease-out;
+}
+#about-0a-link:hover {
+    background-color: rgba(118, 204, 106, 0.8);
+    border: 2px solid rgba(79, 74, 97, 0.6);
+
+    margin: 0px;
+    padding: 10px;
 }
 /* row 3 */
 #about-container > h2 {
-    border: 1px solid green;
-    flex-basis: 33%;
+    border: 1px solid rgb(0, 128, 0);
+    flex-basis: 28%;
     text-align: center;
     height: fit-content;
 
     margin-bottom: 0px;
-    margin-top: 30px;
+    margin-top: 1%;
 
+    margin-left: 2%;
+    margin-right: 2%;
 
     padding-left: 5px;
     padding-right: 5px;
@@ -192,12 +206,14 @@ h3 {
 /* row 4 */
 #about-1a, #about-2a, #about-3a {
     border: 1px solid green;
-    flex-basis: 33%;
+    flex-basis: 28%;
     text-align: center;
     height: fit-content;
 
     margin-bottom: 0px;
     margin-top: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
 
     padding-left: 30px;
     padding-right: 30px;
@@ -211,7 +227,7 @@ h3 {
 #about-container > img {
     width: 30%;
 
-    margin-top: 2%;
+    margin-top: 1%;
     box-shadow: 5px 5px 5px black;
 }
 /* end about */
@@ -263,9 +279,11 @@ h3 {
 #skills-items-header {
     border: 1px solid orange;
     width: 40%; 
+    display: flex;
+    justify-content: center;
 
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 6%;
+    padding-right: 6%;
 }
 #skills-items-header > h2 {
     border: 1px solid green;
