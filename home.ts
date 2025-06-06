@@ -37,8 +37,30 @@ HEX CODES:
 // website directory designs
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 //http-server https://www.npmjs.com/package/http-server 
-console.log("home.ts script loaded");
-let loaded = 0;
+console.log("home.ts script loaded 2");
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+
+let skills_container:HTMLElement = document.getElementById("skills-container")!;
+let about_container:HTMLElement = document.getElementById("about-container")!
+let project_container:HTMLElement = document.getElementById("project-container")!;
+
+let link_container:HTMLElement = document.getElementById("link-contaienr")!;
+let navbar_contaienr:HTMLElement = document.getElementById("navbar-container")!;
+function fade_in_section() {
+    skills_container.classList.add("is-visible");
+}
+
+const callback = (entries, observer) => {
+    console.log("CALLBACK\n");
+}
+const options = {
+    root: document.querySelector("#skills-container"),
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver(callback, options);
+
 
 
 /*

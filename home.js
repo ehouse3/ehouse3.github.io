@@ -31,22 +31,24 @@ HEX CODES:
 #9a62c7 this one is the same hue as the side bar
 #ce5db6
 */
-// flowing background //possibly use for astronmy sim background? 
-//https://www.braedin.com/Thpace/
 // website directory designs
 //https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 //http-server https://www.npmjs.com/package/http-server 
-console.log("home.ts script loaded");
-
+console.log("home.ts script loaded 2");
+var skills_container = document.getElementById("skills-container");
+console.log(skills_container);
+function fade_in_section() {
+    console.log("fade in");
+    skills_container.classList.add("is-visible");
+}
 /*
-var loaded = 0;
-function loadScript() {
-    console.log("loaded = ", loaded);
+function loadScript(){ //load script function for loading each project when they are accessed
+    console.log("loaded = " ,loaded);
     if (loaded == 0) {
         var file = document.createElement("script");
         file.setAttribute("type", "text/javascript");
         file.setAttribute("src", "test.js");
         document.getElementsByTagName("head")[0].appendChild(file);
     }
-}
-*/
+
+}*/
