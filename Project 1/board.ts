@@ -3,88 +3,15 @@ console.log("board.ts script loaded");
 
 
 // let newToken = new Token("john doe");
-var tokens_list:Token[] = []; //list of moveable/selectable tokens
-var selected_tokens_list:Token[] = []; //list of currently selected tokens
+let tokens_list:Token[] = []; //list of moveable/selectable tokens
+let selected_tokens_list:Token[] = []; //list of currently selected tokens
 
 const zoom_slider:HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
 const board:SVGGraphicsElement = document.getElementById('game-board-svg')! as unknown as SVGGraphicsElement;
 const board_container:HTMLElement = document.getElementById('game-board-container')!;
 
-// #region zoom
-var cur_zoom_value:number = 100;
-var cur_board_width:number = ((board_container.getBoundingClientRect().width)/cur_zoom_value)*100;
-var cur_board_height:number = ((board_container.getBoundingClientRect().height)/cur_zoom_value)*100;
-// var cur_board_width:number = (board.getBoundingClientRect().width);
-// var cur_board_height:number = (board.getBoundingClientRect().height);
-
-// board_container.scrollBy(6000, 0);
-// console.log(board_container.scrollLeft);
-// console.log("board.boundingclient ", board.getBoundingClientRect().width);
-
-//sets zoom of board, then scrolls to center screen on cursor if able
-function set_zoom(new_zoom_value:number, cursor_x:null|number, cursor_y:null|number) {
-    board.style.zoom = new_zoom_value + "%"; //update zoom
-    var new_board_width:number = ((board_container.getBoundingClientRect().width)/cur_zoom_value)*100;
-    var new_board_height:number = ((board_container.getBoundingClientRect().height)/cur_zoom_value)*100;
-    // var new_board_width:number = (board.getBoundingClientRect().width);
-    // var new_board_height:number = (board.getBoundingClientRect().height);
-    
-    //board movement for zoom (scroll wheel and zoom slider)
-    if(cursor_x == null && cursor_y == null) { //zoom slider
-        //board_container.scrollBy((cur_board_width - new_board_width)/2 , (cur_board_height - new_board_height)/2); //centers screen
-    }else if(cursor_x && cursor_y) { //scroll wheel & mouse
-        //translates screen by cursor amount proportional to zoom (the more zoomed in, the less it translates)
-
-        // console.log("container.offsetwidth ", board_container.offsetWidth);
-        // console.log("container.clientwidth ", board_container.clientWidth); //the star
-        // console.log("container.boundingclient ", board_container.getBoundingClientRect().width);
-        // console.log("\n");
-        // console.log("board.client ", board.clientWidth);
-        // console.log("board.boundingclient ", board.getBoundingClientRect().width);
-        // console.log("\n");
-        // console.log("zooming to ", new_zoom_value);
-        // console.log("container client width / new zoom",board_container.clientWidth/new_zoom_value);
-        // console.log("container client width / (new zoom/100)",board_container.clientWidth/(new_zoom_value/100));
-        // console.log("final movement",(cur_board_width - new_board_width)/-2)
-        // console.log("\n---------------\n\n");
-
-        board_container.scrollBy((cur_board_width - new_board_width)/2 , (cur_board_height - new_board_height)/2); //centers screen
-        
-        // var cur_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (cur_zoom_value/100));
-        // var cur_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (cur_zoom_value/100));
-        // var new_centered_cursor_x = ((cursor_x-(board.clientWidth/2)) / (new_zoom_value/100));
-        // var new_centered_cursor_y = ((cursor_y-(board.clientWidth/2)) / (new_zoom_value/100));
-
-        // board_container.scrollBy(cur_centered_cursor_x - new_centered_cursor_x, cur_centered_cursor_y - new_centered_cursor_y); 
-        
-    }
-    cur_board_width = new_board_width;
-    cur_board_height = new_board_height;
-    cur_zoom_value = new_zoom_value;
-
-}
-
-//zoom slider handler
-zoom_slider.oninput = function() {
-    set_zoom(Number(zoom_slider.value), null, null); //calls zoom slider
-}
-
-//sets zoom_slider value to +1/-1 step then calls set_zoom() to match the new value
-function mouse_zoom(event:WheelEvent) {
-    let step:number = Number(zoom_slider.getAttribute("step")!);
-    event.preventDefault();
-    if(event.deltaY < 0){
-        zoom_slider.value = String(Number(zoom_slider.value) + step); //manually increases zoom by 1 step
-        set_zoom(Number(zoom_slider.value), event.clientX, event.clientY);
-    }else{
-        zoom_slider.value = String(Number(zoom_slider.value) - step); //manually decreases zoom by 1 step
-        set_zoom(Number(zoom_slider.value), event.clientX, event.clientY);
-    }
-}
-board_container.addEventListener("wheel", mouse_zoom);
-
 // #region pan
-var panning:boolean = false;    
+let panning:boolean = false;    
 function start_pan(event:PointerEvent) { //starting pan event handler
     if(event.button == 2){
         panning = true;   
@@ -111,13 +38,13 @@ board_container.addEventListener("contextmenu", (event) => event.preventDefault(
 // #endregion
 
 // #region select
-var box_selecting:boolean = false;
-var start_x:number = 0;
-var start_y:number = 0;
-var x:number = 0;
-var y:number = 0;
-var selector_element:HTMLElement = document.getElementById("selector")!;
-var cur_displayed_token:Token | null = null;
+let box_selecting:boolean = false;
+let start_x:number = 0;
+let start_y:number = 0;
+let x:number = 0;
+let y:number = 0;
+let selector_element:HTMLElement = document.getElementById("selector")!;
+let cur_displayed_token:Token | null = null;
 
 function event_to_svg_coordinates(event:PointerEvent, ) {//converts event's argument coordinates to svg coordinates
     // let p = board.createSVGPoint(); //deprecated
@@ -131,7 +58,7 @@ function event_to_svg_coordinates(event:PointerEvent, ) {//converts event's argu
 
 function start_select(event:PointerEvent) { //selection start handler
     if(event.button !== 0) return; //mouse 0 only
-    let target:HTMLElement = event.target as HTMLElement;
+    let target:HTMLElement | null = event.target as HTMLElement | null;
     if (target == null) { return; }
     if(target.parentElement!.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
         let target_id:string = target.parentElement!.id;
@@ -166,8 +93,8 @@ function start_select(event:PointerEvent) { //selection start handler
     box_selecting = true;
     //sets immediate cursor position, adding current screen board location, then adjusting for zoom. (800 is for margin)
     let c = event_to_svg_coordinates(event);
-    start_x = c.x / (cur_zoom_value/100); 
-    start_y = c.y / (cur_zoom_value/100);
+    start_x = c.x; 
+    start_y = c.y;
     selector_element.setAttribute("x", String(start_x)); 
     selector_element.setAttribute("y", String(start_y));
 
@@ -177,10 +104,10 @@ function move_select(event:PointerEvent) { //selection move handler
 
     //selection-box movement starts at cursor
     let c = event_to_svg_coordinates(event);
-    x = c.x / (cur_zoom_value/100); 
-    y = c.y / (cur_zoom_value/100);
+    x = c.x; 
+    y = c.y;
     
-    //setting front end element size
+    //setting front selector end element size
     //box element's width created towards the right. If cursor moves left, adjusts the selection box's starting position (x), rather than width
     if(x > start_x) { 
         selector_element.setAttribute("width", x - start_x + "px");
@@ -199,7 +126,7 @@ function move_select(event:PointerEvent) { //selection move handler
     }
 }
 function end_select(event:PointerEvent) { //selection end handler
-    //create function to find all elements in selector_element, and set 'selected' instance var for each token to true.
+    //create function to find all elements in selector_element, and set 'selected' instance let for each token to true.
     if(!box_selecting) {
         //unselects previous tokens & clears selected list
         for(let selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) { //remove all selected
@@ -232,7 +159,7 @@ function end_select(event:PointerEvent) { //selection end handler
         selected_tokens_list[selected_tokens_list_i].selected = true;
     }
 
-    //reseting all variables for next box-selection
+    //reseting all letiables for next box-selection
     box_selecting = false;
     x = 0;
     y = 0;
