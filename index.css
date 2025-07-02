@@ -1,13 +1,13 @@
 :root {
-    --bg-color: rgb(82, 77, 101); /* background */
-    --fg-color: rgb(62, 59, 74); /* foreground */
+    --bg-color: #747C92; /* background */
+    --fg-color: rgba(237, 243, 224, 0.65) ; /* foreground */
+
+    --font-color: rgb(24, 23, 30);
+    --font-color-contrast: #E8E9F3; /* #F8F8F8 */
 }
 
 body, html {
-    /* color: rgb(24, 23, 30); */
-    color: rgb(24, 23, 30);
-    /* font-family: Tahoma;  */
-    /* font-family: verdana; */
+    color: var(--font-color);
     font-family: Helvetica;
     width: 100%;
     height: 100%;
@@ -54,7 +54,7 @@ body, html {
     position: fixed;
     font-size: 30px;
 
-    background: linear-gradient(270deg,rgba(82, 77, 101, 60%) 0%, rgba(0, 0, 0, 0) 75%);
+    /* background: linear-gradient(270deg,rgba(82, 77, 101, 60%) 0%, rgba(0, 0, 0, 0) 75%); */
     
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px; 
@@ -73,7 +73,9 @@ body, html {
     margin-left: 15px;
 }
 a.active {
-    background-color: #883fc4 !important;
+    background-color: var(--fg-color) !important;
+    color: var(--font-color) !important ;
+    border-radius: 15px !important;
 }
 .nav-link:hover {
     color: #4a465c;
@@ -90,11 +92,11 @@ a.active {
     width: 4%;
 
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 #link-container > a {
-    align-self: center;
-
     margin: 10px;
     padding: 0px;
 
@@ -147,7 +149,10 @@ a.active {
     border-radius: 60px;
 
     min-height: 750px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+}
+#projects-container, #skills-container, #about-container {
+    color: var(--font-color);
 }
 h1 {
     font-size: 92px;
@@ -174,12 +179,12 @@ h3 {
 
     height: fit-content;
 
-    background-color: var(--bg-color);
+    background-color: var(--fg-color);
 }
 /* row 1 */
 #about-container > div { /* container for h1 and #about-0a, keeps them on thier own row */
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 #about-container > div > h1 {
     width: fit-content;
@@ -198,7 +203,7 @@ h3 {
 
 /* row 2 */
 #about-container > h2 {
-    border: 1px solid rgb(0, 128, 0);
+    /* border: 1px solid rgb(0, 128, 0); */
     flex-basis: 28%;
     text-align: center;
     height: fit-content;
@@ -226,7 +231,7 @@ h3 {
 }
 /* row 3 */
 #about-1a, #about-2a, #about-3a {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     flex-basis: 28%;
     text-align: center;
     height: fit-content;
@@ -264,7 +269,7 @@ h3 {
     align-content: flex-start;
     justify-content: space-evenly;
 
-    background-color: var(--bg-color);
+    background-color: var(--fg-color);
 }
 #skills-header { 
     /* border: 1px solid red; */
@@ -367,7 +372,6 @@ h3 {
 
 
 /* projects */
-
 #project-1, #project-2 {
     display: flex;
     flex-direction: column;
@@ -378,17 +382,23 @@ h3 {
 
     border-radius: inherit;
 
-    background-color: var(--bg-color);
+    background-color: var(--fg-color);
 
 }
 
 #projects-container > h1 {
     margin-left: 100px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    color: var(--font-color);
 }
 
 /* project 1 */
 #project-1 > h2, #project-2 > h2 {
-    margin-left: 7%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 #game-board-container {
     width: 80%;
