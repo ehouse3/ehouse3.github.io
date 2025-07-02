@@ -1,3 +1,8 @@
+:root {
+    --bg-color: rgb(82, 77, 101); /* background */
+    --fg-color: rgb(62, 59, 74); /* foreground */
+}
+
 body, html {
     /* color: rgb(24, 23, 30); */
     color: rgb(24, 23, 30);
@@ -134,8 +139,13 @@ a.active {
 
     scroll-snap-align: center;
     
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 16%;
+
+    border-radius: 60px;
+
     min-height: 750px;
     border: 1px solid red;
 }
@@ -164,8 +174,7 @@ h3 {
 
     height: fit-content;
 
-    margin-left: 2%;
-    margin-right: 13%;
+    background-color: var(--bg-color);
 }
 /* row 1 */
 #about-container > div { /* container for h1 and #about-0a, keeps them on thier own row */
@@ -186,43 +195,8 @@ h3 {
     /* background-color: rgba(82, 77, 101, 50%); */
     border-radius: 20px;
 }
-/* row 2
-#about-0a {
-    border: 1px solid green;
-    width: fit-content;
-    
-    margin-bottom: 0px;
-    margin-left: 10%;
 
-    padding-left: 0.5%;
-
-    font-size: 28px;
-
-    background-color: rgba(82, 77, 101, 60%);
-    border-radius: 10px;
-
-}
-#about-0a-link {
-    background-color: rgba(101, 97, 117, 0.6);
-    border: 2px solid rgba(79, 74, 97, 0.6);
-
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 5px;
-    border-radius: 10px;
-
-    transition: all 0.4s ease-out;
-}
-#about-0a-link:hover {
-    background-color: rgba(118, 204, 106, 0.8);
-    border: 2px solid rgba(79, 74, 97, 0.6);
-
-    margin: 0px;
-    padding: 10px;
-} */
-
-
-/* row 3 */
+/* row 2 */
 #about-container > h2 {
     border: 1px solid rgb(0, 128, 0);
     flex-basis: 28%;
@@ -238,7 +212,7 @@ h3 {
     padding-left: 5px;
     padding-right: 5px;
 
-    background-color: rgba(82, 77, 101, 60%);
+    /* background-color: rgba(82, 77, 101, 60%); */
     border-radius: 15px;
 }
 #about-1 {
@@ -250,7 +224,7 @@ h3 {
 #about-3 {
     margin-left: 0px;
 }
-/* row 4 */
+/* row 3 */
 #about-1a, #about-2a, #about-3a {
     border: 1px solid green;
     flex-basis: 28%;
@@ -267,7 +241,7 @@ h3 {
 
     text-align: center;
 
-    background-color: rgba(82, 77, 101, 60%);
+    /* background-color: rgba(82, 77, 101, 60%); */
     border-radius: 10px;
 }
 /* row 5 */
@@ -290,8 +264,7 @@ h3 {
     align-content: flex-start;
     justify-content: space-evenly;
 
-    margin-left: 2%;
-    margin-right: 13%;
+    background-color: var(--bg-color);
 }
 #skills-header { 
     /* border: 1px solid red; */
@@ -341,7 +314,7 @@ h3 {
 
     text-align: center;
 
-    background-color: rgba(82, 77, 101, 60%);
+    /* background-color: rgba(82, 77, 101, 60%); */
     border-radius: 20px;
 }
 
@@ -350,6 +323,7 @@ h3 {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     
     width: 60%;
 
@@ -393,19 +367,27 @@ h3 {
 
 
 /* projects */
-#projects-container > h1 {
-    margin-left: 100px;
-}
+
 #project-1, #project-2 {
     display: flex;
     flex-direction: column;
     scroll-snap-align: center;
     border: 1px solid blue;
-    margin: 5px;
+
+    margin-bottom: inherit;
+
+    border-radius: inherit;
+
+    background-color: var(--bg-color);
+
+}
+
+#projects-container > h1 {
+    margin-left: 100px;
 }
 
 /* project 1 */
-#project-1 > h2 {
+#project-1 > h2, #project-2 > h2 {
     margin-left: 7%;
 }
 #game-board-container {
@@ -422,7 +404,7 @@ h3 {
     zoom: 100%;
 
     width: 2000px;
-    height: 1000px;
+    height: 100%;
 }
 /* token/draggable attributes */
 .draggable { 
@@ -458,6 +440,9 @@ h3 {
 /* end project 1 */
 
 /* project 2 */
+#project-2 {
+    margin-top: inherit;
+}
 /* end project 2 */
 
 /* end projects */
