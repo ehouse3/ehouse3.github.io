@@ -124,6 +124,8 @@ a.active {
     justify-content: center;
     margin-left: 0px;
     margin-right: 5%;
+
+    min-height: 750px;
 }
 #header-text {
     font-size: 200px;
@@ -139,20 +141,22 @@ a.active {
     display: flex;
     flex-direction: column;
 
-    scroll-snap-align: center;
+    /* scroll-snap-align: center; */
     
-    margin-top: 3%;
-    margin-bottom: 3%;
     margin-left: 2%;
     margin-right: 16%;
 
     border-radius: 60px;
 
-    min-height: 750px;
     /* border: 1px solid red; */
 }
 #projects-container, #skills-container, #about-container {
     color: var(--font-color);
+    min-height: 500px;
+
+    margin-bottom: 6%;
+    margin-top: 6%;
+
 }
 h1 {
     font-size: 92px;
@@ -379,6 +383,7 @@ h3 {
     border: 1px solid blue;
 
     margin-bottom: inherit;
+    margin-top: 2%;
 
     border-radius: inherit;
 
@@ -388,8 +393,7 @@ h3 {
 
 #projects-container > h1 {
     margin-left: 100px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+
 
     color: var(--font-color);
 }
@@ -397,8 +401,8 @@ h3 {
 /* project 1 */
 #project-1 > h2, #project-2 > h2 {
     margin-left: 5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 #game-board-container {
     width: 80%;

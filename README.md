@@ -5,6 +5,7 @@ for TS compiling:
     'tsc home.ts --module ES6'
     'tsc token.ts --module ES6'
     'tsc board.ts --module ES6'
+- tsc home.ts --module ES6; tsc '.\Project 1\token.ts' --module ES6; tsc '.\Project 1\board.ts' --module ES6
 
 for testing/local hosting
  npm install -g http-server

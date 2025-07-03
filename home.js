@@ -1,57 +1,58 @@
-/* Color themes
-HEX CODES:
-#11302a
-#036264
-#8f5774
-#e0829d
-#dac4d0
-
-#1c2e14
-#374971
-#72668a
-#707978
-#ccb0be
-*/
-/*
-#b26684
-#fc9dc3
-#ea85ae
-#474259
-#424959
-#4CB1EF
-#0dc070
-#6eefcf
-#37a372
-
-#ce5db6
-#51516b
-#56516b
-#37a372
-
-#9a62c7 this one is the same hue as the side bar
-#ce5db6
-*/
 // website directory designs
-//https://kotilabdulkadir.notion.site/The-Ultimate-450-Websites-Directory-for-Freelancers-Solopreneurs-b48bf26f94d1442aa2ead96ee139161a
 //http-server https://www.npmjs.com/package/http-server 
-console.log("home.ts script loaded 2");
+console.log("home.ts script loaded");
 //https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-var skills_container = document.getElementById("skills-container");
-var about_container = document.getElementById("about-container");
-var project_container = document.getElementById("project-container");
-var link_container = document.getElementById("link-contaienr");
-var navbar_contaienr = document.getElementById("navbar-container");
-function fade_in_section() {
-    skills_container.classList.add("is-visible");
+var skills_cont = document.getElementById("skills-container");
+var skills_cont_views = 0;
+var about_cont = document.getElementById("about-container");
+var about_cont_views = 0;
+var projects_cont = document.getElementById("projects-container");
+var projects_cont_views = 0;
+var link_cont = document.getElementById("link-contaienr");
+var navbar_cont = document.getElementById("navbar-container");
+function fade_in_section(viewed_element) {
+    viewed_element.classList.add("is-visible");
 }
-var callback = function (entries, observer) {
-    console.log("CALLBACK\n");
+var callbackAbout = function (entries, observer) {
+    console.log("about entries", entries, "about views", about_cont_views);
+    if (about_cont_views == 1) {
+        entries[0].target.classList.add("is-visible");
+    }
+    about_cont_views++;
+    console.log("\n");
+};
+var callbackSkills = function (entries, observer) {
+    console.log("skills entries", entries, "skills views", skills_cont_views);
+    if (skills_cont_views == 1) {
+        console.log("skills adding is visible");
+        entries[0].target.classList.add("is-visible");
+    }
+    skills_cont_views++;
+    console.log("\n");
+};
+var callbackProjects = function (entries, observer) {
+    console.log("projects entries", entries, "projects views", projects_cont_views);
+    if (projects_cont_views == 1) {
+        entries[0].target.classList.add("is-visible");
+    }
+    projects_cont_views++;
+    console.log("\n");
 };
 var options = {
-    root: document.querySelector("#skills-container"),
-    threshold: 0.1
+    // root: document.querySelector("#skills-container"),
+    threshold: 0.25
 };
-var observer = new IntersectionObserver(callback, options);
+// interface IntersectionObserverProps {
+//     entries: IntersectionObserverEntry[],
+//     observer: IntersectionObserver,
+//     callback: () => void,
+// }
+var observer0 = new IntersectionObserver(callbackAbout, options);
+var observer1 = new IntersectionObserver(callbackSkills, options);
+var observer2 = new IntersectionObserver(callbackProjects, options);
+observer0.observe(about_cont);
+observer1.observe(skills_cont);
+observer2.observe(projects_cont);
 /*
 function loadScript(){ //load script function for loading each project when they are accessed
     console.log("loaded = " ,loaded);

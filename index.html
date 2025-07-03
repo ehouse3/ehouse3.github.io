@@ -11,14 +11,14 @@
     <body>
     <canvas id="background"></canvas>
     
-    <nav id="navbar-container" class="navbar nav-pills align-items-stretch red" aria-orientation="vertical">
-        <a class="nav-link" href="#header-container">Home</a>
-        <a class="nav-link" href="#about-container">About Me</a>
-        <a class="nav-link" href="#skills-container">Skills</a>
-        <a class="nav-link" href="#projects-container">Projects</a>
+    <nav id="navbar-container" class="navbar nav-pills align-items-stretch" aria-orientation="vertical">
+        <a class="nav-link" href="#header-nav">Home</a>
+        <a class="nav-link" href="#about-nav">About Me</a>
+        <a class="nav-link" href="#skills-nav">Skills</a>
+        <a class="nav-link" href="#projects-nav">Projects</a>
         <nav id="navbar-subcontainer" class="navbar nav-pills" aria-orientation="vertical">
-            <a class="nav-link" href="#project-1">Project 1</a>
-            <a class="nav-link" href="#project-2">Project 2</a>
+            <a class="nav-link" href="#project-1-nav">Project 1</a>
+            <a class="nav-link" href="#project-2-nav">Project 2</a>
         </nav>
     </nav>
     <div id="link-container">
@@ -27,12 +27,13 @@
     </div>
 
     <div id="content-container" data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
+        <div id="header-nav"></div>
         <div id="header-container">
             <div id="header-text">Euan House</div>
         </div>
 
-    
-        <div id="about-container">
+        <div id="about-nav"></div>
+        <div class="fade-in-section" id="about-container">
             <div><h1>About Me</h1></div>
 
             <h2 id="about-1">In 2025, I graduated from Penn State! 🎓</h2>
@@ -48,8 +49,7 @@
             <img>
         </div>
         
-        <button id="btn" onclick="fade_in_section()">fade in</button>
-
+        <div id="skills-nav"></div>
         <div class="fade-in-section" id="skills-container">
             <div id="skills-header"><h1>Skills</h1></div>
 
@@ -104,9 +104,11 @@
 
         </div>
 
-        <div id="projects-container">
+        <div id="projects-nav"></div>
+        <div class="fade-in-section" id="projects-container">
             <h1>Projects</h1>
 
+            <div id="project-1-nav"></div>
             <div id="project-1">
                 <h2>Table Top Simulator Webapp</h2>
                 <div id="game-board-container">
@@ -139,6 +141,7 @@
                 </div>
             </div>
 
+            <div id="project-2-nav"></div>
             <div id="project-2">
                 <h2>projects item 2</h2>
             </div>
