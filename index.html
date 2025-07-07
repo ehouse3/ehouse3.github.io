@@ -2,15 +2,17 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
 
 </head>
 
 <html>
-    <body>
+
+<body>
     <canvas id="background"></canvas>
-    
+
     <nav id="navbar-container" class="navbar nav-pills align-items-stretch" aria-orientation="vertical">
         <a class="nav-link" href="#header-nav">Home</a>
         <a class="nav-link" href="#about-nav">About Me</a>
@@ -23,7 +25,8 @@
     </nav>
     <div id="link-container">
         <a id="link" href="https://github.com/ehouse3/" target="_blank"><img id="git-img" src="images/github.png"></a>
-        <a id="link" href="https://www.linkedin.com/in/euanhouse/" target="_blank"><img id="linkedin-img" src="images/linkedin.webp"></a>
+        <a id="link" href="https://www.linkedin.com/in/euanhouse/" target="_blank"><img id="linkedin-img"
+                src="images/linkedin.webp"></a>
     </div>
 
     <div id="content-container" data-bs-spy="scroll" data-bs-target="#navbar-container" data-bs-offset="0" tabindex="0">
@@ -32,149 +35,171 @@
             <div id="header-text">Euan House</div>
         </div>
 
-        <div id="about-nav"></div>
-        <div class="fade-in-section" id="about-container">
-            <div><h1>About Me</h1></div>
+        <div id="about-nav">
+            <div id="about-container" class="fade-in-section">
+                <h1 id="about-header">About Me</h1>
 
-            <h2 id="about-1">In 2025, I graduated from Penn State! 🎓</h2>
-            <h2 id="about-2">I Consider myself a Coffee Connoisseur</h2>
-            <h2 id="about-3">I lead an AI club at PSU</h2>
-
-            <h3 id="about-1a">with the B.S. in Computer Science and a minor in Cyber Security</h3>
-            <h3 id="about-2a">Cappuccino's are my favorite</h3>
-            <h3 id="about-3a">We made many projects</h3>
-
-            <img>
-            <img>
-            <img>
-        </div>
-        
-        <div id="skills-nav"></div>
-        <div class="fade-in-section" id="skills-container">
-            <div id="skills-header"><h1>Skills</h1></div>
-
-            <div id="skills-row">
-                <div id="skills-items-header"><h2>Web Languages Experience</h2></div>
-                <div id="skills-items-container">
-                    <h3>React</h3>
-                    <h3>TS</h3>
-                    <h3>JS</h3>
-                    <h3>HTML5</h3>
-                    <h3>CSS</h3>
-                    <h3>SCSS</h3>
+                <div>
+                    <h2>In 2025, I graduated from Penn State! 🎓</h2>
+                    <h3>with the B.S. in Computer Science and a minor in Cyber Security</h3>
+                </div>
+                <div>
+                    <h2></h2>
+                    <h3></h3>
+                </div>
+                <div>
+                    <h2>Some of my other projects include:</h2>
+                    <ul id="about-li">
+                        <li>Facial Recognition AI</li>
+                        <li>File Storage System & GUI</li>
+                    </ul>
                 </div>
             </div>
-
-            <div id="skills-row">
-                <div id="skills-items-header"><h2>Frameworks and Libraries</h2></div>
-                <div id="skills-items-container">
-                    <h3>Next.js</h3>
-                    <h3>Tailwind</h3>
-                    <h3>Node</h3>
-                    <h3>MUI</h3>
-                    <h3>Bootstrap</h3>
-                    <h3>JQuery</h3>
-                    <h3>Django</h3>
-                    <h3>Flask</h3>
-                </div>
-            </div>
-
-            <div id="skills-row">
-                <div id="skills-items-header"><h2>Other Languages</h2></div>
-                <div id="skills-items-container">
-                    <h3>SQL</h3>
-                    <h3>PostreSQL</h3>
-                    <h3>Python</h3>
-                    <h3>Rust</h3>
-                    <h3>Java</h3>
-                    <h3>C</h3>
-                </div>
-            </div>
-
-            <div id="skills-row">
-                <div id="skills-items-header"><h2>Software</h2></div>
-                <div id="skills-items-container">
-                    <h3>Windows</h3>
-                    <h3>Linux</h3>
-                    <h3>Ubuntu</h3>
-                    <h3>Virtual Machines</h3>
-                    <h3>Docker</h3>
-                </div>
-            </div>
-
         </div>
 
-        <div id="projects-nav"></div>
-        <div class="fade-in-section" id="projects-container">
-            <h1>Projects</h1>
+        <div id="skills-nav">
+            <div id="skills-container" class="fade-in-section">
+                <div id="skills-header">
+                    <h1>Skills</h1>
+                </div>
 
-            <div id="project-1-nav"></div>
-            <div id="project-1">
-                <h2>Table Top Simulator Webapp</h2>
-                <div id="game-board-container">
-                    <svg id="game-board-svg">
-                        <defs>
-                            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <line y2="20" fill="#000000" stroke="#000000" stroke-width="3"></line>
-                                <line x2="20" fill="#000000" stroke="#000000" stroke-width="3"></line>
-                            </pattern>
-                        </defs>
-                        <rect id="game-board" fill="url(#grid)" x="0" y="0" width="100%" height="100%"/>
-                        
+                <div id="skills-row">
+                    <div id="skills-items-header">
+                        <h2>Web Languages Experience</h2>
+                    </div>
+                    <div id="skills-items-container">
+                        <h3>React</h3>
+                        <h3>TS</h3>
+                        <h3>JS</h3>
+                        <h3>HTML5</h3>
+                        <h3>CSS</h3>
+                        <h3>SCSS</h3>
+                    </div>
+                </div>
 
-                        <g class="token draggable">
-                            <circle></circle>
-                            <circle></circle>
-                        </g> 
+                <div id="skills-row">
+                    <div id="skills-items-header">
+                        <h2>Frameworks and Libraries</h2>
+                    </div>
+                    <div id="skills-items-container">
+                        <h3>Next.js</h3>
+                        <h3>Tailwind</h3>
+                        <h3>Node</h3>
+                        <h3>MUI</h3>
+                        <h3>Bootstrap</h3>
+                        <h3>JQuery</h3>
+                        <h3>Django</h3>
+                        <h3>Flask</h3>
+                    </div>
+                </div>
 
-                        <g class="token draggable">
-                            <circle></circle>
-                            <circle></circle>
-                        </g> 
+                <div id="skills-row">
+                    <div id="skills-items-header">
+                        <h2>Other Languages</h2>
+                    </div>
+                    <div id="skills-items-container">
+                        <h3>SQL</h3>
+                        <h3>PostreSQL</h3>
+                        <h3>Python</h3>
+                        <h3>Rust</h3>
+                        <h3>Java</h3>
+                        <h3>C</h3>
+                    </div>
+                </div>
 
-                        <g class="token draggable">
-                            <circle></circle>
-                            <circle></circle>
-                        </g> 
-                        <rect id="selector" x="0" y="0" width="0" height="0" rx="1" ry="1"/>
-                    </svg>
+                <div id="skills-row">
+                    <div id="skills-items-header">
+                        <h2>Software</h2>
+                    </div>
+                    <div id="skills-items-container">
+                        <h3>Windows</h3>
+                        <h3>Linux</h3>
+                        <h3>Ubuntu</h3>
+                        <h3>Virtual Machines</h3>
+                        <h3>Docker</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="projects-nav">
+            <div id="projects-container">
+                <h1>Projects</h1>
+
+                <div id="project-1-nav">
+                    <div id="project-1" class="fade-in-section">
+                        <h2>Table Top Simulator Webapp</h2>
+                        <div id="game-board-container">
+                            <svg id="game-board-svg">
+                                <defs>
+                                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                        <line y2="20" fill="#000000" stroke="#000000" stroke-width="3"></line>
+                                        <line x2="20" fill="#000000" stroke="#000000" stroke-width="3"></line>
+                                    </pattern>
+                                </defs>
+                                <rect id="game-board" fill="url(#grid)" x="0" y="0" width="100%" height="100%" />
+
+
+                                <g class="token draggable">
+                                    <circle></circle>
+                                    <circle></circle>
+                                </g>
+
+                                <g class="token draggable">
+                                    <circle></circle>
+                                    <circle></circle>
+                                </g>
+
+                                <g class="token draggable">
+                                    <circle></circle>
+                                    <circle></circle>
+                                </g>
+                                <rect id="selector" x="0" y="0" width="0" height="0" rx="1" ry="1" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project-2-nav">
+                    <div class="fade-in-section" id="project-2">
+                        <h2>projects item 2</h2>
+                    </div>
                 </div>
             </div>
 
-            <div id="project-2-nav"></div>
-            <div id="project-2">
-                <h2>projects item 2</h2>
-            </div>
-            
+
+
         </div>
     </div>
 
     <div style="height: 1000px;"></div>
-     
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="home.js"></script>
     <script src="./thpace.min.js"></script>
     <script> //Animated BG Canvas
         //https://www.braedin.com/Thpace/
         const canvas = document.getElementById('background');
         const settings = {
-            // colors: ['#b26684', '#645c71', '#5c5c71', '#37a372'],
-            // colors: ['rgb(222, 53, 185)', 'rgb(82, 77, 101)','rgb(82, 77, 101)', 'rgb(48, 184, 98)'],
-            colors: ['#372772','#747C92','#747C92','#372772'],
+            colors: ['#372772', '#747C92', '#747C92', '#372772'],
             triangleSize: 150,
             maxFPS: 24,
             noise: 90,
             automaticResize: true,
             particleSettings: {
-                count: [0,0]
+                count: [0, 0]
             }
         };
         ThpaceGL.create(canvas, settings);
-        
+
     </script>
     <script type="module" src="Project 1/token.js"></script>
     <script type="module" src="Project 1/board.js"></script>
-    </body>
+</body>
+
 </html>

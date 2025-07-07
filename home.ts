@@ -4,55 +4,44 @@ console.log("home.ts script loaded");
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
-let skills_cont:HTMLElement = document.getElementById("skills-container")!;
-let skills_cont_views:number = 0;
-let about_cont:HTMLElement = document.getElementById("about-container")!
-let about_cont_views:number = 0;
-let projects_cont:HTMLElement = document.getElementById("projects-container")!;
-let projects_cont_views:number = 0;
+let skills_cont: HTMLElement = document.getElementById("skills-container")!;
+let skills_cont_views: number = 0;
+let about_cont: HTMLElement = document.getElementById("about-container")!
+let about_cont_views: number = 0;
+let project1: HTMLElement = document.getElementById("project-1")!;
+let project1_views: number = 0;
+let project2: HTMLElement = document.getElementById("project-2")!;
+let project2_views: number = 0;
 
-let link_cont:HTMLElement = document.getElementById("link-contaienr")!;
+let link_cont: HTMLElement = document.getElementById("link-contaienr")!;
 
-let navbar_cont:HTMLElement = document.getElementById("navbar-container")!;
+let navbar_cont: HTMLElement = document.getElementById("navbar-container")!;
 
-
-function fade_in_section(viewed_element:HTMLElement) {
-    viewed_element.classList.add("is-visible");
-}
-
-const callbackAbout:IntersectionObserverCallback = (entries, observer) => {
-    console.log("about entries",entries,"about views",about_cont_views);
-    
-    if(about_cont_views == 1) {
+const callbackAbout: IntersectionObserverCallback = (entries, observer) => {
+    if (about_cont_views == 1) {
         entries[0].target.classList.add("is-visible");
     }
     about_cont_views++;
-
-    console.log("\n");
 }
-const callbackSkills:IntersectionObserverCallback = (entries, observer) => {
-    console.log("skills entries",entries,"skills views",skills_cont_views);
-    
-    if(skills_cont_views == 1) {
-        console.log("skills adding is visible");
+const callbackSkills: IntersectionObserverCallback = (entries, observer) => {
+    if (skills_cont_views == 1) {
         entries[0].target.classList.add("is-visible");
     }
     skills_cont_views++;
-
-    console.log("\n");
 }
-const callbackProjects:IntersectionObserverCallback = (entries, observer) => {
-    console.log("projects entries",entries,"projects views",projects_cont_views);
-    
-    if(projects_cont_views == 1) {
+const callbackProject1: IntersectionObserverCallback = (entries, observer) => {
+    if (project1_views == 1) {
         entries[0].target.classList.add("is-visible");
     }
-    projects_cont_views++;
-
-    console.log("\n");
+    project1_views++;
+}
+const callbackProject2: IntersectionObserverCallback = (entries, observer) => {
+    if (project2_views == 1) {
+        entries[0].target.classList.add("is-visible");
+    }
+    project2_views++;
 }
 const options = {
-    // root: document.querySelector("#skills-container"),
     threshold: 0.25
 };
 
@@ -64,11 +53,15 @@ const options = {
 
 const observer0 = new IntersectionObserver(callbackAbout, options);
 const observer1 = new IntersectionObserver(callbackSkills, options);
-const observer2 = new IntersectionObserver(callbackProjects, options);
+const observer2 = new IntersectionObserver(callbackProject1, options);
+const observer3 = new IntersectionObserver(callbackProject2, options);
+
 
 observer0.observe(about_cont);
 observer1.observe(skills_cont);
-observer2.observe(projects_cont);
+observer2.observe(project1);
+observer3.observe(project2);
+
 
 
 
