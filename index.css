@@ -3,6 +3,7 @@
     --bg-color: #747C92;
     /* foreground */
     --fg-color: rgba(237, 243, 224, 0.65);
+    --hover-color: rgba(118, 204, 106, 0.8);
 
     --font-color: rgb(24, 23, 30);
     --font-color-contrast: #E8E9F3;
@@ -120,18 +121,30 @@ a.active {
 }
 
 #link-container>a:hover {
-    background-color: rgba(118, 204, 106, 0.8);
+    background-color: var(--hover-color);
 
     margin: 0px;
     padding: 10px;
 }
-
 #git-img,
 #linkedin-img {
     width: 100%;
     height: 100%;
 }
+#resume-link {
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--fg-color);
+}
+#resume-link>h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
+}
 /* End top-right links
 
 /* header */
@@ -387,7 +400,7 @@ h3 {
 
     cursor: default;
     border: 3px solid rgba(79, 74, 97, 0.6);
-    background-color: rgba(118, 204, 106, 0.8);
+    background-color: var(--hover-color);
 }
 
 /* end skills */
