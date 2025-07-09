@@ -1,13 +1,17 @@
 :root {
     /* background */
     --bg-color: #747C92;
+    --bg-color-primary: #372772;
     /* foreground */
-    --fg-color: rgba(237, 243, 224, 0.65);
-    --hover-color: rgba(118, 204, 106, 0.8);
+    --fg-color: rgba(239, 243, 231, 0.67);
+    --button-color: #F9DBBD;
+    --button-border-color: #eeceab;
+    --button-hover-color: #D5573B;
+    --button-hover-border-color: rgba(101, 97, 117, 0.6);
 
     --font-color: rgb(24, 23, 30);
-    --font-color-contrast: #E8E9F3;
-    /* #F8F8F8 */
+    --font-color-contrast: rgb(232, 233, 243);
+    --font-color-hover: rgb(74, 70, 92);
 }
 
 body,
@@ -17,7 +21,6 @@ html {
     width: 100%;
     height: 100%;
     scroll-snap-type: y proximity;
-    /* scroll-behavior: smooth; */
 }
 
 #background {
@@ -90,7 +93,7 @@ a.active {
 }
 
 .nav-link:hover {
-    color: #4a465c;
+    color: var(--font-color-hover);
 }
 
 /* end navbar */
@@ -121,31 +124,40 @@ a.active {
 }
 
 #link-container>a:hover {
-    background-color: var(--hover-color);
+    background-color: var(--button-hover-color);
 
     margin: 0px;
     padding: 10px;
 }
+
 #git-img,
 #linkedin-img {
     width: 100%;
     height: 100%;
 }
+
 #resume-link {
     text-align: center;
     text-decoration: none;
-    background-color: var(--fg-color);
-}
-#resume-link>h3 {
+    background-color: var(--button-color);
+    border: 2px solid var(--button-border-color);
     font-size: 20px;
+}
+
+#resume-link:hover {
+    border: 2px solid var(--button-hover-border-color);
+}
+
+#resume-link>h3 {
+    font-size: inherit;
     font-weight: 800;
     margin-left: 7px;
     margin-right: 7px;
     margin-top: 10px;
     margin-bottom: 10px;
-
 }
 /* End top-right links
+
 
 /* header */
 #header-container {
@@ -163,7 +175,6 @@ a.active {
     font-size: 200px;
     font-weight: 600;
 }
-
 /* end header */
 
 #about-nav,
@@ -286,9 +297,7 @@ h3 {
     margin-top: 1%;
     box-shadow: 5px 5px 5px black;
 }
-
 /* end about */
-
 
 
 /* skills */
@@ -304,23 +313,13 @@ h3 {
 }
 
 #skills-header {
-    /* border: 1px solid red; */
     width: 100%;
 
-}
-
-#skills-header>h1 {
-    width: fit-content;
     height: fit-content;
-
 
     margin-bottom: 0px;
     margin-left: 4%;
 
-    padding-left: 1%;
-    padding-right: 1%;
-
-    /* background-color: rgba(82, 77, 101, 0%); */
     border-radius: 20px;
 }
 
@@ -329,13 +328,11 @@ h3 {
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    /* border: 1px solid red; */
     width: 100%;
     margin-top: 2%;
 }
 
 #skills-items-header {
-    /* border: 1px solid orange; */
     width: 40%;
     display: flex;
     justify-content: center;
@@ -345,7 +342,6 @@ h3 {
 }
 
 #skills-items-header>h2 {
-    /* border: 1px solid green; */
     height: fit-content;
     width: fit-content;
 
@@ -353,7 +349,6 @@ h3 {
 
     text-align: center;
 
-    /* background-color: rgba(82, 77, 101, 60%); */
     border-radius: 20px;
 }
 
@@ -368,13 +363,10 @@ h3 {
 
     padding-left: 5%;
     padding-right: 5%;
-
-    /* border: 1px solid red; */
 }
 
 #skills-items-container>h3 {
-    /* border: 2px solid green; */
-    border: 3px solid rgba(79, 74, 97, 0.6);
+    border: 2px solid var(--button-border-color);
 
     margin: 10px;
 
@@ -386,7 +378,7 @@ h3 {
 
     transition: all 0.4s ease-out;
 
-    background-color: rgba(101, 97, 117, 0.6);
+    background-color: var(--button-color);
     border-radius: 10px;
 }
 
@@ -399,8 +391,8 @@ h3 {
     padding-bottom: 3px;
 
     cursor: default;
-    border: 3px solid rgba(79, 74, 97, 0.6);
-    background-color: var(--hover-color);
+    border: 2px solid var(--button-hover-border-color);
+    background-color: var(--button-hover-color);
 }
 
 /* end skills */
