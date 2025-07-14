@@ -4,10 +4,12 @@ console.log("home.ts script loaded");
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
-let skills_cont: HTMLElement = document.getElementById("skills-container")!;
-let about_cont: HTMLElement = document.getElementById("about-container")!
+let skillsCont: HTMLElement = document.getElementById("skills-container")!;
+let aboutCont: HTMLElement = document.getElementById("about-container")!
 let project1: HTMLElement = document.getElementById("project-1")!;
 let project2: HTMLElement = document.getElementById("project-2")!;
+let projectHeader: HTMLElement = document.getElementById("projects-header")!;
+
 
 let link_cont: HTMLElement = document.getElementById("link-contaienr")!;
 
@@ -19,6 +21,7 @@ const sectionViews: { [key: string]: number } = {
     "skills-container": 0,
     "project-1": 0,
     "project-2": 0,
+    "projects-header":0,
 };
 
 // Increments view count for corresponding section, setting is-visible if viewed for the first time
@@ -37,9 +40,10 @@ function callbackSetIsVisible(entries: IntersectionObserverEntry[], observer: In
 const options = { threshold: 0.25 };
 const observer = new IntersectionObserver(callbackSetIsVisible, options);
 
-observer.observe(about_cont);
-observer.observe(skills_cont);
+observer.observe(aboutCont);
+observer.observe(skillsCont);
 observer.observe(project1);
 observer.observe(project2);
+observer.observe(projectHeader);
 
 
