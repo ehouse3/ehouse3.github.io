@@ -1,8 +1,6 @@
 import { Token } from './token.js';
 console.log("board.ts script loaded");
 
-
-// let newToken = new Token("john doe");
 let tokens_list:Token[] = []; //list of moveable/selectable tokens
 let selected_tokens_list:Token[] = []; //list of currently selected tokens
 
@@ -10,7 +8,7 @@ const zoom_slider:HTMLInputElement = document.getElementById('zoom-slider') as H
 const board:SVGGraphicsElement = document.getElementById('game-board-svg')! as unknown as SVGGraphicsElement;
 const board_container:HTMLElement = document.getElementById('game-board-container')!;
 
-// #region pan
+// panning
 let panning:boolean = false;    
 function start_pan(event:PointerEvent) { //starting pan event handler
     if(event.button == 2){
@@ -35,9 +33,9 @@ board_container.addEventListener('pointerup', end_pan);
 board_container.addEventListener('pointercancel', end_pan);
 board_container.addEventListener('pointermove', move_pan);
 board_container.addEventListener("contextmenu", (event) => event.preventDefault()); //prevent the right click contextmenu from opening on the gameboard
-// #endregion
 
-// #region select
+
+// select
 let box_selecting:boolean = false;
 let start_x:number = 0;
 let start_y:number = 0;
@@ -47,7 +45,6 @@ let selector_element:HTMLElement = document.getElementById("selector")!;
 let cur_displayed_token:Token | null = null;
 
 function event_to_svg_coordinates(event:PointerEvent, ) {//converts event's argument coordinates to svg coordinates
-    // let p = board.createSVGPoint(); //deprecated
     let p = new DOMPoint();
     p.x = event.clientX;
     p.y = event.clientY;
@@ -175,10 +172,10 @@ board_container.addEventListener('pointerup', end_select);
 board_container.addEventListener('pointercancel', end_select);
 board_container.addEventListener('pointermove', move_select);
 
-// #endregion
 
 
-// #region create token
+
+// create token
 const new_element = document.getElementsByClassName("token")[0] as SVGGraphicsElement;
 let new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
 new_token.make_draggable();

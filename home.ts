@@ -4,16 +4,16 @@ console.log("home.ts script loaded");
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
-let skillsCont: HTMLElement = document.getElementById("skills-container")!;
-let aboutCont: HTMLElement = document.getElementById("about-container")!
-let project1: HTMLElement = document.getElementById("project-1")!;
-let project2: HTMLElement = document.getElementById("project-2")!;
-let projectHeader: HTMLElement = document.getElementById("projects-header")!;
+let skillsCont: HTMLElement | null = document.getElementById("skills-container");
+let aboutCont: HTMLElement | null = document.getElementById("about-container");
+let project1: HTMLElement | null = document.getElementById("project-1");
+let project2: HTMLElement | null = document.getElementById("project-2");
+let projectHeader: HTMLElement | null = document.getElementById("projects-header");
 
 
-let link_cont: HTMLElement = document.getElementById("link-contaienr")!;
+// let link_cont: HTMLElement = document.getElementById("link-contaienr")!;
 
-let navbar_cont: HTMLElement = document.getElementById("navbar-container")!;
+// let navbar_cont: HTMLElement = document.getElementById("navbar-container")!;
 
 // elementID and corresponding view count
 const sectionViews: { [key: string]: number } = {
@@ -40,10 +40,9 @@ function callbackSetIsVisible(entries: IntersectionObserverEntry[], observer: In
 const options = { threshold: 0.25 };
 const observer = new IntersectionObserver(callbackSetIsVisible, options);
 
-observer.observe(aboutCont);
-observer.observe(skillsCont);
-observer.observe(project1);
-observer.observe(project2);
-observer.observe(projectHeader);
-
-
+//assign observation callbacks for each section
+if (aboutCont) { observer.observe(aboutCont); }
+if (skillsCont) { observer.observe(skillsCont); }
+if (project1) { observer.observe(project1); }
+if (project2) { observer.observe(project2); }
+if (projectHeader) { observer.observe(projectHeader); }

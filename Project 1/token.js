@@ -1,16 +1,12 @@
 console.log("token.ts class loaded");
 // #region TOKEN CLASS
-// #endregion 
 var Token = /** @class */ (function () {
-    // #end region
-    //#region constructor
     function Token(name, element_parent, cur_x, cur_y, width, unique_id) {
         if (name === void 0) { name = '(no name given)'; }
         if (cur_x === void 0) { cur_x = 0; }
         if (cur_y === void 0) { cur_y = 0; }
         var _this = this;
-        // #endregion
-        // #region drag handlers
+        // drag handlers
         this.event_to_svg_coordinates = function (event, el) {
             if (el === void 0) { el = event.currentTarget; }
             // let p = svg.createSVGPoint(); //deprecated
@@ -86,8 +82,6 @@ var Token = /** @class */ (function () {
         this._speed = 0;
     }
     Object.defineProperty(Token.prototype, "svg", {
-        // #endregion
-        // #region getters
         get: function () { return this._svg; },
         enumerable: false,
         configurable: true
@@ -114,7 +108,6 @@ var Token = /** @class */ (function () {
     });
     Object.defineProperty(Token.prototype, "cur_x", {
         get: function () { return this._cur_x; },
-        // #endregion
         // #region setters
         set: function (new_x) { this._cur_x = new_x; },
         enumerable: false,
@@ -176,8 +169,6 @@ var Token = /** @class */ (function () {
     });
     Token.prototype.prevent_movement = function () { this._movement_allowed = false; };
     Token.prototype.allow_movement = function () { this._movement_allowed = true; };
-    // #endregion
-    // #region set position
     Token.prototype.set_position = function (new_x, new_y) {
         var grid_width = 2000;
         var grid_height = 1000;
@@ -210,8 +201,7 @@ var Token = /** @class */ (function () {
             }
         }
     };
-    // #endregion
-    // #region set draggable
+    // set draggable
     Token.prototype.make_draggable = function () {
         console.log("adding dragability to " + this.name);
         // binding handlers to board so multi-select can have control
@@ -230,8 +220,7 @@ var Token = /** @class */ (function () {
         this.svg.removeEventListener('pointermove', this.move_drag);
         this.svg.removeEventListener('touchstart', function (event) { return event.preventDefault(); });
     };
-    // #endregion
-    // #region style
+    // style
     Token.prototype.set_border = function (inner_color, outer_color) {
         console.log("setting border");
         //var woot = window.getComputedStyle(this._element_circle_0).stroke; 

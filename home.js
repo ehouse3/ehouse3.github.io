@@ -7,8 +7,8 @@ var aboutCont = document.getElementById("about-container");
 var project1 = document.getElementById("project-1");
 var project2 = document.getElementById("project-2");
 var projectHeader = document.getElementById("projects-header");
-var link_cont = document.getElementById("link-contaienr");
-var navbar_cont = document.getElementById("navbar-container");
+// let link_cont: HTMLElement = document.getElementById("link-contaienr")!;
+// let navbar_cont: HTMLElement = document.getElementById("navbar-container")!;
 // elementID and corresponding view count
 var sectionViews = {
     "about-container": 0,
@@ -31,8 +31,19 @@ function callbackSetIsVisible(entries, observer) {
 }
 var options = { threshold: 0.25 };
 var observer = new IntersectionObserver(callbackSetIsVisible, options);
-observer.observe(aboutCont);
-observer.observe(skillsCont);
-observer.observe(project1);
-observer.observe(project2);
-observer.observe(projectHeader);
+//assign observation callbacks for each section
+if (aboutCont) {
+    observer.observe(aboutCont);
+}
+if (skillsCont) {
+    observer.observe(skillsCont);
+}
+if (project1) {
+    observer.observe(project1);
+}
+if (project2) {
+    observer.observe(project2);
+}
+if (projectHeader) {
+    observer.observe(projectHeader);
+}

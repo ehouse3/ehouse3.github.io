@@ -1,12 +1,11 @@
 import { Token } from './token.js';
 console.log("board.ts script loaded");
-// let newToken = new Token("john doe");
 var tokens_list = []; //list of moveable/selectable tokens
 var selected_tokens_list = []; //list of currently selected tokens
 var zoom_slider = document.getElementById('zoom-slider');
 var board = document.getElementById('game-board-svg');
 var board_container = document.getElementById('game-board-container');
-// #region pan
+// panning
 var panning = false;
 function start_pan(event) {
     if (event.button == 2) {
@@ -31,8 +30,7 @@ board_container.addEventListener('pointerup', end_pan);
 board_container.addEventListener('pointercancel', end_pan);
 board_container.addEventListener('pointermove', move_pan);
 board_container.addEventListener("contextmenu", function (event) { return event.preventDefault(); }); //prevent the right click contextmenu from opening on the gameboard
-// #endregion
-// #region select
+// select
 var box_selecting = false;
 var start_x = 0;
 var start_y = 0;
@@ -41,7 +39,6 @@ var y = 0;
 var selector_element = document.getElementById("selector");
 var cur_displayed_token = null;
 function event_to_svg_coordinates(event) {
-    // let p = board.createSVGPoint(); //deprecated
     var p = new DOMPoint();
     p.x = event.clientX;
     p.y = event.clientY;
@@ -163,8 +160,7 @@ board_container.addEventListener('pointerdown', start_select);
 board_container.addEventListener('pointerup', end_select);
 board_container.addEventListener('pointercancel', end_select);
 board_container.addEventListener('pointermove', move_select);
-// #endregion
-// #region create token
+// create token
 var new_element = document.getElementsByClassName("token")[0];
 var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");
 new_token.make_draggable();

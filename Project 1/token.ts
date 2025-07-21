@@ -1,6 +1,6 @@
 console.log("token.ts class loaded");
 // #region TOKEN CLASS
-// #endregion 
+ 
 export class Token {
     /*
     class to create a movable and storable token objects:
@@ -11,7 +11,6 @@ export class Token {
     width: width of token (multiple of 12)
     unique_id: id assigned to distinguish tokens (element attribute)
     */
-    // #region variables
     private _name:string;
     private _svg:SVGGraphicsElement;
     private _element_parent:SVGGraphicsElement;
@@ -33,9 +32,7 @@ export class Token {
     private _previous_border_1:string;
 
     private _health:number; private _mana:number; private _armor:number; private _speed:number;
-    // #end region
 
-    //#region constructor
     constructor(name = '(no name given)', element_parent:SVGGraphicsElement, cur_x=0, cur_y=0, width:number, unique_id:string) {
         //uses _var naming scheme to prevent idefinite recursive calls
         this._name = name;
@@ -73,8 +70,7 @@ export class Token {
         this._armor = 0;
         this._speed = 0;
     }
-    // #endregion
-    // #region getters
+    
     get svg() { return this._svg;}
     get element_parent() { return this._element_parent; }
     get element_circle_0() { return this._element_circle_0; }
@@ -89,7 +85,7 @@ export class Token {
     get name() { return this._name; }
     get health() { return this._health; }
     get mana() { return this._mana; }
-    // #endregion
+    
 
     // #region setters
     set cur_x(new_x) { this._cur_x = new_x; }
@@ -114,9 +110,8 @@ export class Token {
     }
     prevent_movement() { this._movement_allowed = false; }
     allow_movement() { this._movement_allowed = true; }
-    // #endregion
+    
 
-    // #region set position
     set_position(new_x:number, new_y:number) {
         let grid_width = 2000;
         let grid_height = 1000;
@@ -149,9 +144,9 @@ export class Token {
             }
         }
     }
-    // #endregion
+    
 
-    // #region drag handlers
+    // drag handlers
     event_to_svg_coordinates = (event:PointerEvent, el=event.currentTarget) => {//converts event's argument coordinates to svg coordinates
         // let p = svg.createSVGPoint(); //deprecated
         let p = new DOMPoint();
@@ -194,9 +189,9 @@ export class Token {
         this.dragging_s = null;
         this.element_parent.classList.remove('dragging');
     }
-    // #endregion
+    
 
-    // #region set draggable
+    // set draggable
     make_draggable() {
         console.log("adding dragability to " + this.name);
         
@@ -218,9 +213,9 @@ export class Token {
         this.svg.removeEventListener('touchstart', (event) => event.preventDefault());
         
     }
-    // #endregion
+    
 
-    // #region style
+    // style
     set_border(inner_color:number[], outer_color:number[]) {
         console.log("setting border");
         //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
