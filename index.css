@@ -455,13 +455,35 @@ a.active {
     flex-basis: 50%;
     display: flex;
     justify-content: center;
-}
-
-#project-2-about>div>h3 {
     text-align: center;
 }
 
 /* project 1 */
+#project-1 {
+    display: flex;
+}
+
+#project-1-img {
+    width: 60em;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px 1.5px grey;
+}
+
+#project-1-about>div>div {
+    margin-bottom: 3em;
+}
+
+#project-1-about>div>div>h3 {
+    margin-top: 0.5em;
+}
+
+/* end project 1 */
+
+/* project 2 */
+#project-2-about>div>h3 {
+    text-align: center;
+}
+
 #game-board-container {
     width: 80%;
     height: 60vh;
@@ -499,12 +521,6 @@ a.active {
     stroke-width: 2px;
 
 }
-
-/* end project 1 */
-
-/* project 2 */
-/* #project-2 {
-} */
 
 /* end project 2 */
 
