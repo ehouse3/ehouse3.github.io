@@ -418,13 +418,14 @@ a.active {
     flex-direction: column;
 
     margin-bottom: inherit;
-    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-top: 2vh;
 
     border-radius: inherit;
 
     background-color: var(--fg-color);
 
-    padding-bottom: 4vh;
+    padding-bottom: 3vh;
 }
 
 .inline-link {
@@ -463,23 +464,31 @@ a.active {
     display: flex;
 }
 
-#project-1-img {
-    width: 60em;
+#project-1-about-img {
+    /* 1467 x 1150 px */
+    align-self: center;
+    width: 60%;
+    height: 100%;
     border-radius: 5px;
     box-shadow: 10px 10px 5px 1.5px grey;
 }
 
 #project-1-about>div>div {
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
+    margin-right: 2em;
 }
 
 #project-1-about>div>div>h3 {
-    margin-top: 0.5em;
+    margin-top: 0.75em;
 }
 
 /* end project 1 */
 
 /* project 2 */
+#project-2-about>div {
+    margin-left: 3em;
+    margin-right: 3em;
+}
 #project-2-about>div>h3 {
     text-align: center;
 }
