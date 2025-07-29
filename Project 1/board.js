@@ -4,7 +4,7 @@ var tokens_list = []; //list of moveable/selectable tokens
 var selected_tokens_list = []; //list of currently selected tokens
 var zoom_slider = document.getElementById('zoom-slider');
 var board = document.getElementById('game-board-svg');
-var board_container = document.getElementById('game-board-container');
+var board_container = document.getElementById('game-board');
 // panning
 var panning = false;
 function start_pan(event) {
@@ -160,6 +160,41 @@ board_container.addEventListener('pointerdown', start_select);
 board_container.addEventListener('pointerup', end_select);
 board_container.addEventListener('pointercancel', end_select);
 board_container.addEventListener('pointermove', move_select);
+// let cur_displayed_token = '';
+var name_element = document.getElementById("name");
+var health_element = document.getElementById("health");
+var mana_element = document.getElementById("mana");
+var size_element = document.getElementById("size");
+function update_token_information() {
+    if (!(cur_displayed_token === null || cur_displayed_token === void 0 ? void 0 : cur_displayed_token.name)) {
+        if (name_element) {
+            name_element.innerHTML = "token name";
+        }
+        if (health_element) {
+            health_element.innerHTML = "health points";
+        }
+        if (mana_element) {
+            mana_element.innerHTML = "mana points";
+        }
+        if (size_element) {
+            size_element.innerHTML = "size";
+        }
+    }
+    else {
+        if (name_element) {
+            name_element.innerHTML = cur_displayed_token.name;
+        }
+        if (health_element) {
+            health_element.innerHTML = "hp : " + cur_displayed_token.health;
+        }
+        if (mana_element) {
+            mana_element.innerHTML = "mp : " + cur_displayed_token.mana;
+        }
+        if (size_element) {
+            size_element.innerHTML = "size : " + cur_displayed_token.width;
+        }
+    }
+}
 // create token
 var new_element = document.getElementsByClassName("token")[0];
 var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");

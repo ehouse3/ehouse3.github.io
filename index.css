@@ -74,7 +74,7 @@ li {
 .fade-in-section.is-visible {
     opacity: 1;
     transform: none;
-    visibility: visible;
+    visibility: visible; 
 }
 
 /* hoverables (expand in size when hovered over) */
@@ -93,6 +93,7 @@ li {
 
     margin: 0px;
     padding: 10px;
+    cursor: default;
 }
 
 .hoverable-wide {
@@ -100,7 +101,7 @@ li {
     border: 2px solid var(--button-border-color);
     transition: all 0.4s ease-out;
 
-    margin: 10px;
+    margin: 5px;
     padding-left: 5px;
     padding-right: 5px;
 
@@ -110,11 +111,12 @@ li {
     background-color: var(--button-hover-color);
     border: 2px solid var(--button-hover-border-color);
 
-    margin: 5px;
+    margin: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: default;
 }
 
 .hoverable-transparent {
@@ -132,6 +134,7 @@ li {
     background-color: var(--button-hover-border-color);
     margin: 0px;
     padding: 10px;
+    cursor: default;
 }
 
 /* navbar */
@@ -493,10 +496,24 @@ a.active {
     text-align: center;
 }
 
-#game-board-container {
-    width: 80%;
+#game-board-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.token-information {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: fit-content;
+    order: 1;
+    padding: 8px;
+}
+
+#game-board {
+    width: 60vw;
     height: 60vh;
-    overflow: scroll;
+    overflow: auto;
     zoom: 100%;
     margin-left: 100px;
 
