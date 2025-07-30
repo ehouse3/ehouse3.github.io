@@ -498,8 +498,10 @@ a.active {
 
 #game-board-wrapper {
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
-}
+    justify-content: center;
+ }
 
 .token-information {
     display: flex;
@@ -513,10 +515,8 @@ a.active {
 #game-board {
     width: 60vw;
     height: 60vh;
-    overflow: auto;
+    overflow: scroll;
     zoom: 100%;
-    margin-left: 100px;
-
     background-color: rgba(82, 77, 101, 55%);
 }
 
@@ -546,6 +546,10 @@ a.active {
     stroke: rgba(0, 153, 255, 0.45);
     stroke-width: 2px;
 
+}
+
+#token-prefab {
+    display: none;
 }
 
 /* end project 2 */

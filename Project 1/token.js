@@ -1,5 +1,4 @@
 console.log("token.ts class loaded");
-// #region TOKEN CLASS
 var Token = /** @class */ (function () {
     function Token(name, element_parent, cur_x, cur_y, width, unique_id) {
         if (name === void 0) { name = '(no name given)'; }
@@ -108,7 +107,6 @@ var Token = /** @class */ (function () {
     });
     Object.defineProperty(Token.prototype, "cur_x", {
         get: function () { return this._cur_x; },
-        // #region setters
         set: function (new_x) { this._cur_x = new_x; },
         enumerable: false,
         configurable: true
@@ -212,7 +210,6 @@ var Token = /** @class */ (function () {
         this.svg.addEventListener('touchstart', function (event) { return event.preventDefault(); });
     };
     Token.prototype.remove_draggable = function () {
-        // not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
         console.log("removing draggability from " + this.name);
         this.svg.removeEventListener('pointerdown', this.start_drag);
         this.svg.removeEventListener('pointerup', this.end_drag);

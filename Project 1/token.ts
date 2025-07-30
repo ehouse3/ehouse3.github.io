@@ -1,5 +1,4 @@
 console.log("token.ts class loaded");
-// #region TOKEN CLASS
  
 export class Token {
     /*
@@ -87,7 +86,6 @@ export class Token {
     get mana() { return this._mana; }
     
 
-    // #region setters
     set cur_x(new_x) { this._cur_x = new_x; }
     set cur_y(new_y) { this._cur_y = new_y; }
     set name(new_name) { this._name = new_name; }
@@ -204,7 +202,6 @@ export class Token {
     }
 
     remove_draggable() { 
-        // not functional, need to adjust scope of event handler functions in order to remove the listeners alltogether
         console.log("removing draggability from " + this.name);
         this.svg.removeEventListener('pointerdown', this.start_drag);
         this.svg.removeEventListener('pointerup', this.end_drag);

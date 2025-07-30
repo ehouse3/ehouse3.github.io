@@ -2,7 +2,7 @@ import { Token } from './token.js';
 console.log("board.ts script loaded");
 var tokens_list = []; //list of moveable/selectable tokens
 var selected_tokens_list = []; //list of currently selected tokens
-var zoom_slider = document.getElementById('zoom-slider');
+// const zoom_slider: HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
 var board = document.getElementById('game-board-svg');
 var board_container = document.getElementById('game-board');
 // panning
@@ -52,6 +52,9 @@ function start_select(event) {
     if (target == null) {
         return;
     }
+    if (target.parentElement == null) {
+        return;
+    }
     if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
         var target_id = target.parentElement.id;
         var i = 0;
@@ -64,12 +67,12 @@ function start_select(event) {
             }
             i++;
         }
-        // update_token_information();
+        update_token_information();
         return;
     }
     //unselects previous tokens & clears selected list
-    for (var selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) { //remove all selected
-        selected_tokens_list[selected_tokens_list_i].selected = false;
+    for (var i = 0; i < selected_tokens_list.length; i++) { //remove all selected
+        selected_tokens_list[i].selected = false;
     }
     selected_tokens_list = [];
     //prevent and remove dragging for all tokens
@@ -146,7 +149,7 @@ function end_select(event) {
     for (var selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) {
         selected_tokens_list[selected_tokens_list_i].selected = true;
     }
-    //reseting all letiables for next box-selection
+    //reseting all for next box-selection
     box_selecting = false;
     x = 0;
     y = 0;
@@ -160,7 +163,6 @@ board_container.addEventListener('pointerdown', start_select);
 board_container.addEventListener('pointerup', end_select);
 board_container.addEventListener('pointercancel', end_select);
 board_container.addEventListener('pointermove', move_select);
-// let cur_displayed_token = '';
 var name_element = document.getElementById("name");
 var health_element = document.getElementById("health");
 var mana_element = document.getElementById("mana");
@@ -195,6 +197,49 @@ function update_token_information() {
         }
     }
 }
+var token_prefab = document.getElementById("token-prefab");
+var newKey = 0; //assigns a different unique id to each created token
+function create_new_token() {
+    var new_element = token_prefab === null || token_prefab === void 0 ? void 0 : token_prefab.cloneNode(true);
+    if (new_element == null) {
+        return;
+    }
+    board.appendChild(new_element);
+    var new_token = new Token("new token " + newKey, new_element, 50, 50, 24, newKey.toString());
+    tokens_list.push(new_token);
+    new_token.make_draggable();
+    new_token3.set_border([160, 60, 60], [178, 78, 78]);
+    newKey++;
+}
+var create_token_button = document.getElementById("create-token-button");
+create_token_button === null || create_token_button === void 0 ? void 0 : create_token_button.addEventListener('pointerdown', create_new_token);
+console.log(create_token_button);
+function delete_token() {
+    console.log("removing token");
+    if (cur_displayed_token && selected_tokens_list.length == 0) {
+        var index = tokens_list.indexOf(cur_displayed_token);
+        tokens_list.splice(index, 1);
+        cur_displayed_token.remove_draggable(); //remove listener
+        cur_displayed_token.element_parent.remove(); //remove element
+        cur_displayed_token = null;
+        update_token_information();
+    }
+    else {
+        for (var token_i = 0; token_i < selected_tokens_list.length; token_i++) {
+            var index = tokens_list.indexOf(selected_tokens_list[token_i]);
+            tokens_list.splice(index, 1);
+            selected_tokens_list[token_i].remove_draggable(); //remove listener
+            selected_tokens_list[token_i].element_parent.remove(); //remove element
+            delete selected_tokens_list[token_i]; //garbage collection would reclaim anyway
+        }
+        selected_tokens_list = [];
+    }
+}
+var delete_token_button = document.getElementById("delete_token_button");
+function toggle_token_movement() {
+    console.log("toggling token movement");
+}
+var toggle_movement_button = document.getElementById("toggle_movement_button");
 // create token
 var new_element = document.getElementsByClassName("token")[0];
 var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");

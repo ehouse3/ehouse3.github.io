@@ -4,7 +4,7 @@ console.log("board.ts script loaded");
 let tokens_list: Token[] = []; //list of moveable/selectable tokens
 let selected_tokens_list: Token[] = []; //list of currently selected tokens
 
-const zoom_slider: HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
+// const zoom_slider: HTMLInputElement = document.getElementById('zoom-slider') as HTMLInputElement;
 const board: SVGGraphicsElement = document.getElementById('game-board-svg')! as unknown as SVGGraphicsElement;
 const board_container: HTMLElement = document.getElementById('game-board')!;
 
@@ -57,8 +57,9 @@ function start_select(event: PointerEvent) { //selection start handler
     if (event.button !== 0) return; //mouse 0 only
     let target: HTMLElement | null = event.target as HTMLElement | null;
     if (target == null) { return; }
-    if (target.parentElement!.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
-        let target_id: string = target.parentElement!.id;
+    if (target.parentElement == null) { return; }
+    if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
+        let target_id: string = target.parentElement.id;
         let i: number = 0;
         while (i < tokens_list.length) { //itterates through tokens until it finds the one that the cursor is over
             if (target_id == tokens_list[i].unique_id && tokens_list[i].selected == false) {
@@ -71,13 +72,13 @@ function start_select(event: PointerEvent) { //selection start handler
             i++;
         }
 
-        // update_token_information();
+        update_token_information();
         return;
     }
 
     //unselects previous tokens & clears selected list
-    for (let selected_tokens_list_i = 0; selected_tokens_list_i < selected_tokens_list.length; selected_tokens_list_i++) { //remove all selected
-        selected_tokens_list[selected_tokens_list_i].selected = false;
+    for (let i = 0; i < selected_tokens_list.length; i++) { //remove all selected
+        selected_tokens_list[i].selected = false;
     }
     selected_tokens_list = [];
 
@@ -156,7 +157,7 @@ function end_select(event: PointerEvent) { //selection end handler
         selected_tokens_list[selected_tokens_list_i].selected = true;
     }
 
-    //reseting all letiables for next box-selection
+    //reseting all for next box-selection
     box_selecting = false;
     x = 0;
     y = 0;
@@ -173,26 +174,73 @@ board_container.addEventListener('pointercancel', end_select);
 board_container.addEventListener('pointermove', move_select);
 
 
-
-// let cur_displayed_token = '';
 let name_element = document.getElementById("name");
 let health_element = document.getElementById("health");
 let mana_element = document.getElementById("mana");
 let size_element = document.getElementById("size");
 function update_token_information() {
-    if(!cur_displayed_token?.name) {
-        if (name_element) {name_element.innerHTML = "token name";}
-        if (health_element) {health_element.innerHTML = "health points";}
-        if (mana_element) {mana_element.innerHTML = "mana points";}
-        if (size_element) {size_element.innerHTML = "size";}
+    if (!cur_displayed_token?.name) {
+        if (name_element) { name_element.innerHTML = "token name"; }
+        if (health_element) { health_element.innerHTML = "health points"; }
+        if (mana_element) { mana_element.innerHTML = "mana points"; }
+        if (size_element) { size_element.innerHTML = "size"; }
     } else {
-        if (name_element) {name_element.innerHTML = cur_displayed_token.name;}
-        if (health_element) {health_element.innerHTML = "hp : " + cur_displayed_token.health;}
-        if (mana_element) {mana_element.innerHTML = "mp : " + cur_displayed_token.mana;}
-        if (size_element) {size_element.innerHTML = "size : " + cur_displayed_token.width;}
+        if (name_element) { name_element.innerHTML = cur_displayed_token.name; }
+        if (health_element) { health_element.innerHTML = "hp : " + cur_displayed_token.health; }
+        if (mana_element) { mana_element.innerHTML = "mp : " + cur_displayed_token.mana; }
+        if (size_element) { size_element.innerHTML = "size : " + cur_displayed_token.width; }
     }
 }
 
+var token_prefab: HTMLElement | null = document.getElementById("token-prefab");
+var newKey = 0; //assigns a different unique id to each created token
+function create_new_token() { //clones and appends prefab. Then creates token with appropiate creation functions
+    let new_element: SVGGraphicsElement = token_prefab?.cloneNode(true) as SVGGraphicsElement;
+    if (new_element == null) { return; }
+    board.appendChild(new_element);
+    let new_token = new Token("new token " + newKey, new_element, 50, 50, 24, newKey.toString());
+    tokens_list.push(new_token);
+
+    new_token.make_draggable();
+    new_token3.set_border([160, 60, 60], [178, 78, 78]);
+    newKey++;
+}
+const create_token_button: HTMLElement | null = document.getElementById("create-token-button");
+create_token_button?.addEventListener('pointerdown', create_new_token);
+console.log(create_token_button);
+
+
+function delete_token() { 
+    console.log("removing token");
+    if(cur_displayed_token && selected_tokens_list.length == 0) {
+        let index = tokens_list.indexOf(cur_displayed_token);
+        tokens_list.splice(index, 1);
+
+        cur_displayed_token.remove_draggable(); //remove listener
+        cur_displayed_token.element_parent.remove(); //remove element
+        cur_displayed_token = null;
+        update_token_information();
+    } else {
+        for(var token_i = 0; token_i < selected_tokens_list.length; token_i++) {        
+            let index = tokens_list.indexOf(selected_tokens_list[token_i]);
+            tokens_list.splice(index, 1);
+
+            selected_tokens_list[token_i].remove_draggable(); //remove listener
+            selected_tokens_list[token_i].element_parent.remove(); //remove element
+            delete selected_tokens_list[token_i]; //garbage collection would reclaim anyway
+
+        }
+        selected_tokens_list = [];
+
+    }
+}
+const delete_token_button = document.getElementById("delete_token_button");
+
+
+function toggle_token_movement() {
+    console.log("toggling token movement");
+}
+const toggle_movement_button = document.getElementById("toggle_movement_button");
 
 
 // create token
