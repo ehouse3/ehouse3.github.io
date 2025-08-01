@@ -26,6 +26,7 @@ export class Token {
     private dragging_s:{sx:number, sy:number} | null; // start drag's coordinates
     private _selected:boolean;
     private _movement_allowed:boolean;
+    private _is_draggable:boolean;
 
     private _previous_border_0:string; 
     private _previous_border_1:string;
@@ -62,6 +63,7 @@ export class Token {
         this._previous_border_0 = '';
         this._previous_border_1 = '';
         this._movement_allowed = true; //intermittent movement check for dragging
+        this._is_draggable = false;
 
         //token game stats
         this._health = 10;
@@ -80,6 +82,7 @@ export class Token {
     get selected() { return this._selected; }
     get unique_id() { return this._unique_id; }
     get movement_allowed() { return this._movement_allowed; }
+    get is_draggable() { return this._is_draggable; }
 
     get name() { return this._name; }
     get health() { return this._health; }
@@ -108,6 +111,7 @@ export class Token {
     }
     prevent_movement() { this._movement_allowed = false; }
     allow_movement() { this._movement_allowed = true; }
+    set is_draggable( new_is_draggable ) { this._is_draggable = new_is_draggable; }
     
 
     set_position(new_x:number, new_y:number) {
@@ -191,8 +195,8 @@ export class Token {
 
     // set draggable
     make_draggable() {
-        console.log("adding dragability to " + this.name);
-        
+        console.log("adding draggability to " + this.name);
+        this.is_draggable = true;
         // binding handlers to board so multi-select can have control
         this.svg.addEventListener('pointerdown', this.start_drag);
         this.svg.addEventListener('pointerup', this.end_drag);
@@ -203,6 +207,7 @@ export class Token {
 
     remove_draggable() { 
         console.log("removing draggability from " + this.name);
+        this.is_draggable = false;
         this.svg.removeEventListener('pointerdown', this.start_drag);
         this.svg.removeEventListener('pointerup', this.end_drag);
         this.svg.removeEventListener('pointercancel', this.end_drag);
@@ -215,11 +220,10 @@ export class Token {
     // style
     set_border(inner_color:number[], outer_color:number[]) {
         console.log("setting border");
-        //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
         // setting width
-        let stroke_width:number = this.width/7;
+        let stroke_width:number = 4;
         this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
-        this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
+        this.element_circle_1.style.setProperty("stroke-width", stroke_width/3 + "px");
         // setting color
         this.element_circle_0.style.setProperty("stroke", "rgb(" + outer_color[0] + "," + outer_color[1] + "," + outer_color[2] + ")");
         this.element_circle_1.style.setProperty("stroke", "rgb(" + inner_color[0] + "," + inner_color[1] + "," + inner_color[2] + ")");

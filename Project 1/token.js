@@ -74,6 +74,7 @@ var Token = /** @class */ (function () {
         this._previous_border_0 = '';
         this._previous_border_1 = '';
         this._movement_allowed = true; //intermittent movement check for dragging
+        this._is_draggable = false;
         //token game stats
         this._health = 10;
         this._mana = 5;
@@ -147,6 +148,12 @@ var Token = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Token.prototype, "is_draggable", {
+        get: function () { return this._is_draggable; },
+        set: function (new_is_draggable) { this._is_draggable = new_is_draggable; },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Token.prototype, "name", {
         get: function () { return this._name; },
         set: function (new_name) { this._name = new_name; },
@@ -201,7 +208,8 @@ var Token = /** @class */ (function () {
     };
     // set draggable
     Token.prototype.make_draggable = function () {
-        console.log("adding dragability to " + this.name);
+        console.log("adding draggability to " + this.name);
+        this.is_draggable = true;
         // binding handlers to board so multi-select can have control
         this.svg.addEventListener('pointerdown', this.start_drag);
         this.svg.addEventListener('pointerup', this.end_drag);
@@ -211,6 +219,7 @@ var Token = /** @class */ (function () {
     };
     Token.prototype.remove_draggable = function () {
         console.log("removing draggability from " + this.name);
+        this.is_draggable = false;
         this.svg.removeEventListener('pointerdown', this.start_drag);
         this.svg.removeEventListener('pointerup', this.end_drag);
         this.svg.removeEventListener('pointercancel', this.end_drag);
@@ -220,11 +229,10 @@ var Token = /** @class */ (function () {
     // style
     Token.prototype.set_border = function (inner_color, outer_color) {
         console.log("setting border");
-        //var woot = window.getComputedStyle(this._element_circle_0).stroke; 
         // setting width
-        var stroke_width = this.width / 7;
+        var stroke_width = 4;
         this.element_circle_0.style.setProperty("stroke-width", stroke_width + "px");
-        this.element_circle_1.style.setProperty("stroke-width", Number(stroke_width / 3) + "px");
+        this.element_circle_1.style.setProperty("stroke-width", stroke_width / 3 + "px");
         // setting color
         this.element_circle_0.style.setProperty("stroke", "rgb(" + outer_color[0] + "," + outer_color[1] + "," + outer_color[2] + ")");
         this.element_circle_1.style.setProperty("stroke", "rgb(" + inner_color[0] + "," + inner_color[1] + "," + inner_color[2] + ")");

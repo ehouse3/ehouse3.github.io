@@ -55,7 +55,7 @@ function start_select(event) {
     if (target.parentElement == null) {
         return;
     }
-    if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
+    if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' 
         var target_id = target.parentElement.id;
         var i = 0;
         while (i < tokens_list.length) { //itterates through tokens until it finds the one that the cursor is over
@@ -205,7 +205,7 @@ function create_new_token() {
         return;
     }
     board.appendChild(new_element);
-    var new_token = new Token("new token " + newKey, new_element, 50, 50, 24, newKey.toString());
+    var new_token = new Token("new token " + newKey, new_element, 50, 50, 40, newKey.toString());
     tokens_list.push(new_token);
     new_token.make_draggable();
     new_token3.set_border([160, 60, 60], [178, 78, 78]);
@@ -213,7 +213,6 @@ function create_new_token() {
 }
 var create_token_button = document.getElementById("create-token-button");
 create_token_button === null || create_token_button === void 0 ? void 0 : create_token_button.addEventListener('pointerdown', create_new_token);
-console.log(create_token_button);
 function delete_token() {
     console.log("removing token");
     if (cur_displayed_token && selected_tokens_list.length == 0) {
@@ -222,24 +221,44 @@ function delete_token() {
         cur_displayed_token.remove_draggable(); //remove listener
         cur_displayed_token.element_parent.remove(); //remove element
         cur_displayed_token = null;
-        update_token_information();
     }
     else {
-        for (var token_i = 0; token_i < selected_tokens_list.length; token_i++) {
-            var index = tokens_list.indexOf(selected_tokens_list[token_i]);
+        for (var i = 0; i < selected_tokens_list.length; i++) {
+            var index = tokens_list.indexOf(selected_tokens_list[i]);
             tokens_list.splice(index, 1);
-            selected_tokens_list[token_i].remove_draggable(); //remove listener
-            selected_tokens_list[token_i].element_parent.remove(); //remove element
-            delete selected_tokens_list[token_i]; //garbage collection would reclaim anyway
+            selected_tokens_list[i].remove_draggable(); //remove listener
+            selected_tokens_list[i].element_parent.remove(); //remove element
+            delete selected_tokens_list[i]; //garbage collection would reclaim anyway
         }
         selected_tokens_list = [];
     }
+    update_token_information();
 }
 var delete_token_button = document.getElementById("delete_token_button");
-function toggle_token_movement() {
-    console.log("toggling token movement");
+delete_token_button === null || delete_token_button === void 0 ? void 0 : delete_token_button.addEventListener('pointerdown', delete_token);
+function toggle_token_draggability() {
+    console.log("toggling token draggability");
+    if (cur_displayed_token && selected_tokens_list.length == 0) {
+        if (cur_displayed_token.is_draggable == true) {
+            cur_displayed_token.remove_draggable();
+        }
+        else {
+            cur_displayed_token.make_draggable();
+        }
+    }
+    else {
+        for (var i = 0; i < selected_tokens_list.length; i++) {
+            if (selected_tokens_list[i].is_draggable == true) {
+                selected_tokens_list[i].remove_draggable();
+            }
+            else {
+                selected_tokens_list[i].make_draggable();
+            }
+        }
+    }
 }
-var toggle_movement_button = document.getElementById("toggle_movement_button");
+var toggle_draggability_button = document.getElementById("toggle_draggability_button");
+toggle_draggability_button === null || toggle_draggability_button === void 0 ? void 0 : toggle_draggability_button.addEventListener('pointerdown', toggle_token_draggability);
 // create token
 var new_element = document.getElementsByClassName("token")[0];
 var new_token = new Token("starting token S", new_element, 100, 100, 20, "a");

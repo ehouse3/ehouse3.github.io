@@ -58,7 +58,7 @@ function start_select(event: PointerEvent) { //selection start handler
     let target: HTMLElement | null = event.target as HTMLElement | null;
     if (target == null) { return; }
     if (target.parentElement == null) { return; }
-    if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' and let movement handler deal with it
+    if (target.parentElement.classList.contains("token")) { //will not box select on a token piece, instead will 'select it' 
         let target_id: string = target.parentElement.id;
         let i: number = 0;
         while (i < tokens_list.length) { //itterates through tokens until it finds the one that the cursor is over
@@ -198,7 +198,7 @@ function create_new_token() { //clones and appends prefab. Then creates token wi
     let new_element: SVGGraphicsElement = token_prefab?.cloneNode(true) as SVGGraphicsElement;
     if (new_element == null) { return; }
     board.appendChild(new_element);
-    let new_token = new Token("new token " + newKey, new_element, 50, 50, 24, newKey.toString());
+    let new_token = new Token("new token " + newKey, new_element, 50, 50, 40, newKey.toString());
     tokens_list.push(new_token);
 
     new_token.make_draggable();
@@ -207,7 +207,6 @@ function create_new_token() { //clones and appends prefab. Then creates token wi
 }
 const create_token_button: HTMLElement | null = document.getElementById("create-token-button");
 create_token_button?.addEventListener('pointerdown', create_new_token);
-console.log(create_token_button);
 
 
 function delete_token() { 
@@ -219,29 +218,45 @@ function delete_token() {
         cur_displayed_token.remove_draggable(); //remove listener
         cur_displayed_token.element_parent.remove(); //remove element
         cur_displayed_token = null;
-        update_token_information();
     } else {
-        for(var token_i = 0; token_i < selected_tokens_list.length; token_i++) {        
-            let index = tokens_list.indexOf(selected_tokens_list[token_i]);
+        for(let i = 0; i < selected_tokens_list.length; i++) {        
+            let index = tokens_list.indexOf(selected_tokens_list[i]);
             tokens_list.splice(index, 1);
 
-            selected_tokens_list[token_i].remove_draggable(); //remove listener
-            selected_tokens_list[token_i].element_parent.remove(); //remove element
-            delete selected_tokens_list[token_i]; //garbage collection would reclaim anyway
+            selected_tokens_list[i].remove_draggable(); //remove listener
+            selected_tokens_list[i].element_parent.remove(); //remove element
+            delete selected_tokens_list[i]; //garbage collection would reclaim anyway
 
         }
         selected_tokens_list = [];
-
     }
+    update_token_information();
+
 }
 const delete_token_button = document.getElementById("delete_token_button");
+delete_token_button?.addEventListener('pointerdown', delete_token);
 
 
-function toggle_token_movement() {
-    console.log("toggling token movement");
+function toggle_token_draggability() {
+    console.log("toggling token draggability");
+    if(cur_displayed_token && selected_tokens_list.length == 0) {
+        if (cur_displayed_token.is_draggable == true) {
+            cur_displayed_token.remove_draggable();
+        } else {
+            cur_displayed_token.make_draggable();
+        }
+    } else {
+        for(let i = 0; i < selected_tokens_list.length; i++) {        
+            if (selected_tokens_list[i].is_draggable == true) {
+                selected_tokens_list[i].remove_draggable();
+            } else {
+                selected_tokens_list[i].make_draggable();
+            }
+        }
+    }
 }
-const toggle_movement_button = document.getElementById("toggle_movement_button");
-
+const toggle_draggability_button = document.getElementById("toggle_draggability_button");
+toggle_draggability_button?.addEventListener('pointerdown', toggle_token_draggability);
 
 // create token
 const new_element = document.getElementsByClassName("token")[0] as SVGGraphicsElement;
