@@ -93,7 +93,7 @@ li {
 
     margin: 0px;
     padding: 10px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .hoverable-wide {
@@ -116,7 +116,7 @@ li {
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    cursor: default;
+    cursor: pointer;
 }
 
 .hoverable-transparent {
@@ -134,7 +134,7 @@ li {
     background-color: var(--button-hover-border-color);
     margin: 0px;
     padding: 10px;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* navbar */
