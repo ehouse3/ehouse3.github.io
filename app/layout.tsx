@@ -33,21 +33,21 @@ export const metadata: Metadata = {
 
 function Navbar(): ReactNode {
   return (
-    <div className="flex gap-4">
-      <div id="home">
-        <Link href="/">Euan House</Link>
+    <div className="grid grid-cols-[1fr_2fr_1fr] items-center">
+      <div id="home" className="px-3 border border-red-500" >
+        <Link href="/"><div className="text-4xl">Euan House</div></Link>
       </div>
-      <div id="projects">
-        <Link href={projectPaths.taskManager}>Task Manager</Link>
-        <Link href={projectPaths.covidDashboard}>Covid Dashboard</Link>
+      <div id="projects" className="flex justify-around border border-red-500">
+        <Link href={projectPaths.taskManager}><h1>Task Manager</h1></Link>
+        <Link href={projectPaths.covidDashboard}><h1>Covid Dashboard</h1></Link>
         <Link href={projectPaths.nittanyBusiness}>
-          Nittany Business Applcation
+          <h1>Nittany Business Applcation</h1>
         </Link>
-        <Link href={projectPaths.tableTopSimulator}>Tabletop Simulator</Link>
+        <Link href={projectPaths.tableTopSimulator}><h1>Tabletop Simulator</h1></Link>
       </div>
-      <div id="socials">
-        <Link href={socialUrls.linkedin}>{/* <Image></Image> */}Linkedin</Link>
-        <Link href={socialUrls.github}>{/* <Image></Image> */}Github</Link>
+      <div id="socials" className="flex justify-end gap-4 px-4 border border-red-500">
+        <Link href={socialUrls.linkedin}>{<i className="ci ci-linkedin ci-3x"></i>}</Link>
+        <Link href={socialUrls.github}>{<i className="ci ci-github-light ci-3x"></i>}</Link>
       </div>
     </div>
   );
@@ -63,8 +63,15 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {/* <Navbar></Navbar> */}
+      <head>
+        {/* CDN for social media icons, consider self hosting? */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/dheereshag/coloured-icons@1.9.7/app/ci.min.css"
+        />
+      </head>
+      <body className="min-h-full">
+        <Navbar></Navbar>
         {children}
       </body>
     </html>
