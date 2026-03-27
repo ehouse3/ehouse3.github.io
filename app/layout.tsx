@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
 import Link from "next/link";
+import { HeaderLink } from "@/components/components";
 
 const socialUrls = {
   linkedin: "https://linkedin.com/in/euanhouse",
@@ -33,21 +34,36 @@ export const metadata: Metadata = {
 
 function Navbar(): ReactNode {
   return (
-    <div className="grid grid-cols-[1fr_2fr_1fr] items-center">
-      <div id="home" className="px-3 border border-red-500" >
-        <Link href="/"><div className="text-4xl">Euan House</div></Link>
+    <div className="grid grid-cols-[1fr_2fr_1fr] items-start">
+      <div id="home" className="border border-red-500">
+        <Link href="/">
+          <div className="text-5xl">Euan House</div>
+        </Link>
       </div>
       <div id="projects" className="flex justify-around border border-red-500">
-        <Link href={projectPaths.taskManager}><h1>Task Manager</h1></Link>
-        <Link href={projectPaths.covidDashboard}><h1>Covid Dashboard</h1></Link>
-        <Link href={projectPaths.nittanyBusiness}>
+        <HeaderLink href={projectPaths.taskManager}>
+          <h1>Task Manager</h1>
+        </HeaderLink>
+        <HeaderLink href={projectPaths.covidDashboard}>
+          <h1>Covid Dashboard</h1>
+        </HeaderLink>
+        <HeaderLink href={projectPaths.nittanyBusiness}>
           <h1>Nittany Business Applcation</h1>
-        </Link>
-        <Link href={projectPaths.tableTopSimulator}><h1>Tabletop Simulator</h1></Link>
+        </HeaderLink>
+        <HeaderLink href={projectPaths.tableTopSimulator}>
+          <h1>Tabletop Simulator</h1>
+        </HeaderLink>
       </div>
-      <div id="socials" className="flex justify-end gap-4 px-4 border border-red-500">
-        <Link href={socialUrls.linkedin}>{<i className="ci ci-linkedin ci-3x"></i>}</Link>
-        <Link href={socialUrls.github}>{<i className="ci ci-github-light ci-3x"></i>}</Link>
+      <div
+        id="socials"
+        className="flex justify-end gap-4 px-4 border border-red-500"
+      >
+        <Link href={socialUrls.linkedin}>
+          {<i className="ci ci-linkedin ci-3x"></i>}
+        </Link>
+        <Link href={socialUrls.github}>
+          {<i className="ci ci-github-light ci-3x"></i>}
+        </Link>
       </div>
     </div>
   );
