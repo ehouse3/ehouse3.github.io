@@ -10,17 +10,21 @@ interface HeaderLinkProps {
 }
 /** Link button on layout of header */
 export function HeaderLink(props: HeaderLinkProps): ReactNode {
-  // hover:shadow-[0px_15px_0px_0px_rgba(255,0,0,1)]
-  // hover:shadow-[0px_10px_0px_0px_rgba(0,0,0,1)] [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_70%,0_100%)]
+  // Layered dropdown effect:
+  // Layered Span elements with hover transition creates multiple shadows,
+  // each with a clip path of a triangle that extends below the span to cut off the shadow.
   return (
-    <div className="flex antialiased transition-discrete transition-all ">
-      <Link
-        className="transition-discrete transition-all hover:bg-neutral-600 p-2 hover:shadow-[0rem_3rem_0rem_0rem_rgba(255,0,0,1)] [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_110%,0_100%)]"
-        href={props.href}
-      >
-        <div className="flex hover:shadow-[0px_5px_0px_0px_rgba(0,255,0,1)]"></div>
-        {props.children}
-      </Link>
+    <div className="flex antialiased transition-discrete transition-all">
+      <span className="flex antialiased transition-discrete transition-all shadow-[0rem_0rem_0rem_rgba(0,0,255,1)] hover:shadow-[0rem_3rem_0rem_0rem_rgba(0,0,255,1)] [clip-path:polygon(0%_0%,100%_0%,100%_120%,50%_130%,0_120%)]">
+        <span className="flex antialiased transition-discrete transition-all shadow-[0rem_0rem_0rem_rgba(255,0,0,1)] hover:shadow-[0rem_3rem_0rem_0rem_rgba(255,0,0,1)] [clip-path:polygon(0%_0%,100%_0%,100%_110%,50%_120%,0_110%)]">
+          <Link
+            className="transition-discrete transition-all hover:bg-neutral-600 p-2 shadow-[0rem_0rem_0rem_rgba(0,255,0,1)] hover:shadow-[0rem_3rem_0rem_0rem_rgba(0,255,0,1)] [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_110%,0_100%)]"
+            href={props.href}
+          >
+            {props.children}
+          </Link>
+        </span>
+      </span>
     </div>
   );
 }

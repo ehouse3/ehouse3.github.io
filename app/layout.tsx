@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 function Navbar(): ReactNode {
   return (
     <div className="grid grid-cols-[1fr_2fr_1fr] items-start">
-      <div id="home" className="border border-red-500">
+      <div id="home" className="hidden sm:flex border border-red-500">
         <Link href="/">
           <div className="text-5xl">Euan House</div>
         </Link>
@@ -56,7 +56,7 @@ function Navbar(): ReactNode {
       </div>
       <div
         id="socials"
-        className="flex justify-end gap-4 px-4 border border-red-500"
+        className="hidden sm:flex justify-end gap-4 px-4 border border-red-500"
       >
         <Link href={socialUrls.linkedin}>
           {<i className="ci ci-linkedin ci-3x"></i>}
