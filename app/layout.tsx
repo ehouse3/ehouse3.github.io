@@ -34,13 +34,14 @@ export const metadata: Metadata = {
 
 function Navbar(): ReactNode {
   return (
-    <div className="grid grid-cols-[1fr_2fr_1fr] items-start">
-      <div id="home" className="hidden sm:flex border border-red-500">
+    <div className="grid sm:grid-cols-[1fr_2fr_1fr] bg-navbar">
+      <div id="home" className="hidden sm:flex h-14">
         <Link href="/">
           <div className="text-5xl">Euan House</div>
         </Link>
       </div>
-      <div id="projects" className="flex justify-around border border-red-500">
+
+      <div id="projects" className="flex justify-around">
         <HeaderLink href={projectPaths.taskManager}>
           <h1>Task Manager</h1>
         </HeaderLink>
@@ -54,9 +55,10 @@ function Navbar(): ReactNode {
           <h1>Tabletop Simulator</h1>
         </HeaderLink>
       </div>
+
       <div
         id="socials"
-        className="hidden sm:flex justify-end gap-4 px-4 border border-red-500"
+        className="hidden sm:flex justify-end gap-4 px-4 h-14"
       >
         <Link href={socialUrls.linkedin}>
           {<i className="ci ci-linkedin ci-3x"></i>}
@@ -86,7 +88,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/dheereshag/coloured-icons@1.9.7/app/ci.min.css"
         />
       </head>
-      <body className="min-h-full">
+      <body className="min-h-full bg-background">
         <Navbar></Navbar>
         {children}
       </body>
