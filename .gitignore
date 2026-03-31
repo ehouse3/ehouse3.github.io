@@ -43,3 +43,5 @@ next-env.d.ts
 #Agents
 AGENTS.md
 CLAUDE.md
+
+prettier.config.js
