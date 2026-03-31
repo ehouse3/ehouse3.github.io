@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --foreground: #312F2F;
-  --background: #171717;
-  --navbar: #3c3d3f;
-  --navbar-hover: #4d4f52; /* hard coded in sections of navbar */
-  --test: rgb(102, 105, 109);
-  --test: rgb(120, 123, 128);
-  
-  --text: #FAF9F6;
+  --foreground: #312f2f;
+  --background: #121212;
+  --navbar: #2e2e30;
+
+  --navbar-hover: rgb(77, 79, 82);
+  --navbar-effect1: rgb(102, 105, 109); /* Effect of navbar link hovering */
+  --navbar-effect2: rgb(120, 123, 128);
+
+  --text: #faf9f6;
 }
 
 @theme {
@@ -16,6 +17,8 @@
   --color-foreground: var(--foreground);
   --color-navbar: var(--navbar);
   --color-navbar-hover: var(--navbar-hover);
+  --color-navbar-effect1: var(--navbar-effect1);
+  --color-navbar-effect2: var(--navbar-effect2);
 }
 
 body {
@@ -24,5 +27,9 @@ body {
 }
 
 h1 {
-  font-size: 22px;
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
 }
