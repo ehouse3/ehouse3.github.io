@@ -34,8 +34,11 @@ export const metadata: Metadata = {
 };
 
 function Navbar(): ReactNode {
+  // TODO:
+  // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other instead of horizontal
   return (
-    <div className="bg-navbar grid-cols-[1fr_2fr_1fr] md:grid">
+    // md:overflow-visible and overflow-auto fixs mobile background cutoff on mobile
+    <div className="bg-navbar grid-cols-[1fr_2fr_1fr] overflow-auto md:grid md:overflow-visible">
       <div id="home" className="hidden items-center justify-start md:flex">
         <Link href="/">
           <div className="py-1 pl-3 text-6xl">Euan House</div>
