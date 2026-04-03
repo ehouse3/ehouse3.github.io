@@ -8,6 +8,7 @@
   --navbar-hover: rgb(77, 79, 82);
   --navbar-effect1: rgb(102, 105, 109); /* Effect of navbar link hovering */
   --navbar-effect2: rgb(120, 123, 128);
+  --navbar-gradient: rgb(31, 61, 87);
 
   --text: #faf9f6;
 }
@@ -19,6 +20,7 @@
   --color-navbar-hover: var(--navbar-hover);
   --color-navbar-effect1: var(--navbar-effect1);
   --color-navbar-effect2: var(--navbar-effect2);
+  --color-navbar-gradient: var(--navbar-gradient);
 }
 
 body {
