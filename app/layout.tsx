@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
 import Link from "next/link";
-import { HeaderLink } from "@/components/components";
+import { HeaderLink, LineBreak } from "@/components/components";
 
 const socialUrls = {
   linkedin: "https://linkedin.com/in/euanhouse",
@@ -37,16 +37,19 @@ function Navbar(): ReactNode {
   // TODO:
   // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other instead of horizontal
   return (
-    <div className="mb-6">
+    <header className="mb-6">
       {/* // md:overflow-visible and overflow-auto fixs mobile background cutoff on mobile */}
       <div className="bg-navbar grid-cols-[1fr_2fr_1fr] overflow-auto md:grid md:overflow-visible">
-        <div id="home" className="hidden items-center justify-start md:flex">
+        <div
+          data-desc="home"
+          className="hidden items-center justify-start md:flex"
+        >
           <Link href="/">
             <div className="py-1 pl-3 text-6xl">Euan House</div>
           </Link>
         </div>
 
-        <div id="projects" className="flex justify-around">
+        <div data-desc="projects" className="flex justify-around">
           <HeaderLink href={projectPaths.taskManager}>Task Manager</HeaderLink>
           <HeaderLink href={projectPaths.covidDashboard}>
             Covid Dashboard
@@ -59,7 +62,10 @@ function Navbar(): ReactNode {
           </HeaderLink>
         </div>
 
-        <div id="socials" className="hidden justify-end gap-4 px-4 md:flex">
+        <div
+          data-desc="socials"
+          className="hidden justify-end gap-4 px-4 md:flex"
+        >
           <Link
             className="hover:bg-navbar-hover flex items-center px-2"
             href={socialUrls.linkedin}
@@ -78,11 +84,8 @@ function Navbar(): ReactNode {
           </Link>
         </div>
       </div>
-      <div
-        id="border-gradient"
-        className="from-navbar-gradient to-navbar-gradient h-1 w-full bg-linear-to-r via-transparent"
-      ></div>
-    </div>
+      <LineBreak></LineBreak>
+    </header>
   );
 }
 

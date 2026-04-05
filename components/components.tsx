@@ -8,7 +8,7 @@ interface HeaderLinkProps {
   children: ReactNode;
   href: Url;
 }
-/** Link button on layout of header */
+/** Link button on layout of header w/ effect on hovering*/
 export function HeaderLink(props: HeaderLinkProps): ReactNode {
   // Layered dropdown effect:
   // Layered Span elements with hover transition creates multiple shadows,
@@ -24,5 +24,18 @@ export function HeaderLink(props: HeaderLinkProps): ReactNode {
         </Link>
       </span>
     </span>
+  );
+}
+
+interface LineBreakProps {
+  className?: string;
+}
+/** horizontal bar that has transparent edges */
+export function LineBreak(props: LineBreakProps): ReactNode {
+  return (
+    <div
+      data-desc="border-gradient"
+      className={`via-line-break h-1 w-full bg-linear-to-r from-transparent to-transparent ${props.className || ""}`}
+    ></div>
   );
 }

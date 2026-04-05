@@ -1,3 +1,5 @@
+import { LineBreak } from "@/components/components";
+
 export default function Home() {
   return (
     <div>
@@ -6,11 +8,24 @@ export default function Home() {
       </h1>
       <h1 className="text-5xl">🚧</h1>
 
-      <div id="introduction"></div>
+      <section data-desc="introduction">
+        <div></div>
+      </section>
 
-      <div id="languages"></div>
+      {/* <LineBreak></LineBreak> */}
 
-      <div id="hobbies"></div>
+      <section data-desc="skills">
+        <div data-desc="languages"></div>
+        <div data-desc="frameworks"></div>
+        <div data-desc="libraries"></div>
+        <div data-desc="tools"></div>
+      </section>
+
+      {/* <LineBreak></LineBreak> */}
+
+      <section data-desc="hobbies">
+        <div></div>
+      </section>
     </div>
   );
 }
