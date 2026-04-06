@@ -101,6 +101,34 @@ function ForeGround(props: ForeGroundProps) {
   );
 }
 
+interface FooterProps {
+  children?: ReactNode;
+}
+/** Footer component that lays at the bottom of each page.
+ * Displays social's links for medium or smaller screens (Navbar doesn't display them on smaller screens)
+ */
+function Footer(props: FooterProps) {
+  return (
+    <div className="flex justify-center gap-4 p-4 md:hidden">
+      <Link
+        className="hover:bg-navbar-hover flex items-center px-2"
+        href={socialUrls.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {<i className="ci ci-linkedin ci-3x"></i>}
+      </Link>
+      <Link
+        className="hover:bg-navbar-hover flex items-center px-2"
+        href={socialUrls.github}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {<i className="ci ci-github-light ci-3x"></i>}
+      </Link>
+    </div>
+  );
+}
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -120,8 +148,8 @@ export default function RootLayout({
       </head>
       <body className="bg-background flex min-h-screen flex-col">
         <Navbar></Navbar>
-        {children}
         <ForeGround>{children}</ForeGround>
+        <Footer></Footer>
       </body>
     </html>
   );
