@@ -37,7 +37,7 @@ function Navbar(): ReactNode {
   // TODO:
   // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other instead of horizontal
   return (
-    <header className="mb-6">
+    <header>
       {/* // md:overflow-visible and overflow-auto fixs mobile background cutoff on mobile */}
       <div className="bg-navbar grid-cols-[1fr_2fr_1fr] overflow-auto md:grid md:overflow-visible">
         <div
@@ -89,6 +89,18 @@ function Navbar(): ReactNode {
   );
 }
 
+interface ForeGroundProps {
+  children?: ReactNode;
+}
+/** Foreground component that wraps body and sets max width for content */
+function ForeGround(props: ForeGroundProps) {
+  return (
+    <div className="bg-foreground m-12 mx-auto max-w-4xl flex-1 p-3 text-lg">
+      {props.children}
+    </div>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -106,9 +118,10 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/dheereshag/coloured-icons@1.9.7/app/ci.min.css"
         />
       </head>
-      <body className="bg-background min-h-full">
+      <body className="bg-background flex min-h-screen flex-col">
         <Navbar></Navbar>
         {children}
+        <ForeGround>{children}</ForeGround>
       </body>
     </html>
   );

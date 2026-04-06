@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --foreground: #312f2f;
+  --foreground: #1c1c1c;
   --background: #121212;
   --navbar: #2e2e30;
 
@@ -30,13 +30,13 @@ body {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 42px;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 32px;
 }
 
 p {
-  font-size: 30px;
+  font-size: 20px;
 }

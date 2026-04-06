@@ -35,7 +35,7 @@ export function LineBreak(props: LineBreakProps): ReactNode {
   return (
     <div
       data-desc="border-gradient"
-      className={`via-line-break h-1 w-full bg-linear-to-r from-transparent to-transparent ${props.className || ""}`}
+      className={`via-line-break h-1 w-full bg-linear-to-r from-transparent from-10% via-50% to-transparent to-90% ${props.className || ""}`}
     ></div>
   );
 }

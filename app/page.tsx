@@ -3,13 +3,17 @@ import { LineBreak } from "@/components/components";
 export default function Home() {
   return (
     <div>
-      <h1 className="text-3xl">
-        Unfortunatly, my portfolio is currently under maintenance.
-      </h1>
-      <h1 className="text-5xl">🚧</h1>
-
       <section data-desc="introduction">
-        <div></div>
+        <div>
+          <h2>Hello and welcome!</h2>
+          <p>
+            I&apos;m Euan, a programmer, a developer, and a Penn State graduate
+          </p>
+          <p>
+            Here you can find some information about me and what I like to do.
+            Feel free to check out my Linkedin or Github
+          </p>
+        </div>
       </section>
 
       {/* <LineBreak></LineBreak> */}
