@@ -44,20 +44,31 @@ function Navbar(): ReactNode {
           data-desc="home"
           className="hidden items-center justify-start md:flex"
         >
-          <Link href="/">
+          <Link href="/" title="Home">
             <div className="py-1 pl-3 text-6xl">Euan House</div>
           </Link>
         </div>
 
         <div data-desc="projects" className="flex justify-around">
-          <HeaderLink href={projectPaths.taskManager}>Task Manager</HeaderLink>
-          <HeaderLink href={projectPaths.covidDashboard}>
+          <HeaderLink href={projectPaths.taskManager} title="Task Manager">
+            Task Manager
+          </HeaderLink>
+          <HeaderLink
+            href={projectPaths.covidDashboard}
+            title="Covid Dashboard"
+          >
             Covid Dashboard
           </HeaderLink>
-          <HeaderLink href={projectPaths.nittanyBusiness}>
+          <HeaderLink
+            href={projectPaths.nittanyBusiness}
+            title="Nittany Business Application"
+          >
             Nittany Business Application
           </HeaderLink>
-          <HeaderLink href={projectPaths.tableTopSimulator}>
+          <HeaderLink
+            href={projectPaths.tableTopSimulator}
+            title="Tabletop Simulator"
+          >
             Tabletop Simulator
           </HeaderLink>
         </div>
@@ -71,16 +82,20 @@ function Navbar(): ReactNode {
             href={socialUrls.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            title="Linkedin"
           >
-            {<i className="ci ci-linkedin ci-3x"></i>}
+            {<i className="ci ci-linkedin ci-3x" aria-hidden="true"></i>}
+            <span className="sr-only">Linkedin</span>
           </Link>
           <Link
             className="hover:bg-navbar-hover flex items-center px-2"
             href={socialUrls.github}
             target="_blank"
             rel="noopener noreferrer"
+            title="Github"
           >
-            {<i className="ci ci-github-light ci-3x"></i>}
+            {<i className="ci ci-github-light ci-3x" aria-hidden="true"></i>}
+            <span className="sr-only">GitHub</span>
           </Link>
         </div>
       </div>
