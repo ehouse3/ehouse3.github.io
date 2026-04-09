@@ -33,17 +33,18 @@ export function HeaderLink(props: HeaderLinkProps): ReactNode {
 
 interface LineBreakProps {
   className?: string;
+  isSkeleton?: boolean;
 }
 /** Horizontal bar that has transparent edges for breaking up sections
  * @argument className Modify color with 'via-...' ex 'via-red-500'
  */
 export function LineBreak(props: LineBreakProps): ReactNode {
-  if (props.className && props.className.includes("via")) {
+  if (props.className && props.isSkeleton) {
     // Classname overides default color
     return (
       <div
         data-desc="border-gradient"
-        className={`h-1 w-full bg-linear-to-r from-transparent from-10% via-50% to-transparent to-90% ${props.className || ""}`}
+        className={`w-full bg-linear-to-r from-transparent from-10% via-50% to-transparent to-90% ${props.className || ""}`}
       ></div>
     );
   } else {
