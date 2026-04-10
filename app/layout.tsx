@@ -51,25 +51,25 @@ function Navbar(): ReactNode {
 
         <div data-desc="projects" className="flex justify-around">
           <HeaderLink href={projectPaths.taskManager} title="Task Manager">
-            Task Manager
+            <h4>Task Manager</h4>
           </HeaderLink>
           <HeaderLink
             href={projectPaths.covidDashboard}
             title="Covid Dashboard"
           >
-            Covid Dashboard
+            <h4>Covid Dashboard</h4>
           </HeaderLink>
           <HeaderLink
             href={projectPaths.nittanyBusiness}
             title="Nittany Business Application"
           >
-            Nittany Business Application
+            <h4>Nittany Business Application</h4>
           </HeaderLink>
           <HeaderLink
             href={projectPaths.tableTopSimulator}
             title="Tabletop Simulator"
           >
-            Tabletop Simulator
+            <h4>Tabletop Simulator</h4>
           </HeaderLink>
         </div>
 
@@ -116,13 +116,10 @@ function ForeGround(props: ForeGroundProps) {
   );
 }
 
-interface FooterProps {
-  children?: ReactNode;
-}
 /** Footer component that lays at the bottom of each page.
  * Displays social's links for medium or smaller screens (Navbar doesn't display them on smaller screens)
  */
-function Footer(props: FooterProps) {
+function Footer() {
   return (
     <div className="flex justify-center gap-4 p-4 md:hidden">
       <Link

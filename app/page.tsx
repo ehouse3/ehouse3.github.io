@@ -30,10 +30,7 @@ export default function Home() {
           <div className="col-span-1" data-desc="languages">
             <ul role="list">
               <h4>Languages</h4>
-              <LineBreak
-                isSkeleton={true}
-                className="my-1 h-0.5 via-gray-400"
-              ></LineBreak>
+              <LineBreak className="my-1 h-0.5 via-gray-500"></LineBreak>
               <li>TypeScript</li>
               <li>JavaScript</li>
               <li>Java</li>
@@ -46,10 +43,7 @@ export default function Home() {
           <div data-desc="libraries">
             <ul role="list">
               <h4>Libraries</h4>
-              <LineBreak
-                isSkeleton={true}
-                className="my-1 h-0.5 via-gray-400"
-              ></LineBreak>
+              <LineBreak className="my-1 h-0.5 via-gray-500"></LineBreak>
               <li>React</li>
               <li>Tailwind</li>
               <li>MUI</li>
@@ -62,10 +56,7 @@ export default function Home() {
           <div data-desc="frameworks">
             <ul role="list">
               <h4>Frameworks</h4>
-              <LineBreak
-                isSkeleton={true}
-                className="my-1 h-0.5 via-gray-400"
-              ></LineBreak>
+              <LineBreak className="my-1 h-0.5 via-gray-500"></LineBreak>
               <li>Next.js</li>
               <li>Spring Boot</li>
               <li>Flask</li>
@@ -76,10 +67,7 @@ export default function Home() {
           <div data-desc="tools">
             <ul role="list">
               <h4>Tools</h4>
-              <LineBreak
-                isSkeleton={true}
-                className="my-1 h-0.5 via-gray-400"
-              ></LineBreak>
+              <LineBreak className="my-1 h-0.5 via-gray-500"></LineBreak>
               <li>Git & Github</li>
               <li>Node</li>
               <li>Maven</li>
