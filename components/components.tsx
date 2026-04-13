@@ -40,7 +40,7 @@ export function HeaderLink({
           }
         >
           <Link
-            className="hover:bg-navbar-hover flex items-center p-1.5 duration-300"
+            className="hover:bg-navbar-hover flex items-center p-1.5 text-center duration-300"
             href={href}
             aria-label={ariaLabel}
             title={title}
@@ -54,25 +54,34 @@ export function HeaderLink({
 }
 
 type LineBreakProps = {
+  isSkeleton?: boolean;
   className?: string;
 };
 
 /**
  * Horizontal gradient bar with transparent edges for separating sections
+ * @param isSkeleton - Strips default styling. Use className to add custom styling
  * @param className - Optional custom classes to override default styling.
  *   Use 'via-...' for color and 'h-...' for height customization
  */
-export function LineBreak({ className }: LineBreakProps): ReactNode {
+export function LineBreak({
+  className,
+  isSkeleton,
+}: LineBreakProps): ReactNode {
   // If className is used, use base and argument styling, otherwise use default
   const baseClass =
     "w-full bg-linear-to-r from-transparent from-10% via-50% to-transparent to-90%";
 
-  const defaultClass = `${baseClass} via-line-break h-1`;
+  const defaultClass = `via-line-break h-1`;
 
   return (
     <div
       data-desc="border-gradient"
-      className={className ? `${baseClass} ${className}` : defaultClass}
+      className={
+        isSkeleton
+          ? `${baseClass} ${className}`
+          : `${baseClass} ${defaultClass} ${className}`
+      }
     />
   );
 }
