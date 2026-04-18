@@ -1,11 +1,11 @@
-import { LineBreak } from "@/components/components";
+import { LineBreak, Section } from "@/components/components";
 
 export default function Home() {
   return (
     <div>
-      <section className="mx-8 my-5" data-desc="introduction">
+      <Section data-desc="introduction">
         <div>
-          <h2>Hello and welcome!</h2>
+          <h1 className="mb-2">About me</h1>
           <div className="ml-5">
             <p>
               I&apos;m Euan, a programmer, a developer, and a Penn State
@@ -17,13 +17,9 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <div>
-        <LineBreak></LineBreak>
-      </div>
-
-      <section className="bg-foreground2 py-5" data-desc="skills">
+      <Section alternate data-desc="skills">
         <div className="mb-3 ml-5">
           <p>Here are some languages and tools I have used:</p>
         </div>
@@ -33,7 +29,7 @@ export default function Home() {
             <ul role="list">
               <h4>Languages</h4>
               <LineBreak
-                isSkeleton={true}
+                isSkeleton
                 className="my-1 h-0.5 via-gray-500"
               ></LineBreak>
               <li>TypeScript</li>
@@ -49,7 +45,7 @@ export default function Home() {
             <ul role="list">
               <h4>Libraries</h4>
               <LineBreak
-                isSkeleton={true}
+                isSkeleton
                 className="my-1 h-0.5 via-gray-500"
               ></LineBreak>
               <li>React</li>
@@ -65,7 +61,7 @@ export default function Home() {
             <ul role="list">
               <h4>Frameworks</h4>
               <LineBreak
-                isSkeleton={true}
+                isSkeleton
                 className="my-1 h-0.5 via-gray-500"
               ></LineBreak>
               <li>Next.js</li>
@@ -79,7 +75,7 @@ export default function Home() {
             <ul role="list">
               <h4>Tools</h4>
               <LineBreak
-                isSkeleton={true}
+                isSkeleton
                 className="my-1 h-0.5 via-gray-500"
               ></LineBreak>
               <li>Git & Github</li>
@@ -89,13 +85,11 @@ export default function Home() {
             </ul>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <LineBreak></LineBreak>
-
-      <section data-desc="hobbies">
+      <Section data-desc="hobbies">
         <div></div>
-      </section>
+      </Section>
     </div>
   );
 }

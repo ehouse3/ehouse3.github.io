@@ -85,3 +85,23 @@ export function LineBreak({
     />
   );
 }
+
+type SectionProps = {
+  className?: string;
+  dataDesc?: string;
+  children?: ReactNode;
+  alternate?: boolean;
+};
+export function Section({ className, children, alternate }: SectionProps) {
+  if (alternate) {
+    return (
+      <section className={`${className}`}>
+        <LineBreak></LineBreak>
+        <div className="bg-foreground2 px-10 py-8">{children}</div>
+        <LineBreak></LineBreak>
+      </section>
+    );
+  } else {
+    return <section className={`${className} px-10 py-8`}>{children}</section>;
+  }
+}
