@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 
 function Navbar(): ReactNode {
   // TODO:
-  // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other instead of horizontal
+  // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other
   return (
     <header>
       {/* // md:overflow-visible and overflow-auto fixs mobile background cutoff on mobile */}

@@ -24,23 +24,24 @@ export function HeaderLink({
   title,
 }: HeaderLinkProps): ReactNode {
   return (
+    // basis-full ensures it fills up it's own element, leaving no filler room
     <span
       className={
-        "flex shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_110%,50%_140%,0_110%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-effect2)]"
+        "flex basis-full shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_110%,50%_140%,0_110%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-effect2)]"
       }
     >
       <span
         className={
-          "flex shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_105%,50%_125%,0_105%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-effect1)]"
+          "flex basis-full shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_105%,50%_125%,0_105%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-effect1)]"
         }
       >
         <span
           className={
-            "flex shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_110%,0_100%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-hover)]"
+            "flex basis-full shadow-[0rem_0rem_0rem_rgba(0,0,0,0)] transition-all duration-200 ease-in-out [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_110%,0_100%)] hover:shadow-[0rem_4rem_0rem_0rem_var(--color-navbar-hover)]"
           }
         >
           <Link
-            className="hover:bg-navbar-hover flex items-center p-1.5 text-center duration-300"
+            className="hover:bg-navbar-hover flex basis-full items-center justify-center p-1.5 text-center duration-300"
             href={href}
             aria-label={ariaLabel}
             title={title}
