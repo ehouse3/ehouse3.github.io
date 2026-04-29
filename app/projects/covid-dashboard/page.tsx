@@ -91,6 +91,7 @@ export default function covidDashboard() {
         <div className="mb-3">
           <h4 className="mb-1">Fixing the Dataset and Null Detection</h4>
           <div className="ml-5">
+            {/* Include note about pagination of data */}
             <p>
               The COVID Tracking Project was robust in the type of data{" "}
               <strong>sometimes </strong>collected. Not every state provided
