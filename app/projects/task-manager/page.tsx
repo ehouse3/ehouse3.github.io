@@ -113,33 +113,76 @@ export default function taskManager() {
               give me nearly as much trouble. By following core design
               principles for OOP, and expanding the CRUD system, it was straight
               forward. The core difficulty lied in using Spring Boot, and
-              ensuring the right layers had the right functions. Spring Boot is
-              a very abstracted and annotation heavy package. In the beginning,
-              there was a lot happening under the hood that I was unable to see,
-              and thus caused issues. But I quickly came to understand why each
+              ensuring the annotations worked the way I thought they would work.
+              Spring Boot is a very abstracted and annotation heavy package
+              compared to what I have used in the past. In the beginning, there
+              was a lot happening under the hood that I was unable to see, and
+              thus caused issues. But I quickly came to understand why each
               annotation was there and the problem that was fixed because of it,
-              which in the end helped speed up production.
+              which assisted with organization in the end. Its annotations for
+              reducing boilerplate code helped speed up developement as well!
             </p>
           </div>
         </div>
         <div className="mb-3">
           <h4 className="mb-1">Authentication Filter and Middleware</h4>
           <div className="ml-5">
-            <p></p>
+            <p>
+              Creating the filter was less of a challenge itself and more of a
+              test to ensure all data was up to standard. It was often the
+              source of errors when other systems weren&apos;t working
+              correctly, like the JWT tokens, or JSON errors, or even API
+              issues. The filter itself generally was easy to design. It needed
+              to be lightweight because it was running on every API call, but
+              also robust to catch as many errors as it can. I found keeping the
+              filter simple proved to be an effective approach, and to throw a
+              lot of errors
+            </p>
           </div>
         </div>
         <div className="mb-3">
           <h4 className="mb-1">Authentication Context</h4>
           <div className="ml-5">
-            <p></p>
+            <p>
+              I knew that establishing a thorough front end auth context for
+              this application was going to be time consuming. It needed to
+              ensure security, establish maintainability and expandability, and
+              needed to be able to branch most of the application. The issues
+              that I encountered for this task wasn&apos;t because it was
+              particularly hard, but because I had high expections for it. It
+              would be user and token context for the entire app, both public
+              and authenticated endpoints, and needed functions to handle
+              changing data as well. Finally, the user context being a major
+              point in the pipeline, it needed to not suppress errors when they
+              occured.
+            </p>
           </div>
         </div>
       </Section>
 
-      <Section alternate data-desc="details">
+      <Section alternate data-desc="front end details">
         <div className="mb-3">
-          <h2>Design Details</h2>
+          <h2>Design Details - Front End</h2>
         </div>
+
+        <div className="mb-3">
+          <h4 className="mb-1">Front-End</h4>
+          <div className="ml-5">
+            <p>
+              In alignment with my goals, I implemented features that the system
+              Next.js had into the task management app. Middleware that executed
+              on every request redirected tokenless users to login pages, and
+              let the backend verify tokens through the filter. Extensive
+              components usage, and the Next.js Layout helped create reusable
+              and organized elements. The components especially helped for
+              elements like forms, and displaying projects themselves. The
+              client side app router simplified the developemnt, and paired with
+              dynamic routes made creating pages for specific project pages
+              great.
+            </p>
+          </div>
+        </div>
+
         <div className="mb-3">
           <h4 className="mb-1">Rest API Pipeline</h4>
           <div className="ml-5">
@@ -153,6 +196,86 @@ export default function taskManager() {
         </div>
 
         <div className="mb-3">
+          <h4 className="mb-1">Auth Context</h4>
+          <div className="ml-5">
+            <p>
+              As I talked about in the Challenges section, I had higher
+              expections for the auth context but I also have never used
+              something like this before. The Authentication Context is a
+              wrapper for the front end pages, that can be accessed at any page
+              for user data. This prevents prop drilling among other things. It
+              provides functions like{" "}
+              <code>login(), logout(), register(), and refreshUser()</code>. It
+              needed a provider as well for each page to have an access point
+              into the context. It also needed states to store the current token
+              and user data and to trigger rerenders if they change.
+            </p>
+            <p>
+              The data is stored in cookies, which has some limitations for the
+              size of data that can be stored. So far the users were pretty
+              lightweight so storing them there was not an issue. Creating an
+              initializer for the auth to assign pre-existing user cookies
+              created a smoother user experience as well. The Auth now still
+              works if the user leaves and comes back!
+            </p>
+            <p>
+              I wanted to experiement with this as well, and decided try out
+              some features that expand on what many simple guides online have
+              about authContext. I created an initializer. I created a simple
+              reusable function for assigning the values into cookies, and I
+              created a function to refresh the user. A major sepparation I
+              tried to introduce was a sepparate provider for authenticated
+              pages and a provider for unauthenticated pages. There were
+              multiple ideas behind this implementation, the login page and
+              register page don&apos;t need logout functions, and the protected
+              dashboard page doesn&apos;t need login functions. I noticed this
+              when I asked a question while implementing the types for the auth.
+              <q>
+                why does the user variable have to be possibly null when it
+                physically can&apos;t be for a majority of the pages?
+              </q>{" "}
+              Sepparating the two types of contexts was difficult and confusing
+              for mainly the context page, because it added another layer to
+              keep in mind at all times. It ultimately provided a simpler
+              context for authenticated pages.
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <h4 className="mb-1">Authentication Pipeline</h4>
+          <div className="ml-5">
+            <p>
+              I wanted to implement multiple layers of security that aligned
+              closely with enterprise solutions, and each at different sections
+              of the data pipeline. The user starts at the front end, where the
+              first layer exists. Middleware will redirect the user off of
+              authenticated pages only if it&apos;s missing a token. This
+              isn&apos;t perfect security because the authenitcation itself
+              doesn&apos;t happen here, but it is not designed to. Similar to
+              the middleware, the context will throw a lot of errors if it is
+              not in formatted correctly.
+            </p>
+            <p>
+              The second and most secure layer is the filter for the backend. As
+              is discussed in the section below, this filter validates the token
+              of every single api request that isn&apos;t for a public endpoint.
+              It validates the keys by encrypting private key and comparing, as
+              well as checking expiration of the keys. It will then create its
+              context through spring boot and enusre authorization. For an added
+              bonus, passwords are never sent out of the database and backend.
+              Only brought in, and then validated
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section data-dest="back end details">
+        <div className="mb-3">
+          <h2>Design Details - Back End</h2>
+        </div>
+
+        <div className="mb-3">
           <h4 className="mb-1">Spring Boot & Statelessness</h4>
           <div className="ml-5">
             <p></p>
@@ -160,28 +283,35 @@ export default function taskManager() {
         </div>
 
         <div className="mb-3">
-          <h4 className="mb-1">AI Use</h4>
-          <div className="ml-5">
-            <p></p>
-          </div>
-        </div>
-
-        <div className="mb-3">
-          <h4 className="mb-1">Front-End</h4>
-          <div className="ml-5">
-            <p></p>
-          </div>
-        </div>
-
-        <div className="mb-3">
-          <h4 className="mb-1">Authentication Pipeline</h4>
-          <div className="ml-5">
-            <p></p>
-          </div>
-        </div>
-
-        <div className="mb-3">
           <h4 className="mb-1">Postgresql Database</h4>
+          <div className="ml-5">
+            <p>
+              One important design decision I implemented regarding the Database
+              was to ensure the database stayed Unidiretional. The
+              architecturaly complexity and difficulties in management put me
+              off of implementing any bidirectional relations in data. However,
+              this meant a few functions like{" "}
+              <code>findByIdWithProjects()</code> (for finding a user by their
+              Id, with eagerly fetched projects) have to be specially created.
+            </p>
+            <p>
+              This project did not start using postgreSQL either. Partway
+              through, I decided to migrate from SQL to postgrSQL, because I
+              wanted to experiment and learn with popular querly languages, and
+              Spring Boot can support it as well.
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <h4 className="mb-1">Testing</h4>
+          <div className="ml-5">
+            <p></p>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <h4 className="mb-1">AI Use</h4>
           <div className="ml-5">
             <p></p>
           </div>
