@@ -189,8 +189,24 @@ export default function taskManager() {
             <p>
               Implementing a Restful API both aligned closely with utilizing
               industry methods and was essentially required for the construction
-              of this tech stack. The pipeline of data needed a channel to
-              travel from the frontend to the backend.
+              of this tech stack. The Spring Boot backend needed a protocol to
+              call its CRUD functions, to bring the data through the whole app.
+              Rest is often considered a simple protocol, and fit the
+              description of the project as well since we do not need live
+              updates. Both the backend needed functions to interact with the
+              database, and the frontend needed API functions to call the
+              backend API. Essentially, each function that existed in the
+              backend had a function that would call it in the front end, like{" "}
+              <code>getUserByEmail(), getProjectByUserId()</code>. The front-end
+              uses Axios as its library of choice, and this section was
+              integrated with multiple other systems as well. For instance, the
+              client had to attach the JWT in the cookies to every request for
+              the backend to verify. If the API caller&apos;s interceptor saw
+              that it was missing a JWT, or the response was 401, it would
+              redirect to the login page. The backend for this API had its own
+              set of details listed below, but was similar to the front end in
+              it was the system that other systems were integrated with. Like
+              the filter.
             </p>
           </div>
         </div>
@@ -243,7 +259,7 @@ export default function taskManager() {
         </div>
 
         <div className="mb-3">
-          <h4 className="mb-1">Authentication Pipeline</h4>
+          <h4 className="mb-1">Authentication and Security Pipeline</h4>
           <div className="ml-5">
             <p>
               I wanted to implement multiple layers of security that aligned
@@ -260,11 +276,15 @@ export default function taskManager() {
               The second and most secure layer is the filter for the backend. As
               is discussed in the section below, this filter validates the token
               of every single api request that isn&apos;t for a public endpoint.
-              It validates the keys by encrypting private key and comparing, as
-              well as checking expiration of the keys. It will then create its
-              context through spring boot and enusre authorization. For an added
-              bonus, passwords are never sent out of the database and backend.
-              Only brought in, and then validated
+              It validates the keys by decrypting using the private key and
+              comparing, as well as checking expiration of the keys. It will
+              then create its context through spring boot and enusre
+              authorization. For an added bonus, passwords are never sent out of
+              the database and backend. Only brought in, and then validated. For
+              password security, the passwords are stored hashed, and simple
+              requirements for length and complexity are in place. I considered
+              implementing password salting, but ultimately found it unnecessary
+              for learning since I already know it.
             </p>
           </div>
         </div>
