@@ -298,7 +298,51 @@ export default function taskManager() {
         <div className="mb-3">
           <h4 className="mb-1">Spring Boot & Statelessness</h4>
           <div className="ml-5">
-            <p></p>
+            <p>
+              There were a lot of benifits to using spring boot, and a lot of
+              reasons I chose this framework over others. It is a popular
+              system, so multiple companies and industries use it. Configuring
+              the setup, the environment and the database was relatively simple.
+              It had multiple ways of reducing boilerplate code, like with the{" "}
+              <code>@Data</code> tag, and use some of the spring boot starter
+              dependencies. Many of these reasons aligned with my goals for
+              learning in this application.
+            </p>
+            <p>
+              Stateless architecture was initially confusing to work with,
+              because no data persists between requests. The Connection is self
+              contained to generally the single qpi request being sent and
+              responded. Getting started was difficult, but once the CRUD system
+              was established, it was easier to exapnd upon. It was difficult
+              ensuring the right amount of information was given for any api
+              request. In the spirit of organization and only giving required
+              information, the app uses DTO&apos;s (Data Transfer Objects), to
+              provide a predefined schema of data. This helped organize the app
+              too, because it provded a schema and easily showed what was needed
+              at any function.
+            </p>
+            <p>
+              The Multi-layered spring boot backend was confusing because I was
+              unfamiliar with it, however, because my previous backend projects
+              really needed it, making this something I really wanted to
+              understand. The sepparation of a controller layer, a service logic
+              layer, and repository layer for customized queries was helpful for
+              organization. I also valued app wide organization, and really
+              wanted to solve the problems myself so I could build the
+              understanding, so I took my time organizing the multiple layers. I
+              initially struggled on where some functions should go, like
+              checking for errors. I ultimately found it easier to think of the
+              controller as a wrapper for the service layer, and simply pass the
+              errors through when they were thrown. The controller can handle
+              HTTP errors, and the service layer can handle conflicts on the
+              database. I also decided to implement an authentication controller
+              and service file sepparately from the others, to fully establish
+              the registering and logging in pipeline, rather than lumping it
+              together with user services. So far, this backend system did not
+              delve deep into complicated queries or logic, but more as a solid
+              foundation of REST and Crud systems, orgainzed well into multiple
+              layers.
+            </p>
           </div>
         </div>
 
@@ -307,7 +351,7 @@ export default function taskManager() {
           <div className="ml-5">
             <p>
               One important design decision I implemented regarding the Database
-              was to ensure the database stayed Unidiretional. The
+              was to ensure the database stayed unidiretional. The
               architecturaly complexity and difficulties in management put me
               off of implementing any bidirectional relations in data. However,
               this meant a few functions like{" "}
@@ -324,16 +368,74 @@ export default function taskManager() {
         </div>
 
         <div className="mb-3">
+          <h4 className="mb-1">Docker</h4>
+          <div className="ml-5">
+            <p>
+              Docker is a containerization tool for isolating software and
+              running reusalbe containers using images. As before, Docker is a
+              tool that many industries use to create software, so I wanted to
+              learn more about it. I&apos;ve toched upon it in the past, but
+              never wrote my own images. I new I wanted to use it because it
+              aligned with my goals, but also because I actually depended upon
+              it as well. I use two computers and often times develope this app
+              on one for a time and then the other for a time. Regardless of
+              what I added, docker ensured the underlying software ran on both.
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-3">
           <h4 className="mb-1">Testing</h4>
           <div className="ml-5">
-            <p></p>
+            <p>
+              Following the goals for following industry methods and build
+              tools, and working with the features of the frameworks too.
+              Testing is an integral part of writing software, because it
+              accounts for errors to be fixed. Although in the moment they are
+              frustrating because it seems they cause errors and slow down
+              production, in the long run it actually solves problems before
+              they show up which speeds up production. Spring boot has libraries
+              for testing, with built in annotations which I utilized
+              extensively. I implemented both integration and unit testing for
+              the Authentication pipeline of the app. They tested both login
+              failures with many possible reasons for failures, and a full
+              registration run through as well. Not only did these catch
+              incorrectly named HTTP errors, but also an ID assignment bug as
+              well. Next app I make, im starting testing on many of the layers i
+              worked in, and am starting it earlier. I implemented testing after
+              the fact, so it was a lot less useful than it could have been,
+              despite the fact that making the testing did resolve some errors
+              and ensure my error handling was more up to par with names.
+            </p>
           </div>
         </div>
 
         <div className="mb-3">
           <h4 className="mb-1">AI Use</h4>
           <div className="ml-5">
-            <p></p>
+            <p>
+              I used AI cautiously in the creation of this app. I am here to
+              learn the ropes for these frameworks, the different features and
+              experience trouble shooting problems. AI usage had multiple
+              benifits and drawbacks during developement. One major benifit was
+              using AI was making the skeleton for this app. I found it
+              difficult to know where to even begin, and AI helped walk through
+              that phase. Some examples would be configuration of the database
+              and application properties, setting up the docker images, or
+              building generic skeleton files for different layers. It built the
+              bare skeleton for the controller, and I added the service layer,
+              and login. Some issues I ran into when using AI was how often I
+              was fighting against it when it tried to solve actual errors or
+              coding problems. A good example was designing the relations for
+              the database. Admitidly, this was partially my fault because I did
+              not go into designing the database with a rigid enough schema. To
+              solve problems about retrieving data and setting up data
+              relationships, it oftentimes wanted to make the data
+              bidirectional. 9 times out of 10 this made the issue worse and
+              caused major errors elsewhere. I never used AI as a crutch during
+              this project, but prioritized using it as a tool to bounce ideas
+              off of, learn from, and as a starting point.
+            </p>
           </div>
         </div>
       </Section>
