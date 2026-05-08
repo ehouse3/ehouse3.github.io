@@ -89,20 +89,52 @@ export function LineBreak({
 
 type SectionProps = {
   className?: string;
-  dataDesc?: string;
   children?: ReactNode;
+  title?: ReactNode;
   alternate?: boolean;
 };
-export function Section({ className, children, alternate }: SectionProps) {
+export function Section({
+  className,
+  children,
+  title,
+  alternate,
+}: SectionProps) {
   if (alternate) {
     return (
       <section className={`${className}`}>
         <LineBreak></LineBreak>
-        <div className="bg-foreground2 px-10 py-8">{children}</div>
+        <div className="bg-foreground2 px-10 py-8">
+          <div className="mb-2">
+            <h2>{title}</h2>
+          </div>
+          {children}
+        </div>
         <LineBreak></LineBreak>
       </section>
     );
   } else {
-    return <section className={`${className} px-10 py-8`}>{children}</section>;
+    return (
+      <section className={`${className} px-10 py-8`}>
+        <div className="mb-2">
+          <h2>{title}</h2>
+        </div>
+        {children}
+      </section>
+    );
   }
+}
+
+type SubSectionProps = {
+  children?: ReactNode;
+  title?: ReactNode;
+};
+export function SubSection({ children, title }: SubSectionProps) {
+  return (
+    <div className="mb-3">
+      <div className="mb-2">
+        <h4>{title}</h4>
+      </div>
+      <div className="ml-5 space-y-2">{children}</div>
+    </div>
+  );
 }
