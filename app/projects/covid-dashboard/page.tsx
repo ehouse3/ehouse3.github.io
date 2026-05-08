@@ -15,9 +15,9 @@ export default function covidDashboard() {
           different systems and tools that were at my disposal. I was able to
           create a more modern approach to building this app than before, and in
           the end I am proud to have created a large project that can transform
-          unfiltered data and turn it into a more manageable and digestible
-          form. I am also proud of all the new tools, solutions, libraries, and
-          languages used in this project to handle data at a larger scale!
+          unfiltered data into a more manageable and digestible form. I am also
+          proud of all the new tools, solutions, libraries, and languages used
+          in this project to handle data at a larger scale!
         </p>
       </Section>
 
@@ -31,18 +31,18 @@ export default function covidDashboard() {
         </div>
         <div className="ml-5">
           <p>
-            <strong>Get comfortable with Next.js</strong> — This would be my
+            <strong>Get comfortable with Next.js</strong>: This would be my
             first time using a dedicated frontend framework. I wanted to
             understand how libraries, routes, images, project flow, and the
             overall framework feel in practice and not just follow a tutorial.
           </p>
           <p>
-            <strong>Utilize TypeScript to its fullest</strong> — I had dabbled
+            <strong>Utilize TypeScript to its fullest</strong>: I had dabbled
             with it before but always ended up reaching for the <code>any</code>{" "}
             type when things got tricky.
           </p>
           <p>
-            <strong>Keep the codebase clean and expandable</strong> — I wanted
+            <strong>Keep the codebase clean and expandable</strong>: I wanted
             someone, or future me, to be able to jump in and add a new feature
             without having to reverse-engineer everything.
           </p>
@@ -60,8 +60,8 @@ export default function covidDashboard() {
             On the other, the pandemic has ended, making the data generally
             fixed, and over a 2-year period it would result in fewer than 750
             data points. This felt like an acceptable range of values to compute
-            at runtime, and I thus decided to process the data on the client
-            side of the application.
+            at runtime, so I decided to process the data on the client side of
+            the application.
           </p>
           <p>
             The solution was a sliding window algorithm. Simply slide through
@@ -89,7 +89,7 @@ export default function covidDashboard() {
             entirely blank. This inconsistency was a real problem. My solution
             was to pre-calculate which metrics were empty and visually display
             the metric crossed out in the dashboard. The pipeline of detecting
-            empty metrics to applying the appropriate style changes turned out
+            empty metrics and applying the appropriate style changes turned out
             to be surprisingly difficult to implement.
           </p>
         </SubSection>
@@ -112,44 +112,53 @@ export default function covidDashboard() {
             either as it would have driven up hosting costs. This wasn&apos;t
             the project for Next.js to shine, but it did play a pivotal part in
             the general organization of the app. I intended to carry some of
-            these lessons I into my next project.
+            these lessons into my next project.
           </p>
         </SubSection>
 
-        <SubSection title="React">
-          React&apos;s functions, state management, hooks, and components
-          assisted greatly in the flow of the application. Its close integration
-          with HTML streamlined production as well. Without React&apos;s state
-          management, it would have been nearly impossible to create a smoothly
-          functioning dashboard. Adding, removing, and rearranging objects on
-          the dashboard was made much simpler with state. However, similar to
-          Next.js, only scratching the surface of React left me wanting to
-          explore more of what it had to offer.
+        <SubSection title="React & TypeScript">
+          <p>
+            React&apos;s functions, state management, hooks, and components
+            assisted greatly in the flow of the application. Its close
+            integration with HTML streamlined production as well. Without
+            React&apos;s state management, it would have been nearly impossible
+            to create a smoothly functioning dashboard. Adding, removing, and
+            rearranging objects on the dashboard was made much simpler with
+            state. However, similar to Next.js, only scratching the surface of
+            React left me wanting to explore more of what it had to offer.
+          </p>
+          <p>
+            TypesScript worked hand in hand with React, and was only natural to
+            use at this point. I made a sure point to keep my coding standards
+            high, never using the <code>any, unknown</code> types, using
+            interfaces to organize components, and using built in types as well.
+            Implementing these core features of TypeScript helped let me explore
+            more about the language, and use it in a more powerful way. It was
+            helpful as well for completing logic intensive sections, like
+            parsing the data and creating the sliding window algorithm. Through
+            this project, I felt significantly more comfortable using TypeScript
+          </p>
         </SubSection>
 
-        <SubSection title=""></SubSection>
-        <div className="mb-3">
-          <h4 className="mb-1">Tailwind CSS</h4>
-          <div className="ml-5">
-            <p>
-              Tailwind, in my opinion, had the largest impacts on this project
-              and honestly resolved a lot of friction I had run into before with
-              styling being too intrusive in the organization and codebase. In
-              past projects I&apos;d end up with scattered stylesheets, one-off
-              rules that piled up, and no clear system for spacing or color.
-              Tailwind standardized most of the process and moved it away from
-              long, hard-to-maintain stylesheets. Spacing became simple and
-              styling stayed close to the actual element it applied to. The
-              Tailwind documentation was more than robust as well. Tailwind
-              singlehandedly simplified styling and streamlined development an
-              incredible amount. Combined with React&apos;s component model, my
-              codebase became cleaner than I had imagined previously. Between
-              Tailwind, React&apos;s component model, and Next.js handling app
-              organization, many of the problems I had struggled with in earlier
-              projects were remedied.
-            </p>
-          </div>
-        </div>
+        <SubSection title="Tailwind CSS">
+          <p>
+            Tailwind, in my opinion, had the largest impact on this project and
+            honestly resolved a lot of friction I had run into before with
+            styling being too intrusive in the organization and codebase. In
+            past projects I&apos;d end up with scattered stylesheets, one-off
+            rules that piled up, and no clear system for spacing or color.
+            Tailwind standardized most of the process and moved it away from
+            long, hard-to-maintain stylesheets. Spacing became simple and
+            styling stayed close to the actual element it applied to. The
+            Tailwind documentation was more than robust as well. Tailwind
+            singlehandedly simplified styling and streamlined development an
+            incredible amount. Combined with React&apos;s component model, my
+            codebase became cleaner than I had imagined previously. Between
+            Tailwind, React&apos;s component model, and Next.js handling app
+            organization, many of the problems I had struggled with in earlier
+            projects were remedied.
+          </p>
+        </SubSection>
       </Section>
     </div>
   );
