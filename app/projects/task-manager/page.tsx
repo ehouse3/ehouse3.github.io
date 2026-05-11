@@ -4,19 +4,20 @@ export default function taskManager() {
   return (
     <div>
       <Section data-desc="about">
-        <h1 className="mb-2">Task Management Application</h1>
-        <h4 className="mb-1">Authenticated Full Stack Organization Tool</h4>
-        <p className="ml-5">
-          Whereas my previous projects focused on the content, this project
-          focused almost solely on the delivery and technical features of making
-          the app. This project was a major step up from my previous ones. It
-          started as an app focused around organization and managing tasks /
-          projects with dates, then quickly diverted because I wanted to
-          experiment with features of the frameworks and libraries I was using.
-          While I felt comfortable using Next.js, and had experience creating
-          backend systems in the past, I wanted to really utilize the frameworks
-          to their fullest.
-        </p>
+        <h1 className="mb-4">Task Management Application</h1>
+        <SubSection title="Authenticated Full Stack Organization Tool">
+          <p>
+            Whereas my previous projects focused on the content, this project
+            focused almost solely on the delivery and technical features of
+            making the app. This project was a major step up from my previous
+            ones. It started as an app focused around organization and managing
+            tasks / projects with dates, then quickly diverted because I wanted
+            to experiment with features of the frameworks and libraries I was
+            using. While I felt comfortable using Next.js, and had experience
+            creating backend systems in the past, I wanted to really utilize the
+            frameworks to their fullest.
+          </p>
+        </SubSection>
       </Section>
 
       <Section title="Goals" alternate data-desc="goals">

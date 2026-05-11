@@ -4,21 +4,24 @@ export default function covidDashboard() {
   return (
     <div>
       <Section data-desc="about">
-        <h1 className="mb-2">Covid Dashboard Webapp</h1>
-        <p className="ml-5">
-          This project started out of a curiosity for many new systems and
-          technologies, but it turned into quite the undertaking. COVID data
-          felt like the perfect subject, as it is large, relates to everyone,
-          and is generally a positive outcome when complete. The COVID Tracking
-          Project provided a large repository of country-wide data to work with.
-          After this, I rather enjoyed exploring and experimenting with
-          different systems and tools that were at my disposal. I was able to
-          create a more modern approach to building this app than before, and in
-          the end I am proud to have created a large project that can transform
-          unfiltered data into a more manageable and digestible form. I am also
-          proud of all the new tools, solutions, libraries, and languages used
-          in this project to handle data at a larger scale!
-        </p>
+        <h1 className="mb-4">Covid Dashboard Webapp</h1>
+        <SubSection>
+          <p>
+            This project started out of a curiosity for many new systems and
+            technologies, but it turned into quite the undertaking. COVID data
+            felt like the perfect subject, as it is large, relates to everyone,
+            and is generally a positive outcome when complete. The COVID
+            Tracking Project provided a large repository of country-wide data to
+            work with. After this, I rather enjoyed exploring and experimenting
+            with different systems and tools that were at my disposal. I was
+            able to create a more modern approach to building this app than
+            before, and in the end I am proud to have created a large project
+            that can transform unfiltered data into a more manageable and
+            digestible form. I am also proud of all the new tools, solutions,
+            libraries, and languages used in this project to handle data at a
+            larger scale!
+          </p>
+        </SubSection>
       </Section>
 
       <Section title="Goals" alternate data-desc="goals">
@@ -35,9 +38,9 @@ export default function covidDashboard() {
               overall framework feel in practice and not just follow a tutorial.
             </p>
             <p>
-              <strong>Utilize TypeScript to its fullest</strong>: I had dabbled
-              with it before but always ended up reaching for the{" "}
-              <code>any</code> type when things got tricky.
+              <strong>Utilize TypeScript effectively</strong>: I had dabbled
+              with it before, and wanted to build a basic understanding of the
+              language
             </p>
             <p>
               <strong>Keep the codebase clean and expandable</strong>: I wanted
@@ -45,6 +48,12 @@ export default function covidDashboard() {
               without having to reverse-engineer everything.
             </p>
           </div>
+          <p>
+            These goals were both broad enough to allow me to learn freely, but
+            specific enough to still challenging. Many of these goals were
+            simply about understanding, while others were about continous
+            utilization. They interweaved nicely into the project.
+          </p>
         </SubSection>
       </Section>
 
@@ -79,9 +88,8 @@ export default function covidDashboard() {
           </p>
         </SubSection>
 
-        <SubSection title="Fixing the Dataset and Null Detection">
+        <SubSection title="Dataset Fixing, Integration, and Null Detection">
           <p>
-            {/* Include note about pagination of data */}
             The COVID Tracking Project was robust in the type of data{" "}
             <strong>sometimes </strong>collected. Not every state provided data
             for every metric, leaving many metrics either partially filled or
@@ -90,6 +98,25 @@ export default function covidDashboard() {
             the metric crossed out in the dashboard. The pipeline of detecting
             empty metrics and applying the appropriate style changes turned out
             to be surprisingly difficult to implement.
+          </p>
+          <p>
+            One design issue I debated was pagination. Similar to the rolling
+            average, I wondered how efficiency and server load my play into
+            this. I relied on the calculations from before, finding that values
+            weren&apos;t being updated in the data, giving me a good scope for
+            how large the data can be. This ruled out needing a major pagination
+            implementation, like breaking up into pages or blocks. I did however
+            break the data up by metrics.
+          </p>
+          <p>
+            The actual data set integration turned out to be a mini API, or even
+            a simple backend. When the dashboard would invoke a request for
+            specific data metrics, the &quot;backend&quot; would fulfil the
+            request specified. The interface for the data was specfically left
+            asyncroneous as well, already setting up further fixes for speed or
+            efficiency if needed. Implementing this, alongside the Nittany
+            Business project, made me want to revisit my understanding of
+            backend systems and fully explore them.
           </p>
         </SubSection>
       </Section>
@@ -120,10 +147,10 @@ export default function covidDashboard() {
             React&apos;s functions, state management, hooks, and components
             assisted greatly in the flow of the application. Its close
             integration with HTML streamlined production as well. Without
-            React&apos;s state management, it would have been nearly impossible
-            to create a smoothly functioning dashboard. Adding, removing, and
-            rearranging objects on the dashboard was made much simpler with
-            state. However, similar to Next.js, only scratching the surface of
+            React&apos;s state management system, it would have been nearly
+            impossible to create a smoothly functioning dashboard. Adding,
+            removing, and rearranging objects on the dashboard was made much
+            simpler. However, similar to Next.js, only scratching the surface of
             React left me wanting to explore more of what it had to offer.
           </p>
           <p>
@@ -135,7 +162,8 @@ export default function covidDashboard() {
             more about the language, and use it in a more powerful way. It was
             helpful as well for completing logic intensive sections, like
             parsing the data and creating the sliding window algorithm. Through
-            this project, I felt significantly more comfortable using TypeScript
+            this project, I felt significantly more comfortable using
+            TypeScript.
           </p>
         </SubSection>
 
