@@ -19,34 +19,31 @@ export default function taskManager() {
         </p>
       </Section>
 
-      <Section alternate data-desc="goals">
-        <div className="mb-3">
-          <h2 className="mb-1">Goals</h2>
+      <Section title="Goals" alternate data-desc="goals">
+        <SubSection>
           <p>
             Similar to my other projects, setting goals helped narrow in on what
             I wanted to learn. Overall, filling in gaps of knowledge from other
             projects was a major goal I strived for.
           </p>
-        </div>
-        <div className="mb-3 ml-5">
-          <p>
-            <strong>Explore Framework Features</strong>: middleware, layouts,
-            multilayered architecture
-          </p>
-          <p>
-            <strong>Utilize Industry Build Tools</strong>: Docker,
-            containerization, CI/CD
-          </p>
-          <p>
-            <strong>Understand Industry Methods</strong>: RESTful API,
-            Integration Testing, DTOs, Error Handling
-          </p>
-          <p>
-            <strong>Authentication with Security</strong>: JWTs, middleware,
-            filters, and validation
-          </p>
-        </div>
-        <div>
+          <div className="mb-3 ml-5 space-y-1">
+            <p>
+              <strong>Explore Framework Features</strong>: middleware, layouts,
+              multilayered architecture
+            </p>
+            <p>
+              <strong>Utilize Industry Build Tools</strong>: Docker,
+              containerization, CI/CD
+            </p>
+            <p>
+              <strong>Understand Industry Methods</strong>: RESTful API,
+              Integration Testing, DTOs, Error Handling
+            </p>
+            <p>
+              <strong>Authentication with Security</strong>: JWTs, middleware,
+              filters, and validation
+            </p>
+          </div>
           <p>
             My previous projects left a lot of gaps of knowledge for certain
             areas, and that was reflected in what I wanted to create to fill in
@@ -62,7 +59,7 @@ export default function taskManager() {
             halfway through the project, which is what made this exciting and
             fun to create.
           </p>
-        </div>
+        </SubSection>
       </Section>
 
       <Section title="Challenges Faced" data-desc="challenges">

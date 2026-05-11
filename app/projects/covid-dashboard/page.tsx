@@ -21,32 +21,31 @@ export default function covidDashboard() {
         </p>
       </Section>
 
-      <Section alternate data-desc="goals">
-        <div className="mb-3">
-          <h2 className="mb-1">Goals</h2>
+      <Section title="Goals" alternate data-desc="goals">
+        <SubSection>
           <p>
             Before I began the undertaking, I set out some goals for myself to
             learn and explore. Specifically, I wanted to:
           </p>
-        </div>
-        <div className="ml-5">
-          <p>
-            <strong>Get comfortable with Next.js</strong>: This would be my
-            first time using a dedicated frontend framework. I wanted to
-            understand how libraries, routes, images, project flow, and the
-            overall framework feel in practice and not just follow a tutorial.
-          </p>
-          <p>
-            <strong>Utilize TypeScript to its fullest</strong>: I had dabbled
-            with it before but always ended up reaching for the <code>any</code>{" "}
-            type when things got tricky.
-          </p>
-          <p>
-            <strong>Keep the codebase clean and expandable</strong>: I wanted
-            someone, or future me, to be able to jump in and add a new feature
-            without having to reverse-engineer everything.
-          </p>
-        </div>
+          <div className="ml-5 space-y-1">
+            <p>
+              <strong>Get comfortable with Next.js</strong>: This would be my
+              first time using a dedicated frontend framework. I wanted to
+              understand how libraries, routes, images, project flow, and the
+              overall framework feel in practice and not just follow a tutorial.
+            </p>
+            <p>
+              <strong>Utilize TypeScript to its fullest</strong>: I had dabbled
+              with it before but always ended up reaching for the{" "}
+              <code>any</code> type when things got tricky.
+            </p>
+            <p>
+              <strong>Keep the codebase clean and expandable</strong>: I wanted
+              someone, or future me, to be able to jump in and add a new feature
+              without having to reverse-engineer everything.
+            </p>
+          </div>
+        </SubSection>
       </Section>
 
       <Section title={"Challenges Faced"} data-desc="challenges">
