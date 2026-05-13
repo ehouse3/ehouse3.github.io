@@ -57,7 +57,6 @@ export default function nittanyBusiness() {
         </SubSection>
 
         <SubSection title="Teamwork">
-          <p>Writing code that will work with other people</p>
           <p>
             Working with a team to create this project sped up it&apos;s
             development significantly. By following simple rules about
@@ -67,16 +66,111 @@ export default function nittanyBusiness() {
             sections of the project helped as well, like keeping the helpdesk
             functionality away from the shopping cart or user authentication.
             And if features did require integration, loosely based coupling
-            helped when parts needed to be swapped.
+            helped when parts needed to be swapped. Lastly, we used Git as our
+            solution to version control, which ensured that I understand at
+            least the basics of using it.
           </p>
         </SubSection>
       </Section>
 
       <Section title="Details">
-        <SubSection title="Flask"></SubSection>
+        <SubSection>
+          <p>
+            This project was more of an eyeopener and teamwork orriented
+            experience rather than a technically challenging project. Through my
+            coursework and independant projects, I understood the logistics
+            databases and algorithms, but I needed a hands on understanding of
+            how it ALL works together. This project allowed us to experiment
+            with the how to implement an app, and to be fair, the entire
+            application functioned correctly, but we fell into many of the
+            pitfalls that entry developers would fall into. I knew there were
+            issues but I didn&apos;t know how to make it better before they
+            happened. We fell into traps, we lacked stricter coding standards
+            and requirements, and only in the later projects I&apos;ve made have
+            I REALLY learned the how of more modern, enterprise, and improved
+            approaches to problems.
+          </p>
+        </SubSection>
+        <SubSection title="Flask">
+          <p>
+            This was in my opinion a weaker aspect of this project. The Flask
+            backend had great sepparation by functionality by breaking up the
+            logic into reusable functions by category. CRUD functions worked as
+            a sepparation of the database and the API routes that were called by
+            the front end. And functions were named and broken up appropiatly
+            enough to not confuse us on a fresh look.
+          </p>
+          <p>
+            This backend needed more purposeful design implementations that were
+            reflected in the over arching organization. Modern architecture uses
+            meaningful, strict and sepparated API&apos;s to provide loose
+            couplings between systems, and at the time we didn&apos;t have that
+            context to create such a complicated system. Not only does
+            sepparation help keep integration simpler and is practically
+            required, but it speeds up developement when things need to
+            continuesly change. The lack of sepparation and layers directly
+            contributed to the desire to create the full stack task management
+            app to find a better way to tie all the pieces together. Lastly, it
+            needed more meaningful comments that described design choices,
+            rather than obvious functionality. Ultimately, because this was a
+            school project, we knew the entire scope before we even started
+            writing programs. For a school project, the backend worked
+            appropiatly and we all got a positive grade and outcome because of
+            it.
+          </p>
+        </SubSection>
 
-        <SubSection title="Frontend"></SubSection>
+        <SubSection title="My Contributions">
+          <p>
+            My contribution to specifically the backend was creating the User
+            Authentication in the beginning, implementing the helpdesk ticket
+            workflow, and finally the product review system. The structure of
+            the database ensured that many features were implemented smoothly.
+            The User authentication was relatively simple although lacked true
+            security layers. On a user attempting to login or create an account,
+            the app would ensure the there are no conflicts in the database,
+            like double used usernames or emails, then, ensure the hashed
+            password was valid. Finally, it would fulfil the expected result on
+            the backend and have the front end display the outcome.
+          </p>
+          <p>
+            Naturally, since I was familiar with the user authentication system,
+            I worked on the helpdesk workflow as well. Users were classified as
+            either helpdesk, product seller, or customer. Helpdesk personel had
+            a ticket queue that customers or product sellers created. They had a
+            variety of actions they can take, with extra access and
+            administrational control, like moderation control over the product
+            reviews. Tickets were tracked with a status, and were organized into
+            catagories.
+          </p>
+          <p>
+            Finally, the product review system was a slightly trickier feature
+            to create, as it was closely coupled to the products and users
+            themselves. The reviews, which are attached to either a product or a
+            product seller, had ratings, text, and comments. In order for a
+            review to be submitted, the system verified multiple aspects were
+            true, like that the user actually bought a product from the seller,
+            which I found to be a difficult query. Average ratings were also
+            calculated for a product/seller and attached to them as such. They
+            had to be recalculated on new reviews being added.
+          </p>
+          <p>
+            I was not satisfied with the security implementations for this
+            project, but it wasn&apos;t intended to be a secure application so
+            we only implemented minimal security layers. The final result was
+            more than sufficient for the scope. To list a few issues, the
+            strings for user input needed stricter sanitization, the storage of
+            passwords was not sufficient or secure, and finally the
+            administration view for the helpdesk required a stricter context and
+            requirements to prevent attacks. These were only issues that I
+            myself strictly oversaw, so there are bound to be extra issues
+            elsewhere.
+          </p>
+        </SubSection>
 
+        <SubSection title="Frontend">
+          <p></p>
+        </SubSection>
         <SubSection title="Database Design"></SubSection>
       </Section>
     </div>
