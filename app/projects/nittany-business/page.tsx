@@ -7,22 +7,22 @@ export default function nittanyBusiness() {
         <h1 className="mb-2">Nittany Business App</h1>
         <SubSection title="E-Commerce Website and Database">
           <p>
-            During my senior year of college at Penn State, for my database
-            class&apos;s final project, I led a team of 4 to create an
-            e-commerce web application. Our tech stack used a python backend
-            with the Flask library, a sqlite database, and a javascript frontend
-            with bootstrap. What made this project interesting was that it had a
-            robust amount of features, like a helpdesk, user authentication,
-            shopping carts, reviews, wishlists, etc. This project was great
-            hands on experience in working with a team to complete a project, as
-            well as working on larger software than I had before.
+            During my senior year at Penn State, for my database class&apos;s
+            final project, I led a team of 4 to build an e-commerce web
+            application. Our tech stack used a Python backend with the Flask
+            library, a SQLite database, and a JavaScript frontend with
+            Bootstrap. What made this project stand out was the sheer range of
+            features we packed in, like a helpdesk, user authentication,
+            shopping carts, reviews, wishlists, and more. It was great hands-on
+            experience working with a team on a larger piece of software than I
+            had tackled before.
           </p>
         </SubSection>
 
         <SubSection>
           <p>
             Below is a full list of the features included that made this app
-            function as en e-commerce application
+            function as an e-commerce application.
           </p>
           <div className="mb-3 ml-5">
             <strong className="space-y-1">
@@ -50,44 +50,43 @@ export default function nittanyBusiness() {
 
         <SubSection title="Leadership">
           <p>
-            This project went as smooth as it did because of the decisions each
-            of us was making since the beginning of the project. My
-            contributions to being a leader was organizing meetings, initiating
-            problems/solutions, and what I found to be most important,
-            delegating work. We met weekly, if not more, to discuss and work on
-            the project. It was tricky trying to find the balance in keeping
-            these meetings both relaxed, but also important.
+            This project went as smoothly as it did because of the decisions
+            each of us was making since the beginning. My contributions as a
+            leader were organizing meetings, initiating problems and solutions,
+            and what I found to be most important, delegating work. We met
+            weekly, if not more, to discuss and work on the project. Finding the
+            balance between keeping those meetings relaxed but productive was
+            trickier than I expected.
           </p>
           <p>
-            It was also a balancing act to delegate tasks to group members. One
-            of our group mates was very skilled with using python, so he took up
-            the task to migrate the provided sample data to sqlite, as well as
-            developing the backend systems. I had good experience with frontend
-            development, so I prioritized developing out the javascript
-            sections. To branch out, I took up the task of designing the diagram
-            for the relational database. A different group member was very
-            rounded, and aided in the web page development as well as the
-            backend functionality. Similarly, our last group memeber was also
-            well rounded and integrated a feature. He was also a great public
-            speaker, presenter and scribe, so naturally he helped a lot in that
-            section. We each worked to our strengths, and participated in the
-            creation of the many features this application would need.
+            Delegating was its own balancing act. One of our group mates was
+            very skilled with Python, so he took up the task automatically
+            migrating the provided sample data from a CSV file to the usable
+            SQLite format and developing the backend systems. I had good
+            experience with frontend development, so I prioritized the
+            JavaScript sections and also took on designing the relational
+            database diagram to challenge myself. A different group member was
+            well rounded and aided in both web page development and backend
+            functionality. Our last group member was similarly well rounded and
+            integrated a feature of his own. He was also a great public speaker
+            and presenter, so he naturally took the lead on that side of things.
+            We each worked to our strengths and covered the ground this
+            application needed.
           </p>
         </SubSection>
 
         <SubSection title="Teamwork">
           <p>
-            Working with a team to create this project sped up it&apos;s
-            development significantly. By following simple rules about
-            programming allowed us to not run into issues with our
-            implementations. For instance, functions needed precise and simple
-            names that did what you would expect them to do. Sepparating
+            Working with a team sped up development significantly. Following
+            simple rules about programming kept us from stepping on each
+            other&apos;s work. For instance, functions needed precise and simple
+            names that did exactly what you would expect them to do. Separating
             sections of the project helped as well, like keeping the helpdesk
             functionality away from the shopping cart or user authentication.
-            And if features did require integration, loosely based coupling
-            helped when parts needed to be swapped. Lastly, we used Git as our
-            solution to version control, which ensured that I understand at
-            least the basics of using it.
+            And if features did require integration, loose coupling made it easy
+            to swap parts out when needed. Lastly, we used Git for version
+            control, which gave me at least a solid foundation and hands on
+            experience in using it.
           </p>
         </SubSection>
       </Section>
@@ -95,155 +94,140 @@ export default function nittanyBusiness() {
       <Section title="Details">
         <SubSection>
           <p>
-            This project was more of an eyeopener and teamwork orriented
-            experience rather than a technically challenging project. Through my
-            coursework and independant projects, I understood the logistics
-            databases and algorithms, but I needed a hands on understanding of
-            how it ALL works together. This project allowed us to experiment
-            with the how to implement an app, and to be fair, the entire
-            application functioned correctly, but we fell into many of the
-            pitfalls that entry developers would fall into. I knew there were
-            issues but I didn&apos;t know how to make it better before they
-            happened. We fell into traps, we lacked stricter coding standards
-            and requirements, and only in the later projects I&apos;ve made have
-            I REALLY learned the how of more modern, enterprise, and improved
-            approaches to problems.
+            This project was more of an eye-opener and teamwork-oriented
+            experience than a technically challenging one. Through my coursework
+            and independent projects, I understood the logistics of databases
+            and algorithms, but I needed hands-on experience with how and entire
+            system fits together. We got to experiment with how to implement a
+            real app, and while the entire application functioned correctly, we
+            fell into a lot of the pitfalls that entry-level developers fall
+            into. I knew something felt off but didn&apos;t yet have the
+            vocabulary or experience to fix it before it happened. Only in later
+            projects have I really learned the more modern, enterprise-minded
+            approaches to these problems.
           </p>
         </SubSection>
         <SubSection title="Flask">
           <p>
             This was in my opinion a weaker aspect of this project. The Flask
-            backend had great sepparation by functionality by breaking up the
-            logic into reusable functions by category. CRUD functions worked as
-            a sepparation of the database and the API routes that were called by
-            the front end. And functions were named and broken up appropiatly
-            enough to not confuse us on a fresh look.
+            backend had decent separation by functionality, breaking up the
+            logic into reusable functions by category. CRUD functions acted as a
+            layer between the database and the API routes called by the
+            frontend. Functions were named and broken up appropriately enough
+            that we could return to the code without getting lost.
           </p>
           <p>
-            This backend needed more purposeful design implementations that were
-            reflected in the over arching organization. Modern architecture uses
-            meaningful, strict and sepparated API&apos;s to provide loose
-            couplings between systems, and at the time we didn&apos;t have that
-            context to create such a complicated system. Not only does
-            sepparation help keep integration simpler and is practically
-            required, but it speeds up developement when things need to
-            continuesly change. The lack of sepparation and layers directly
-            contributed to the desire to create the full stack task management
-            app to find a better way to tie all the pieces together. Lastly, it
-            needed more meaningful comments that described design choices,
-            rather than obvious functionality. Ultimately, because this was a
-            school project, we knew the entire scope before we even started
-            writing programs. For a school project, the backend worked
-            appropiatly and we all got a positive grade and outcome because of
-            it.
+            That said, the backend needed more purposeful design that was
+            reflected in the overarching organization. Modern architecture uses
+            meaningful and strictly separated APIs to keep systems loosely
+            coupled, and at the time we didn&apos;t have that context to build
+            something like that. Proper separation not only simplifies
+            integration but speeds up development when things need to
+            continuously change. The shortcomings here actually motivated me to
+            build a full-stack task management app later, where I could find a
+            better way to tie all the pieces together. The backend also needed
+            more meaningful comments that captured design choices rather than
+            just restating obvious functionality. Ultimately, because this was a
+            school project with a strict and known scope from day one, the
+            backend worked appropriately and we all came away with both a
+            positive grade and experience.
           </p>
         </SubSection>
 
         <SubSection title="My Contributions">
           <p>
-            My contribution to specifically the backend was creating the User
-            Authentication in the beginning, implementing the helpdesk ticket
-            workflow, and finally the product review system. The structure of
-            the database ensured that many features were implemented smoothly.
-            The User authentication was relatively simple although lacked true
-            security layers. On a user attempting to login or create an account,
-            the app would ensure the there are no conflicts in the database,
-            like double used usernames or emails, then, ensure the hashed
-            password was valid. Finally, it would fulfil the expected result on
-            the backend and have the front end display the outcome.
+            My backend contributions were building the user authentication
+            system, implementing the helpdesk ticket workflow, and building the
+            product review system. The database structure I designed made all
+            three much smoother to implement. User authentication was relatively
+            straightforward, though it lacked real security layers. When a user
+            tried to log in or create an account, the app checked for conflicts
+            in the database like duplicate usernames or emails, verified the
+            hashed password, and then fulfilled the expected result on the
+            backend while the frontend displayed the outcome.
           </p>
           <p>
-            Naturally, since I was familiar with the user authentication system,
-            I worked on the helpdesk workflow as well. Users were classified as
-            either helpdesk, product seller, or customer. Helpdesk personel had
-            a ticket queue that customers or product sellers created. They had a
-            variety of actions they can take throughout the rest of the
-            application, with extra access and administrational control, like
-            moderation control over the product reviews. Tickets were tracked
-            with a status, and were organized into catagories. This system
-            worked smoothly with the relational database, as tickets were
-            dependant on someone creating them, and later a helpdesk person
-            asigning themselves to one.
+            Since I was already familiar with the user authentication system, I
+            took on the helpdesk workflow as well. Users were classified as
+            either helpdesk staff, product sellers, or customers. Helpdesk
+            personnel had a ticket queue populated by customers and sellers.
+            They had a variety of actions available throughout the application,
+            with extra access and administrative control, including moderation
+            over product reviews. Tickets were tracked by status and organized
+            into categories. This system worked naturally with the relational
+            database, since tickets depended on a user creating them and later a
+            helpdesk person assigning themselves to one.
           </p>
           <p>
-            Finally, the product review system was a slightly trickier feature
-            to create, as it was closely coupled to the products and users
-            themselves. The reviews, which are attached to either a product or a
-            product seller, had ratings, text, and comments. In order for a
-            review to be submitted, the system verified multiple aspects were
-            true, like that the user actually bought a product from the seller,
-            which I found to be a difficult query. Average ratings were also
-            calculated for a product/seller and attached to them as such to
-            increase efficiency. They had to be recalculated on new reviews
-            being added. Similarly, these were straight forward to implement
-            with the relational database. Reviews were a weak entity related to
-            either products or sellers, so I made a sepparate sharded review
-            table for each, depndant on the user submitting it, and the object
-            reviewed.
+            The product review system was the trickiest feature I built, since
+            it was tightly coupled to both products and users. Reviews could be
+            attached to either a product or a product seller and included
+            ratings, written text, and comments. Before a review could be
+            submitted, the system verified several conditions, like confirming
+            the user had actually purchased from that seller, which turned out
+            to be a genuinely difficult query to write. Average ratings were
+            calculated and stored directly on the product or seller record to
+            keep reads efficient, and those averages had to be recalculated each
+            time a new review came in. Reviews were modeled as weak entities
+            dependent on either a product or a seller, so I built a separate
+            review table for each, keyed to the submitting user and the item
+            being reviewed.
           </p>
           <p>
-            I was not satisfied with the security implementations for this
-            project, but it wasn&apos;t intended to be a secure application so
-            we only implemented minimal security layers. The final result was
-            more than sufficient for the scope. To list a few issues, the
-            strings for user input needed stricter sanitization, the storage of
-            passwords was not sufficient or secure, and finally the
-            administration view for the helpdesk required a stricter context and
-            requirements to prevent attacks. These were only issues that I
-            myself strictly oversaw, so there are bound to be extra issues
-            elsewhere.
+            I was not satisfied with the security in this project, but it was
+            never meant to be a production-ready application, so minimal
+            security layers were fine for the scope. A few things stood out to
+            me even then. User input strings needed stricter sanitization,
+            password storage was not handled securely enough, and the helpdesk
+            admin view needed tighter access controls to hold up against
+            attacks. These were only the issues in the parts I owned, so there
+            are likely more scattered elsewhere.
           </p>
         </SubSection>
 
         <SubSection title="Frontend">
           <p>
-            The front end UI was designed with the javascript Bootstrap library,
-            which ultimately sped up the creation of the UI, simplified
-            elements, and provided and excellent base for a product like this.
-            Specific customization was still possible, but had some hoops you
-            had to jump through to get there. We used the python library Jinja
-            to execute python code directly in the html files, making the pages
-            themselves very direct in purpose. This was a great library for
-            handling challenges in the frontend, like conditionals, events, or
-            states. With this combination, we created easy to navigate webpages
-            for every feature, and were able to successfully design complex web
-            pages. Like user and helpdesk dashboards, product, search, seller,
-            order and wishlist pages.
+            The frontend UI was built with the JavaScript Bootstrap library,
+            which sped up development, simplified common elements, and provided
+            an excellent base for a product like this. Specific customization
+            was still possible, but it had some hoops to jump through. We used
+            the Python library Jinja to run Python code directly in the HTML
+            files, which made each page very focused in its purpose. It handled
+            frontend challenges like conditionals, events, and state cleanly.
+            With that combination, we built easy-to-navigate pages for every
+            feature, including user and helpdesk dashboards, product pages,
+            search, seller profiles, orders, and wishlists.
           </p>
           <p>
-            Similar to before, the lack of distinct and meaningful sepparation
-            of frameworks and systems led me to want to design a more powerful
-            and well written project. If I were to revisit this project, or take
-            away some core design mistakes to learn from, like creating a more
-            powerful API, and creating a better documented and organized
-            interface between the front end and the backend. For example, state
-            and URL logic should not be handled in the same place as database
-            functions. And it was lacking unified strucutre for reused parts,
-            like user state management. It was lacking in the overarching
-            software structure. But this class wasn&apos;t a class about
-            software design patterns and architecture, but mainly about
-            relational databases.
+            Looking back, the lack of clear separation between frameworks and
+            concerns is the biggest thing I would fix. State and URL logic had
+            no business sitting next to database functions, and there was no
+            unified structure for shared pieces like user state management. If I
+            revisited this project today, I would start with a well-defined API
+            boundary between the frontend and backend and build everything else
+            around that. At the time though, this was a class about relational
+            databases, not software architecture, so the result made sense for
+            what it was.
           </p>
         </SubSection>
 
         <SubSection title="Database Design">
           <p>
-            This aspect of the project was the strongest! I designed the
+            This aspect of the project was the strongest. I designed the
             relationships and diagram for the entire database, and it was
-            required to be normalized as well. The design for the database was
-            reliable, functional, and straightforward. It had well defined
-            relationships for everything from the helpdesk ticket workflow to
-            the order management hierarchy. This design made the rest of the
-            project a lot more straightforward, because we could follow the
-            model I created to be the foundational building blocks. It included
-            weak and strong relationships for objects as well as normalized
-            tables to ensure efficiency. Most aspects of normalizing the
-            database was simple, like ensuring columns had individual values and
-            columns only depending on the primary key. However second normal was
-            difficult, because for the helpdesk system and review system, the
-            data had to be split up and looked slightly awkward. The database
-            being normalized however made updates easier in the end, because
-            everything was sepparated so well.
+            required to be normalized as well. The design was reliable,
+            functional, and straightforward, with well-defined relationships
+            covering everything from the helpdesk ticket workflow to the order
+            management hierarchy. Having a solid model to follow made the rest
+            of the project significantly easier to build around. The schema
+            included both weak and strong entity relationships alongside
+            normalized tables. Most of the normalization was straightforward,
+            like ensuring columns held individual values and depended only on
+            the primary key. Second normal form was the trickiest part, since
+            the helpdesk and review systems required splitting data in ways that
+            looked a little awkward on paper. In practice though, that
+            separation paid off and made updates much cleaner throughout the
+            rest of development.
           </p>
         </SubSection>
       </Section>
