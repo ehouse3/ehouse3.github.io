@@ -18,6 +18,25 @@ export default function nittanyBusiness() {
             well as working on larger software than I had before.
           </p>
         </SubSection>
+
+        <SubSection>
+          <p>
+            Below is a full list of the features included that made this app
+            function as en e-commerce application
+          </p>
+          <div className="mb-3 ml-5">
+            <strong className="space-y-1">
+              <p>User login and registration</p>
+              <p>Product Listings and Order management</p>
+              <p>Categorical Hierarchy</p>
+              <p>Product and Seller Search functionality</p>
+              <p>Product/Seller Review</p>
+              <p>User dashboard and account page</p>
+              <p>Helpdesk Ticket workflow</p>
+              <p>Shopping Cart and checkout</p>
+            </strong>
+          </div>
+        </SubSection>
       </Section>
 
       <Section alternate title="Challenges">
@@ -138,10 +157,13 @@ export default function nittanyBusiness() {
             I worked on the helpdesk workflow as well. Users were classified as
             either helpdesk, product seller, or customer. Helpdesk personel had
             a ticket queue that customers or product sellers created. They had a
-            variety of actions they can take, with extra access and
-            administrational control, like moderation control over the product
-            reviews. Tickets were tracked with a status, and were organized into
-            catagories.
+            variety of actions they can take throughout the rest of the
+            application, with extra access and administrational control, like
+            moderation control over the product reviews. Tickets were tracked
+            with a status, and were organized into catagories. This system
+            worked smoothly with the relational database, as tickets were
+            dependant on someone creating them, and later a helpdesk person
+            asigning themselves to one.
           </p>
           <p>
             Finally, the product review system was a slightly trickier feature
@@ -151,8 +173,13 @@ export default function nittanyBusiness() {
             review to be submitted, the system verified multiple aspects were
             true, like that the user actually bought a product from the seller,
             which I found to be a difficult query. Average ratings were also
-            calculated for a product/seller and attached to them as such. They
-            had to be recalculated on new reviews being added.
+            calculated for a product/seller and attached to them as such to
+            increase efficiency. They had to be recalculated on new reviews
+            being added. Similarly, these were straight forward to implement
+            with the relational database. Reviews were a weak entity related to
+            either products or sellers, so I made a sepparate sharded review
+            table for each, depndant on the user submitting it, and the object
+            reviewed.
           </p>
           <p>
             I was not satisfied with the security implementations for this
@@ -169,9 +196,56 @@ export default function nittanyBusiness() {
         </SubSection>
 
         <SubSection title="Frontend">
-          <p></p>
+          <p>
+            The front end UI was designed with the javascript Bootstrap library,
+            which ultimately sped up the creation of the UI, simplified
+            elements, and provided and excellent base for a product like this.
+            Specific customization was still possible, but had some hoops you
+            had to jump through to get there. We used the python library Jinja
+            to execute python code directly in the html files, making the pages
+            themselves very direct in purpose. This was a great library for
+            handling challenges in the frontend, like conditionals, events, or
+            states. With this combination, we created easy to navigate webpages
+            for every feature, and were able to successfully design complex web
+            pages. Like user and helpdesk dashboards, product, search, seller,
+            order and wishlist pages.
+          </p>
+          <p>
+            Similar to before, the lack of distinct and meaningful sepparation
+            of frameworks and systems led me to want to design a more powerful
+            and well written project. If I were to revisit this project, or take
+            away some core design mistakes to learn from, like creating a more
+            powerful API, and creating a better documented and organized
+            interface between the front end and the backend. For example, state
+            and URL logic should not be handled in the same place as database
+            functions. And it was lacking unified strucutre for reused parts,
+            like user state management. It was lacking in the overarching
+            software structure. But this class wasn&apos;t a class about
+            software design patterns and architecture, but mainly about
+            relational databases.
+          </p>
         </SubSection>
-        <SubSection title="Database Design"></SubSection>
+
+        <SubSection title="Database Design">
+          <p>
+            This aspect of the project was the strongest! I designed the
+            relationships and diagram for the entire database, and it was
+            required to be normalized as well. The design for the database was
+            reliable, functional, and straightforward. It had well defined
+            relationships for everything from the helpdesk ticket workflow to
+            the order management hierarchy. This design made the rest of the
+            project a lot more straightforward, because we could follow the
+            model I created to be the foundational building blocks. It included
+            weak and strong relationships for objects as well as normalized
+            tables to ensure efficiency. Most aspects of normalizing the
+            database was simple, like ensuring columns had individual values and
+            columns only depending on the primary key. However second normal was
+            difficult, because for the helpdesk system and review system, the
+            data had to be split up and looked slightly awkward. The database
+            being normalized however made updates easier in the end, because
+            everything was sepparated so well.
+          </p>
+        </SubSection>
       </Section>
     </div>
   );
