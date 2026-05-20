@@ -90,7 +90,7 @@ function Navbar(): ReactNode {
             rel="noopener noreferrer"
             title="Linkedin"
           >
-            {<i className="ci ci-linkedin ci-3x" aria-hidden="true"></i>}
+            <i className="ci ci-linkedin ci-3x" aria-hidden="true"></i>
             <span className="sr-only">Linkedin</span>
           </Link>
           <Link
@@ -100,9 +100,11 @@ function Navbar(): ReactNode {
             rel="noopener noreferrer"
             title="Github"
           >
-            {<i className="ci ci-github-light ci-3x" aria-hidden="true"></i>}
+            <i className="ci ci-github-light ci-3x" aria-hidden="true"></i>
             <span className="sr-only">GitHub</span>
           </Link>
+          {/* Include gmail link  */}
+          {/* <i class="ci ci-gmail"></i> */}
         </div>
       </div>
       <LineBreak></LineBreak>
