@@ -37,15 +37,11 @@ export const metadata: Metadata = {
   description:
     "Euan House's portfolio and projects about full stack software engineering. Featuring a full-stack task management application and a frontend covid dashboard app",
 };
-
+/* Navbar with dropdown effect for hovered links between pages. On medium devices, the navbar's stacked vertically, and socials links are hidden */
 function Navbar(): ReactNode {
-  //
-  // TODO:
-  // For mobile screens, convert navbar to a horizontal grid, and stack the home, projects, and socials on top of each other
   return (
     <header>
-      {/* // md:overflow-visible and overflow-auto fixs mobile background cutoff on mobile */}
-      <div className="bg-navbar min-w-fit grid-cols-[1fr_2fr_1fr] overflow-auto md:grid md:overflow-visible">
+      <div className="bg-navbar min-w-fit grid-cols-[1fr_2fr_1fr] md:grid">
         <div
           data-desc="home"
           className="hidden items-center justify-start md:flex"
@@ -55,7 +51,11 @@ function Navbar(): ReactNode {
           </Link>
         </div>
 
-        <div data-desc="projects" className="flex justify-around">
+        <div
+          data-desc="projects"
+          className="flex flex-col justify-around lg:flex-row"
+        >
+          {/* TODO: fix overflow bug on lg screen with overflow-auto adjusted with flexbox */}
           <HeaderLink href={projectPaths.taskManager} title="Task Manager">
             <h4>Task Manager</h4>
           </HeaderLink>

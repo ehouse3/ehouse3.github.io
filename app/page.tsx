@@ -24,6 +24,7 @@ export default function Home() {
           <p>Here are some languages and tools I have used:</p>
         </div>
 
+        {/* TODO: Fix overlapping on small screens */}
         <div className="grid grid-cols-4 text-center">
           <div className="col-span-1" data-desc="languages">
             <ul role="list">

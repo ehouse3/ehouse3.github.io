@@ -4,7 +4,10 @@ export default function taskManager() {
   return (
     <div>
       <Section data-desc="about">
-        <h1 className="mb-4">Task Management Application</h1>
+        {/* font size overide prevents overflow on very small screens */}
+        <h1 className="mb-2 text-[2.25rem]! lg:text-[2.625rem]!">
+          Task Management Application
+        </h1>
         <SubSection title="Authenticated Full Stack Organization Tool">
           <p>
             Whereas my previous projects focused on the content, this project

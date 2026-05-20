@@ -103,7 +103,7 @@ export function Section({
     return (
       <section className={`${className}`}>
         <LineBreak></LineBreak>
-        <div className="bg-foreground2 px-10 py-8">
+        <div className="bg-foreground2 px-2 py-8 lg:px-10">
           <div className="mb-2">
             <h2>{title}</h2>
           </div>
@@ -114,7 +114,7 @@ export function Section({
     );
   } else {
     return (
-      <section className={`${className} px-10 py-8`}>
+      <section className={`${className} px-2 py-8 lg:px-10`}>
         <div className="mb-2">
           <h2>{title}</h2>
         </div>
@@ -134,7 +134,7 @@ export function SubSection({ children, title }: SubSectionProps) {
       <div className="mb-2">
         <h4>{title}</h4>
       </div>
-      <div className="ml-5 space-y-2">{children}</div>
+      <div className="ml-2 space-y-2 lg:ml-5">{children}</div>
     </div>
   );
 }
